@@ -1,4 +1,7 @@
 {
+  "navigationBarBackgroundColor": "#86c",
+  "navigationBarTextStyle": "white",
+  "backgroudColor": "#eee",
   "usingComponents": {
     "brickLayout": "plugin://brickLayout/brickLayout"
   }

@@ -1,1 +1,102 @@
 /**index.wxss**/
+#indexPage{
+  background-color: #eee;
+  height: 100%;
+  padding-top: 50rpx;
+}
+
+.card{
+  background-color: #fff;
+  margin: 0 auto;
+  margin-bottom: 50rpx;
+  width: 650rpx;
+  height: auto;
+  border-radius: 5px;
+  box-shadow: 0 0 8px 0 rgba(0,0,0,0.2);
+}
+
+.headRightContainer{
+  height: 50px;
+  width: 500rpx;
+  margin-left: 120rpx;
+  float: right;
+}
+.headContainer{
+  height: 0rpx;
+  margin-left: 40rpx;
+  margin-top: 40rpx;
+  float: left;
+}
+.headPic{
+  width: 40px;
+  height: 40px; 
+  background-color: whtie;
+}
+
+.name{
+  font-size: 16px;
+  color: #4F94CD;
+}
+.date{
+  font-size: 11px;
+  color: #999;
+}
+
+.shareContainer{
+  height: 0px;
+  float: right;
+  margin-right: 50rpx;
+  margin-top: 40rpx;
+}
+#share{
+  margin-top: 10rpx;
+  height: 25px;
+  width: 25px;
+  opacity: 0.5;
+}
+
+.contentContainer{
+  margin-top: 0rpx;
+  margin-left: 0rpx;
+  height: auto;
+  width: 600rpx;
+}
+.text{
+  font-size: 16px;
+  margin-left: 40rpx;
+  margin-right: 10rpx;
+}
+.pictureContainer{
+  margin-top: 20rpx;
+  width: 630rpx;
+  margin: 0 auto;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 20rpx;
+  padding-left: 15rpx;
+}
+.pictureRow{
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  margin-top: 10rpx;
+}
+.picture{
+  height: 300rpx;
+  width: 300rpx;
+  margin-right: 10rpx;
+}
+.bottomContainer{
+  padding-top: 20px; 
+  padding-bottom: 20px; 
+  width: 600rpx;
+  border-top-style: solid;
+  border-width: 1px;
+  border-color: #ddd;
+  margin: 0 auto;
+}
+.icon{
+  width: 20px;
+  height: 20px;
+}
