@@ -6,8 +6,8 @@
   "window":{
     "backgroundColor": "#eee",
     "backgroundTextStyle":"light",
-    "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "WeChat",
+    "navigationBarBackgroundColor": "#FFF",
+    "navigationBarTitleText": "UIC失物招领",
     "navigationBarTextStyle":"black"
   },
   "tabBar": {
