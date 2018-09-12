@@ -43,5 +43,11 @@ Page({
       current: '', // 当前显示图片的http链接
       urls: [currentSrc] // 需要预览的图片http链接列表
     })
+  },
+  viewProfile: function (event) {
+    wx.navigateTo({
+      url: "../profile/profile"
+    })
+
   }
 })

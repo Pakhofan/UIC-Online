@@ -5,11 +5,11 @@
       <view class='topRightContainer'>
         <i class="icon-menu"></i>
       </view>
-      <view class="headContainer">
-        <image class="headPic" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1536490234935&di=59e3abdd861579e8f3109fd1f2c2993f&imgtype=0&src=http%3A%2F%2Fwww.feizl.com%2Fupload2007%2Fallimg%2F170726%2F1940255V6-14.jpg"></image>
+      <view bindtap='viewProfile' class="headContainer">
+        <image class="headPic" mode='aspectFill' src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1536490234935&di=59e3abdd861579e8f3109fd1f2c2993f&imgtype=0&src=http%3A%2F%2Fwww.feizl.com%2Fupload2007%2Fallimg%2F170726%2F1940255V6-14.jpg"></image>
       </view>
       <view class="headRightContainer">
-        <view class="name">Clearave</view>
+        <view bindtap='viewProfile' class="name">Clearave</view>
         <view class="date">1 小时前</view>
       </view>
       <view class="contentContainer">
@@ -23,14 +23,14 @@
           </view>
           <view class='pictureRow'>
             <image class="picture" wx:if="{{testImg}}" src="{{testImg}}" mode="center" bindtap='viewImage' data-src="{{testImg}}"></image>
-            <image class="picture" wx:if="{{testImg}}" src="{{testImg}}" mode="center" bindtap='viewImage' data-src="{{testImg}}"></image>
+            
           </view>
         </view>
       </view>
 
       <view class='bottomContainer'>
         <view class='bottomRow'>
-          <button class='buttonB'>联系Ta</button>
+          <button bindtap='viewProfile' class='buttonB'>联系Ta</button>
           <button class='buttonA'>帮转</button>
         </view>
         <view class='bottomRow'>
@@ -39,6 +39,36 @@
     </view>
 
     <view class='card'>
+      <view class='topRightContainer'>
+        <i class="icon-menu"></i>
+      </view>
+      <view bindtap='viewProfile' class="headContainer">
+        <image class="headPic" mode='aspectFill' src="http://moviepic.manmankan.com/yybpic/yanyuan/pic/31411/374321_s.jpg"></image>
+      </view>
+      <view class="headRightContainer">
+        <view class="name" bindtap='viewProfile'>开发者的女朋友</view>
+        <view class="date">2 小时前</view>
+      </view>
+      <view class="contentContainer">
+        <view class="text">
+          <text selectable="true">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </text>
+        </view>
+        <view class="pictureContainer">
+          <view class='pictureRow'>
+          </view>
+          <view class='pictureRow'>
+          </view>
+        </view>
+      </view>
+
+      <view class='bottomContainer'>
+        <view class='bottomRow'>
+          <button bindtap='viewProfile' class='buttonB'>联系Ta</button>
+          <button class='buttonA'>帮转</button>
+        </view>
+        <view class='bottomRow'>
+        </view>
+      </view>
     </view>
     <view class='card'>
     </view>
