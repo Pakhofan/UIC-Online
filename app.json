@@ -1,14 +1,16 @@
 {
-  "pages":[
+  "pages": [
     "pages/index/index",
-    "pages/logs/logs"
+    "pages/logs/logs",
+    "pages/profile/profile",
+    "pages/detail/detail"
   ],
-  "window":{
+  "window": {
     "backgroundColor": "#eee",
-    "backgroundTextStyle":"light",
+    "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#FFF",
     "navigationBarTitleText": "UIC失物招领",
-    "navigationBarTextStyle":"black"
+    "navigationBarTextStyle": "black"
   },
   "tabBar": {
     "color": "#ccc",
@@ -21,6 +23,12 @@
         "iconPath": "imgs/index_#ccc_tiny.png",
         "selectedIconPath": "imgs/index_black_tiny.png",
         "text": "首页"
+      },
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "imgs/plus_#ccc_tiny.png",
+        "selectedIconPath": "imgs/plus_black_tiny.png",
+        "text": "发布"
       },
       {
         "pagePath": "pages/logs/logs",
