@@ -1,0 +1,82 @@
+/* pages/profile/profile.wxss */
+
+.userinfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.userinfo-avatar {
+  width: 128rpx;
+  height: 128rpx;
+  margin: 20rpx;
+  border-radius: 10%;
+}
+
+.userinfo-nickname {
+  color: #aaa;
+}
+
+.listContainer {
+  font-size: 14px;
+  line-height: 30px;
+  margin-top: 30px;
+  padding-top: 5px;
+  padding-bottom: 10px;
+  width: 700rpx;
+  height: auto;
+  border-radius: 2px;
+  box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.2);
+}
+
+.list {
+  margin: 20px 20rpx;
+  height: 30px;
+  width: 600rpx;
+  margin-left: 50rpx;
+  align-items: flex-start;
+  display: flex;
+  flex-direction: row;
+  border-bottom-style: solid;
+  border-color: rgba(200, 200, 200, 0.2);
+  border-width: 1px;
+}
+
+.listItemA {
+  width: 175rpx;
+  height: 30px;
+  padding-left: 25rpx;
+  text-align: start;
+}
+
+.listItemB {
+  width: 300rpx;
+  height: 30px;
+  padding-left: 25rpx;
+  text-align: start;
+}
+
+.listItemC {
+  width: 175rpx;
+  height: 30px;
+  text-align: center;
+}
+
+button {
+  font-size: 11px;
+  text-align: center;
+  width: 120rpx;
+  height: 25px;
+  line-height: 25px;
+  border-radius: 4px;
+}
+
+.buttonA {
+  color: #fff;
+  background-color: rgb(9, 187, 7);
+  border-color: #09bb07;
+}
+
+.buttonA:active {
+  background-color: rgba(9, 187, 7, 0.6);
+}

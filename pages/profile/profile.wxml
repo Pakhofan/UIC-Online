@@ -1,0 +1,19 @@
+<!--pages/profile/profile.wxml-->
+<view class="container">
+  <view class="userinfo">
+    <image bindtap="bindViewTap" mode='aspectFill' class="userinfo-avatar" src="http://moviepic.manmankan.com/yybpic/yanyuan/pic/31411/374321_s.jpg"></image>
+    <text class="userinfo-nickname">段奥娟</text>
+  </view>
+  <view class='listContainer'>
+    <view class='list'>
+      <view class='listItemA'>微信号</view>
+      <view class='listItemB'>lqb153105</view>
+      <view class='listItemC'><button class='buttonA'>复制</button></view>
+    </view>
+    <view class='list'>
+      <view class='listItemA'>手机号</view>
+      <view class='listItemB'>15914496951</view>
+      <view class='listItemC'><button class='buttonA'>复制</button></view>
+    </view>
+  </view>
+</view>
