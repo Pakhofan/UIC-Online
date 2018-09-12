@@ -1,0 +1,162 @@
+/* pages/detail/detail.wxss */
+.card {
+  background-color: #fff;
+  margin: 0 auto;
+  margin-top:25px;
+  margin-bottom: 50rpx;
+  width: 650rpx;
+  height: auto;
+  border-radius: 5px;
+  box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.headRightContainer {
+  height: 50px;
+  width: 500rpx;
+  margin-left: 120rpx;
+  float: right;
+}
+
+.headContainer {
+  height: 0rpx;
+  margin-left: 40rpx;
+  margin-top: 40rpx;
+  float: left;
+}
+
+.headPic {
+  width: 40px;
+  height: 40px;
+  background-color: whtie;
+  border-radius: 3px;
+}
+
+.name {
+  font-size: 16px;
+  color: #4f94cd;
+}
+
+.date {
+  font-size: 11px;
+  color: #999;
+}
+
+.topRightContainer {
+  height: 0px;
+  float: right;
+  margin-right: 50rpx;
+  margin-top: 40rpx;
+}
+
+.icon-menu {
+  display: inline-block;
+  width: 25px;
+  height: 3px;
+  padding: 5px 0;
+  margin-top: 5px;
+  border-top: 3px solid;
+  border-bottom: 3px solid;
+  background-color: currentColor;
+  background-clip: content-box;
+  opacity: 0.5;
+}
+.icon-menu:active {
+  opacity: 0.3;
+}
+
+.contentContainer {
+  margin-top: 0rpx;
+  margin-left: 0rpx;
+  padding-top: 50rpx;
+  padding-left: 30rpx;
+  padding-right: 30rpx;
+  height: auto;
+  width: 600rpx;
+}
+
+.text {
+  font-size: 16px;
+}
+
+.pictureContainer {
+  margin-top: 20rpx;
+  width: 600rpx;
+  margin: 0 auto;
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 20rpx;
+}
+
+.picture {
+  height: 580rpx;
+  width: 580rpx;
+  margin: 5rpx;
+  border-radius: 4px;
+}
+
+.listContainer {
+  font-size: 14px;
+  line-height: 30px;
+  margin: 0 auto;
+  margin-top: 30px;
+  margin-bottom: 100px;
+  padding-top: 5px;
+  padding-bottom: 10px;
+  width: 650rpx;
+  height: auto;
+  border-radius: 2px;
+  box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.2);
+}
+
+.list {
+  margin: 20px 20rpx;
+  height: 30px;
+  width: 600rpx;
+  margin-left: 50rpx;
+  align-items: flex-start;
+  display: flex;
+  flex-direction: row;
+  border-bottom-style: solid;
+  border-color: rgba(200, 200, 200, 0.2);
+  border-width: 1px;
+}
+
+.listItemA {
+  width: 175rpx;
+  height: 30px;
+  padding-left: 25rpx;
+  text-align: start;
+}
+
+.listItemB {
+  width: 300rpx;
+  height: 30px;
+  padding-left: 25rpx;
+  text-align: start;
+}
+
+.listItemC {
+  width: 175rpx;
+  height: 30px;
+  text-align: center;
+}
+
+button {
+  font-size: 11px;
+  text-align: center;
+  width: 120rpx;
+  height: 25px;
+  line-height: 25px;
+  border-radius: 4px;
+}
+
+.buttonA {
+  color: #fff;
+  background-color: rgb(9, 187, 7);
+  border-color: #09bb07;
+}
+
+.buttonA:active {
+  background-color: rgba(9, 187, 7, 0.6);
+}
