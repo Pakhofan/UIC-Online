@@ -1,6 +1,3 @@
 {
-  "backgroudColor": "#eee",
-  "usingComponents": {
-    "brickLayout": "plugin://brickLayout/brickLayout"
-  }
+  "backgroudColor": "#eee"
 }

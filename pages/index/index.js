@@ -49,5 +49,11 @@ Page({
       url: "../profile/profile"
     })
 
+  },
+  viewDetail: function (event) {
+    wx.navigateTo({
+      url: "../detail/detail"
+    })
+
   }
 })

@@ -1,15 +1,15 @@
 <!--index.wxml-->
 <view id="indexPage">
   <view>
-    <view class='card'>
+    <view bindtap='viewDetail' class='card'>
       <view class='topRightContainer'>
         <i class="icon-menu"></i>
       </view>
-      <view bindtap='viewProfile' class="headContainer">
+      <view catchtap='viewProfile' class="headContainer">
         <image class="headPic" mode='aspectFill' src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1536490234935&di=59e3abdd861579e8f3109fd1f2c2993f&imgtype=0&src=http%3A%2F%2Fwww.feizl.com%2Fupload2007%2Fallimg%2F170726%2F1940255V6-14.jpg"></image>
       </view>
       <view class="headRightContainer">
-        <view bindtap='viewProfile' class="name">Clearave</view>
+        <view catchtap='viewProfile' class="name">Clearave</view>
         <view class="date">1 小时前</view>
       </view>
       <view class="contentContainer">
@@ -18,20 +18,22 @@
         </view>
         <view class="pictureContainer">
           <view class='pictureRow'>
-            <image class="picture" wx:if="{{testImg}}" src="{{testImg}}" mode="center" bindtap='viewImage' data-src="{{testImg}}"></image>
-            <image class="picture" wx:if="{{testImg}}" src="{{testImg}}" mode="center" bindtap='viewImage' data-src="{{testImg}}"></image>
+            <image class="picture" wx:if="{{testImg}}" src="{{testImg}}" mode="aspectFill" catchtap='viewImage' data-src="{{testImg}}"></image>
+            <image class="picture" wx:if="{{testImg}}" src="{{testImg}}" mode="aspectFill" catchtap='viewImage' data-src="{{testImg}}"></image>
+            <image class="picture" wx:if="{{testImg}}" src="{{testImg}}" mode="aspectFill" catchtap='viewImage' data-src="{{testImg}}"></image>
           </view>
           <view class='pictureRow'>
-            <image class="picture" wx:if="{{testImg}}" src="{{testImg}}" mode="center" bindtap='viewImage' data-src="{{testImg}}"></image>
-            
+            <image class="picture" wx:if="{{testImg}}" src="{{testImg}}" mode="aspectFill" catchtap='viewImage' data-src="{{testImg}}"></image>
+            <image class="picture" wx:if="{{testImg}}" src="{{testImg}}" mode="aspectFill" catchtap='viewImage' data-src="{{testImg}}"></image>
+            <image class="picture" wx:if="{{testImg}}" src="{{testImg}}" mode="aspectFill" catchtap='viewImage' data-src="{{testImg}}"></image>
           </view>
         </view>
       </view>
 
       <view class='bottomContainer'>
         <view class='bottomRow'>
-          <button bindtap='viewProfile' class='buttonB'>联系Ta</button>
-          <button class='buttonA'>帮转</button>
+          <button catchtap='viewProfile' class='buttonB'>转发 0</button>
+          <button class='buttonB'>评论 0</button>
         </view>
         <view class='bottomRow'>
         </view>
@@ -63,8 +65,8 @@
 
       <view class='bottomContainer'>
         <view class='bottomRow'>
-          <button bindtap='viewProfile' class='buttonB'>联系Ta</button>
-          <button class='buttonA'>帮转</button>
+          <button bindtap='viewProfile' class='buttonC'>点赞 99</button>
+          <button class='buttonB'>评论 99</button>
         </view>
         <view class='bottomRow'>
         </view>

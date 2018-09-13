@@ -10,7 +10,7 @@
   width: 128rpx;
   height: 128rpx;
   margin: 20rpx;
-  border-radius: 10%;
+  border-radius: 2px;
 }
 
 .userinfo-nickname {
