@@ -4,16 +4,24 @@
   margin: 0 auto;
   margin-top:25px;
   margin-bottom: 50rpx;
-  width: 650rpx;
+  padding-bottom: 25rpx;
+  width: 700rpx;
   height: auto;
-  border-radius: 5px;
-  box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.2);
+  border-radius: 2px;
+  box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.2);
 }
 
 .headRightContainer {
   height: 50px;
-  width: 500rpx;
-  margin-left: 120rpx;
+  width: 450rpx;
+  margin-left: 50rpx;
+  float: right;
+}
+
+.headRightContainerB {
+  height: 50px;
+  width: 400rpx;
+  margin-left: 50rpx;
   float: right;
 }
 
@@ -42,10 +50,10 @@
 }
 
 .topRightContainer {
-  height: 0px;
+  height: 30px;
   float: right;
   margin-right: 50rpx;
-  margin-top: 40rpx;
+  margin-top: 20px;
 }
 
 .icon-menu {
@@ -71,7 +79,7 @@
   padding-left: 30rpx;
   padding-right: 30rpx;
   height: auto;
-  width: 600rpx;
+  width: 650rpx;
 }
 
 .text {
@@ -80,19 +88,45 @@
 
 .pictureContainer {
   margin-top: 20rpx;
-  width: 600rpx;
+  width: 650rpx;
   margin: 0 auto;
   align-items: flex-start;
   display: flex;
   flex-direction: column;
+  padding-top: 20rpx;
   padding-bottom: 20rpx;
 }
 
+.pictureRow {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: row;
+}
+
 .picture {
-  height: 580rpx;
-  width: 580rpx;
+  height: 310rpx;
+  width: 310rpx;
   margin: 5rpx;
   border-radius: 4px;
+}
+
+#firstCommentRow{
+  border-bottom-style: NONE;
+}
+
+.commentRow{
+  width: 650rpx;
+  padding-bottom: 20px;
+  margin: 0 auto;
+  border-top-style: solid;
+  border-color: rgba(200, 200, 200, 0.2);
+  border-width: 1px;
+}
+
+.floor{
+  margin-top: 5px;
+  font-size: 12pt;
+  color: rgba(200, 200, 200, 0.9);
 }
 
 .listContainer {
@@ -103,7 +137,7 @@
   margin-bottom: 100px;
   padding-top: 5px;
   padding-bottom: 10px;
-  width: 650rpx;
+  width: 700rpx;
   height: auto;
   border-radius: 2px;
   box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.2);
