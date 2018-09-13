@@ -37,11 +37,5 @@
         "text": "日志"
       }
     ]
-  },
-  "plugins": {
-    "brickLayout": {
-      "version": "0.2.0",
-      "provider": "wx3c042630f3cdc175"
-    }
   }
 }
