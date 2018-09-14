@@ -3,16 +3,25 @@
   <view class='card'>
     <view class='topRightContainer'>
     </view>
-    <view class="headContainer">
-      <image class="headPic" mode='aspectFill' src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1536490234935&di=59e3abdd861579e8f3109fd1f2c2993f&imgtype=0&src=http%3A%2F%2Fwww.feizl.com%2Fupload2007%2Fallimg%2F170726%2F1940255V6-14.jpg"></image>
+    <view wx:if="{{!hasUserInfo && canIUse}}" class='getUserInfoButtonContainer'>
+      <button class='getUserInfoButton' open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
     </view>
-    <view class="headRightContainer">
-      <view bindtap='viewProfile' class="name">Clearave</view>
-      <view class="date">即将发布</view>
-    </view>
+
+    <block wx:else>
+      <view class="headContainer">
+        <image class="headPic" mode='aspectFill' src="{{userInfo.avatarUrl}}"></image>
+      </view>
+      <view class="headRightContainer">
+        <view bindtap='viewProfile' class="name">{{userInfo.nickName}}</view>
+        <view class="date">即将发布</view>
+      </view>
+    </block>
+
     <view class="contentContainer">
       <view class="text">
-        <textarea selectable="true" placeholder='输入要发送的内容...' maxlength='500' auto-height='ture'></textarea>
+        <textarea selectable="true" placeholder='输入要发送的内容...' value='{{text}}' maxlength='500' auto-height='ture' cursor-spacing='100' bindinput='userInput'></textarea>
+
+        <view class="weui-uploader__info" style='margin-top:5px;width:100%;text-align:end;'>{{text.length}}/500</view>
       </view>
       <view class="pictureContainer">
         <view class="weui-uploader">
@@ -27,7 +36,7 @@
                 </view>
               </block>
             </view>
-            <view class="weui-uploader__input-box">
+            <view class="weui-uploader__input-box" style='display:{{uploaderDisplay}}'>
               <view class="weui-uploader__input" bindtap="chooseImage"></view>
             </view>
           </view>
