@@ -4,7 +4,8 @@
     "pages/logs/logs",
     "pages/profile/profile",
     "pages/detail/detail",
-    "pages/send/send"
+    "pages/send/send",
+    "pages/me/me"
   ],
   "window": {
     "backgroundColor": "#eee",
@@ -32,10 +33,10 @@
         "text": "发布"
       },
       {
-        "pagePath": "pages/logs/logs",
+        "pagePath": "pages/me/me",
         "iconPath": "imgs/me_#ccc_tiny.png",
         "selectedIconPath": "imgs/me_black_tiny.png",
-        "text": "日志"
+        "text": "我的"
       }
     ]
   }
