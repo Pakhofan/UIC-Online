@@ -107,7 +107,6 @@
   height: 310rpx;
   width: 310rpx;
   margin: 5rpx;
-  border-radius: 4px;
 }
 
 #firstCommentRow{

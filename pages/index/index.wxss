@@ -116,7 +116,6 @@
   height: 190rpx;
   width: 190rpx;
   margin: 5rpx;
-  border-radius: 2px;
 }
 
 .singlePic{

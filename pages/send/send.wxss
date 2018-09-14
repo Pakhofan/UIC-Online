@@ -50,6 +50,20 @@
   margin-top: 20px;
 }
 
+.getUserInfoButtonContainer{
+  padding-top: 20px;
+  padding-right: 300rpx;
+  margin-top: 40rpx;
+  margin-bottom: -120px;
+  height: 50px;
+}
+
+.getUserInfoButton{
+  width: 200rpx;
+  margin: 0 auto;
+  font-size: 12px;
+}
+
 .contentContainer {
   margin-top: 50px;
   margin-left: 0rpx;
