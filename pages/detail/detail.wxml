@@ -1,5 +1,4 @@
 <!--pages/detail/detail.wxml-->
-<!--index.wxml-->
 <view>
   <view class='card'>
     <view class='topRightContainer'>
