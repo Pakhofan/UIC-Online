@@ -1,0 +1,38 @@
+<!--pages/send/send.wxml-->
+<view>
+  <view class='card'>
+    <view class='topRightContainer'>
+    </view>
+    <view class="headContainer">
+      <image class="headPic" mode='aspectFill' src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1536490234935&di=59e3abdd861579e8f3109fd1f2c2993f&imgtype=0&src=http%3A%2F%2Fwww.feizl.com%2Fupload2007%2Fallimg%2F170726%2F1940255V6-14.jpg"></image>
+    </view>
+    <view class="headRightContainer">
+      <view bindtap='viewProfile' class="name">Clearave</view>
+      <view class="date">即将发布</view>
+    </view>
+    <view class="contentContainer">
+      <view class="text">
+        <textarea selectable="true" placeholder='输入要发送的内容...' maxlength='500' auto-height='ture'></textarea>
+      </view>
+      <view class="pictureContainer">
+        <view class="weui-uploader">
+          <view class="weui-uploader__hd">
+            <view class="weui-uploader__info">{{files.length}}/6</view>
+          </view>
+          <view class="weui-uploader__bd">
+            <view class="weui-uploader__files" id="uploaderFiles">
+              <block wx:for="{{files}}" wx:key="*this">
+                <view class="weui-uploader__file" bindtap="previewImage" id="{{item}}">
+                  <image class="weui-uploader__img" src="{{item}}" mode="aspectFill" />
+                </view>
+              </block>
+            </view>
+            <view class="weui-uploader__input-box">
+              <view class="weui-uploader__input" bindtap="chooseImage"></view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

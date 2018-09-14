@@ -3,7 +3,8 @@
     "pages/index/index",
     "pages/logs/logs",
     "pages/profile/profile",
-    "pages/detail/detail"
+    "pages/detail/detail",
+    "pages/send/send"
   ],
   "window": {
     "backgroundColor": "#eee",
@@ -25,7 +26,7 @@
         "text": "首页"
       },
       {
-        "pagePath": "pages/index/index",
+        "pagePath": "pages/send/send",
         "iconPath": "imgs/plus_#ccc_tiny.png",
         "selectedIconPath": "imgs/plus_black_tiny.png",
         "text": "发布"
