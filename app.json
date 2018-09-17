@@ -39,5 +39,11 @@
         "text": "我的"
       }
     ]
+  },
+  "plugins": {
+    "sdkPlugin": {
+      "version": "1.7.0",
+      "provider": "wxc6b86e382a1e3294"
+    }
   }
 }
