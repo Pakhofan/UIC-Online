@@ -16,6 +16,12 @@
   color: #aaa;
 }
 
+.getUserInfoButton{
+  width: 200rpx;
+  margin: 0 auto;
+  font-size: 12px;
+}
+
 .listContainer {
   font-size: 14px;
   line-height: 30px;
