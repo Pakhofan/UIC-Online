@@ -1,7 +1,7 @@
 // pages/me/me.js
 const app = getApp()
 Page({
-
+  //hello
   /**
    * 页面的初始数据
    */
