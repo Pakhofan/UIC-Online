@@ -10,9 +10,13 @@ Page({
     userInfo: {},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
+    text_WX: '',
+    text_Phone: '',
+    disabled_WX: false,
+    Change_WX: true,
   },
 
-  onLoad: function () {
+  onLoad: function() {
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,
@@ -40,7 +44,7 @@ Page({
       })
     }
   },
-  getUserInfo: function (e) {
+  getUserInfo: function(e) {
     wx.BaaS.handleUserInfo(e).then(res => {
       // res 包含用户完整信息
     }, res => {
@@ -51,5 +55,24 @@ Page({
       userInfo: e.detail.userInfo,
       hasUserInfo: true
     })
-  }
+  },
+
+  onChange_WX: function(e) {
+    this.setData({
+      Change_WX: !this.data.Change_WX,
+      disabled_WX: !this.data.disabled_WX,
+    })
+  },
+
+
+  userInput_WX: function(e) {
+    this.setData({
+      text_WX: e.detail.value,
+    })
+  },
+  userInput_Phone: function(e) {
+    this.setData({
+      text_Phone: e.detail.value,
+    })
+  },
 })
