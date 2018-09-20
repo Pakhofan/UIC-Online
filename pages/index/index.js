@@ -21,6 +21,7 @@ Page({
         });
       }
     });
+    this.pullCards();
   },
   tabClick: function (e) {
     this.setData({
@@ -47,5 +48,18 @@ Page({
       url: "../detail/detail"
     })
 
+  },
+  pullCards: function () {
+    var Card = new wx.BaaS.TableObject(52108)
+
+    var query = new wx.BaaS.Query()
+    query.compare('status', '<', 2)
+
+    Card.setQuery(query).limit(10).offset(0).find().then(res => {
+      console.log(res.data)
+      // success
+    }, err => {
+      // err
+    })
   }
 })
