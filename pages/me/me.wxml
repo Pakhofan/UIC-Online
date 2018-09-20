@@ -7,16 +7,22 @@
       <text class="userinfo-nickname">{{userInfo.nickName}}</text>
     </block>
   </view>
-    <view class='listContainer'>
+  <view class='listContainer'>
     <view class='list'>
       <view class='listItemA'>微信号</view>
-      <view class='listItemB'>lqb153105</view>
-      <view class='listItemC'><button class='buttonA'>修改</button></view>
+      <textarea class='listItemB' placeholder='请输入信息' value="{{text_WX}}" maxlength='150' auto-height='ture' fixed='true' cursor-spacing='100' bindinput='userInput_WX' disabled="{{disabled_WX}}"></textarea>
+      <view class='listItemC'></view>
     </view>
     <view class='list'>
       <view class='listItemA'>手机号</view>
-      <view class='listItemB'>15914496951</view>
-      <view class='listItemC'><button class='buttonA'>修改</button></view>
+      <textarea class='listItemB' placeholder='请输入信息' value="{{text_Phone}}" maxlength='11' auto-height='ture' fixed='true' cursor-spacing='100' bindinput='userInput_Phone' disabled="{{disabled_WX}}"></textarea>
+      <view class='listItemC'>
+      </view>
+    </view>
+    <view class='list'>
+      <button class='buttonA' wx:if="{{Change_WX}}" catchtap='onChange_WX'>保存</button>
+      <button class='buttonA' wx:else catchtap='onChange_WX'>修改</button>
     </view>
   </view>
+
 </view>
