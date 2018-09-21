@@ -84,7 +84,43 @@
               </view>
             </view>
           </view>
-          <view class='card'>
+          <view class='card' wx:for="{{cards}}">
+            <view class='topRightContainer'>
+              <i class="icon-menu"></i>
+            </view>
+            <view bindtap='viewProfile' class="headContainer">
+              <image class="headPic" mode='aspectFill' src="{{item.creator_avatar}}"></image>
+            </view>
+            <view class="headRightContainer">
+              <view class="name" bindtap='viewProfile'>{{item.creator_name}}</view>
+              <view class="date">{{item.created_at}}</view>
+            </view>
+            <view class="contentContainer">
+              <view class="text">
+                <text selectable="true">{{item.text}}</text>
+              </view>
+              <view class="pictureContainer">
+                <view class='pictureRow'>
+                <image class="picture" wx:if="{{item.imgs[0]}}" src="{{item.imgs[0]}}" mode="aspectFill" catchtap='viewImage' data-src="{{item.imgs[0]}}" data-list="{{item.imgs}}"></image>
+                <image class="picture" wx:if="{{item.imgs[1]}}" src="{{item.imgs[1]}}" mode="aspectFill" catchtap='viewImage' data-src="{{item.imgs[1]}}" data-list="{{item.imgs}}"></image>
+                <image class="picture" wx:if="{{item.imgs[2]}}" src="{{item.imgs[2]}}" mode="aspectFill" catchtap='viewImage' data-src="{{item.imgs[2]}}" data-list="{{item.imgs}}"></image>
+                </view>
+                <view class='pictureRow'>
+                <image class="picture" wx:if="{{item.imgs[3]}}" src="{{item.imgs[3]}}" mode="aspectFill" catchtap='viewImage' data-src="{{item.imgs[3]}}" data-list="{{item.imgs}}"></image>
+                <image class="picture" wx:if="{{item.imgs[4]}}" src="{{item.imgs[4]}}" mode="aspectFill" catchtap='viewImage' data-src="{{item.imgs[4]}}" data-list="{{item.imgs}}"></image>
+                <image class="picture" wx:if="{{item.imgs[5]}}" src="{{item.imgs[5]}}" mode="aspectFill" catchtap='viewImage' data-src="{{item.imgs[5]}}" data-list="{{item.imgs}}"></image>
+                </view>
+              </view>
+            </view>
+
+            <view class='bottomContainer'>
+              <view class='bottomRow'>
+                <button bindtap='viewProfile' class='buttonC'>点赞 {{item.like_count}}</button>
+                <button class='buttonB'>评论 {{item.comment_count}}</button>
+              </view>
+              <view class='bottomRow'>
+              </view>
+            </view>
           </view>
         </view>
       </view>
