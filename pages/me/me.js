@@ -5,6 +5,7 @@ Page({
   /**
    * 页面的初始数据
    */
+
   data: {
     motto: 'Hello UIC',
     userInfo: {},
@@ -58,12 +59,49 @@ Page({
   },
 
   onChange_WX: function(e) {
-    this.setData({
-      Change_WX: !this.data.Change_WX,
-      disabled_WX: !this.data.disabled_WX,
+    if(this.data.Change_WX){
+    this.showModal();
+    }
+    else{
+      this.setData({
+        Change_WX: !this.data.Change_WX,
+        disabled_WX: !this.data.disabled_WX,
+      })
+    }
+  },
+
+  showModal: function () {
+    var that = this;
+    wx.showModal({
+      title: "修改确认",
+      content: "确认此次修改",
+      showCancel: "True",
+      cancelText: "取消",
+      cancelcolor: "#666",
+      confirmText: "确认",
+      confirmColor: "#333",
+      success: function (res) {
+        if(res.confirm){
+        that.setData({
+          Change_WX: !that.data.Change_WX,
+          disabled_WX: !that.data.disabled_WX,
+        })
+        that.information_input()
+        }
+      },
     })
   },
 
+  information_input: function(){
+    let tableID = 52547
+    let Product = new wx.BaaS.TableObject(tableID)
+    let product = Product.create()
+    let data = {
+      WX_Number: this.data.text_WX,
+      Phone: this.data.text_Phone,
+    }
+    product.set(data).save()
+  },
 
   userInput_WX: function(e) {
     this.setData({
