@@ -41,16 +41,17 @@ Page({
     })
   },
   viewProfile: function (event) {
+    var userId = event.currentTarget.dataset.id;
     wx.navigateTo({
-      url: "../profile/profile"
+      url: "../profile/profile?id=" + userId
     })
 
   },
   viewDetail: function (event) {
+    var cardId = event.currentTarget.dataset.id;
     wx.navigateTo({
-      url: "../detail/detail"
+      url: "../detail/detail?id=" + cardId
     })
-
   },
   pullCards: function () {
     var Card = new wx.BaaS.TableObject(52108)
