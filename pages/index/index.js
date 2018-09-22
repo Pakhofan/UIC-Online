@@ -1,6 +1,7 @@
 //index.js
 //获取应用实例
 const app = getApp();
+const util = require('../../utils/util.js')
 var sliderWidth = 96;
 
 Page({
@@ -9,7 +10,8 @@ Page({
     activeIndex: 0,
     sliderOffset: 0,
     sliderLeft: 0,
-    testImg: "https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=3537273527,3254803069&fm=26&gp=0.jpg"
+    testImg: "https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=3537273527,3254803069&fm=26&gp=0.jpg",
+    cards:[]
   },
   onLoad: function() {
     var that = this;
@@ -31,23 +33,25 @@ Page({
   },
   viewImage: function (event) {
     var currentSrc = event.currentTarget.dataset.src;
+    var srcList = event.currentTarget.dataset.list;
     console.log("data is " + currentSrc);
     wx.previewImage({
-      current: '', // 当前显示图片的http链接
-      urls: [currentSrc] // 需要预览的图片http链接列表
+      current: currentSrc, // 当前显示图片的http链接
+      urls: srcList // 需要预览的图片http链接列表
     })
   },
   viewProfile: function (event) {
+    var userId = event.currentTarget.dataset.id;
     wx.navigateTo({
-      url: "../profile/profile"
+      url: "../profile/profile?id=" + userId
     })
 
   },
   viewDetail: function (event) {
+    var cardId = event.currentTarget.dataset.id;
     wx.navigateTo({
-      url: "../detail/detail"
+      url: "../detail/detail?id=" + cardId
     })
-
   },
   pullCards: function () {
     var Card = new wx.BaaS.TableObject(52108)
@@ -56,7 +60,16 @@ Page({
     query.compare('status', '<', 2)
 
     Card.setQuery(query).limit(10).offset(0).find().then(res => {
-      console.log(res.data)
+      console.log(res.data);
+      var cardList = res.data.objects;
+      console.log(cardList[0].created_at);
+      for (var i = 0; i < cardList.length; i ++){
+        console.log(i);
+        cardList[i].created_at = util.formatTime(cardList[i].created_at, 'Y-M-D h:m:s')
+      }
+      this.setData({
+        cards: cardList
+      });
       // success
     }, err => {
       // err

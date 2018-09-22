@@ -10,12 +10,12 @@
   <view class='listContainer'>
     <view class='list'>
       <view class='listItemA'>微信号</view>
-      <textarea class='listItemB' placeholder='请输入信息' value="{{text_WX}}" maxlength='150' auto-height='ture' fixed='true' cursor-spacing='100' bindinput='userInput_WX' disabled="{{disabled_WX}}"></textarea>
+      <textarea class='listItemB' placeholder='请输入信息' value="{{text_WX}}" maxlength='150' auto-height='ture' cursor-spacing='100' bindinput='userInput_WX' disabled="{{disabled_WX}}"></textarea>
       <view class='listItemC'></view>
     </view>
     <view class='list'>
       <view class='listItemA'>手机号</view>
-      <textarea class='listItemB' placeholder='请输入信息' value="{{text_Phone}}" maxlength='11' auto-height='ture' fixed='true' cursor-spacing='100' bindinput='userInput_Phone' disabled="{{disabled_WX}}"></textarea>
+      <textarea class='listItemB' placeholder='请输入信息' value="{{text_Phone}}" maxlength='11' auto-height='ture' cursor-spacing='100' bindinput='userInput_Phone' disabled="{{disabled_WX}}"></textarea>
       <view class='listItemC'>
       </view>
     </view>

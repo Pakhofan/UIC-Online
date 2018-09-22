@@ -20,13 +20,13 @@
 
 .headRightContainerB {
   height: 50px;
-  width: 400rpx;
-  margin-left: 50rpx;
-  float: right;
+  width: 300rpx;
+  margin-left: 150rpx;
+  float: left;
 }
 
 .headContainer {
-  height: 0rpx;
+  height: 0px;
   margin-left: 40rpx;
   margin-top: 40rpx;
   float: left;
@@ -37,6 +37,7 @@
   height: 40px;
   background-color: whtie;
   border-radius: 3px;
+  float: left;
 }
 
 .name {
@@ -75,7 +76,7 @@
 .contentContainer {
   margin-top: 0rpx;
   margin-left: 0rpx;
-  padding-top: 50rpx;
+  padding-top: 80px;
   padding-left: 30rpx;
   padding-right: 30rpx;
   height: auto;

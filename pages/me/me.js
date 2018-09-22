@@ -5,13 +5,12 @@ Page({
   /**
    * 页面的初始数据
    */
+
   data: {
     motto: 'Hello UIC',
     userInfo: {},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
-    text_WX: '',
-    text_Phone: '',
     disabled_WX: false,
     Change_WX: true,
   },
@@ -44,8 +43,17 @@ Page({
       })
     }
   },
+  onShow: function() {
+
+  },
   getUserInfo: function(e) {
+    var id = 0
     wx.BaaS.handleUserInfo(e).then(res => {
+      console.log('！！！！')
+      console.log(res.id)
+      id = res.id
+      app.globalData.userId = id
+      wx.setStorageSync('userId', id)
       // res 包含用户完整信息
     }, res => {
       // **res 有两种情况**：用户拒绝授权，res 包含基本用户信息：id、openid、unionid；其他类型的错误，如网络断开、请求超时等，将返回 Error 对象（详情见下方注解）
@@ -53,15 +61,56 @@ Page({
     app.globalData.userInfo = e.detail.userInfo
     this.setData({
       userInfo: e.detail.userInfo,
-      hasUserInfo: true
+      hasUserInfo: true,
     })
   },
 
   onChange_WX: function(e) {
-    this.setData({
-      Change_WX: !this.data.Change_WX,
-      disabled_WX: !this.data.disabled_WX,
+    if (this.data.Change_WX) {
+      this.showModal();
+    } else {
+      this.setData({
+        Change_WX: !this.data.Change_WX,
+        disabled_WX: !this.data.disabled_WX,
+      })
+    }
+  },
+
+  showModal: function() {
+    var that = this;
+    wx.showModal({
+      title: "修改确认",
+      content: "确认此次修改",
+      showCancel: "True",
+      cancelText: "取消",
+      cancelcolor: "#666",
+      confirmText: "确认",
+      confirmColor: "#333",
+      success: function(res) {
+        if (res.confirm) {
+          that.setData({
+            Change_WX: !that.data.Change_WX,
+            disabled_WX: !that.data.disabled_WX,
+          })
+          that.information_update()
+        }
+      },
     })
+  },
+
+  information_update: function() {
+    let MyUser = new wx.BaaS.User()
+    let currentUser = MyUser.getCurrentUserWithoutData()
+    let userdata = {
+      wechat_id: this.data.text_WX,
+      phone_number: this.data.text_Phone,
+    }
+    currentUser.set(userdata).update().then(res => {
+      // success
+    }, err => {
+      // err
+    })
+
   },
 
 
@@ -72,7 +121,7 @@ Page({
   },
   userInput_Phone: function(e) {
     this.setData({
-      text_Phone: e.detail.value,
+      text_Phone: e.detail.value.replace(/[^\d]/g, ''),
     })
   },
 })
