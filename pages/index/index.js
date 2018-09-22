@@ -59,7 +59,7 @@ Page({
     var query = new wx.BaaS.Query()
     query.compare('status', '<', 2)
 
-    Card.setQuery(query).limit(10).offset(0).find().then(res => {
+    Card.setQuery(query).limit(10).offset(0).orderBy('-created_at').find().then(res => {
       console.log(res.data);
       var cardList = res.data.objects;
       console.log(cardList[0].created_at);

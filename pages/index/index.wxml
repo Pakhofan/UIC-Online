@@ -18,11 +18,11 @@
               <view class='topRightContainer'>
                 <i class="icon-menu"></i>
               </view>
-              <view bindtap='viewProfile' data-id='{{item.created_by}}' class="headContainer">
+              <view catchtap='viewProfile' data-id='{{item.created_by}}' class="headContainer">
                 <image class="headPic" mode='aspectFill' src="{{item.creator_avatar}}"></image>
               </view>
               <view class="headRightContainer">
-                <view class="name" bindtap='viewProfile' data-id='{{item.created_by}}'>{{item.creator_name}}</view>
+                <view class="name" catchtap='viewProfile' data-id='{{item.created_by}}'>{{item.creator_name}}</view>
                 <view class="date">{{item.created_at}}</view>
               </view>
               <view class="contentContainer">
