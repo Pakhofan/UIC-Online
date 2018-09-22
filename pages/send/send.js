@@ -12,7 +12,7 @@ Page({
     uploaderDisplay: 'inline',
     userInfo: {},
     hasUserInfo: false,
-    canIUse: wx.canIUse('button.open-type.getUserInfo'),
+    canIUse: wx.canIUse('button.open-type.getUserInfo')
   },
 
   /**
@@ -105,13 +105,14 @@ Page({
     app.globalData.userInfo = e.detail.userInfo
     this.setData({
       userInfo: e.detail.userInfo,
-      hasUserInfo: true
+      hasUserInfo: true,
     })
   },
   userInput: function (e) {
-    this.setData({
-      text: e.detail.value
-    });
+      this.setData({
+        hasuserInput: true,
+        text: e.detail.value,
+      });
   },
   chooseImage: function (e) {
     var that = this;
@@ -137,6 +138,10 @@ Page({
       current: e.currentTarget.id, // 当前显示图片的http链接
       urls: this.data.files // 需要预览的图片http链接列表
     })
+  },
+
+  onSendTap: function(e){
+    
   }
 
 })

@@ -44,4 +44,9 @@
       </view>
     </view>
   </view>
+  <view class='card'>
+  
+  </view>
+  <button class='buttonA' wx:if="{{hasUserInfo && ((text.length > 0)|| files.length > 0)}}" id='sendButton' catchtap="onSendTap">发布</button>
+  <button class='buttonB' wx:else id='sendButton'>发布</button>
 </view>
