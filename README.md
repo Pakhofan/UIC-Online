@@ -1,5 +1,10 @@
 # fork18001
 ## 参考资料
+### 微信官方
 * [微信官方开发文档](https://developers.weixin.qq.com/miniprogram/dev/index.html)
+* [微信小程序开发工具](https://developers.weixin.qq.com/miniprogram/dev/devtools/download.html)
+### 知晓云BaaS服务
 * [知晓云开发文档](https://doc.minapp.com)
+* [知晓云云端管理页](https://cloud.minapp.com/dashboard)
+### 其他开发资源
 * [微信小程序开发资源汇总](https://github.com/justjavac/awesome-wechat-weapp)
