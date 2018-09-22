@@ -1,4 +1,7 @@
 // pages/detail/detail.js
+
+const util = require('../../utils/util.js')
+
 Page({
 
   /**
@@ -11,13 +14,19 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function () { },
+  onLoad: function (option) {
+    var currentId = option.id;
+    //从index传入的cardID
+    console.log(currentId)
+    this.pullCard(currentId)
+  },
   viewImage: function (event) {
     var currentSrc = event.currentTarget.dataset.src;
+    var srcList = event.currentTarget.dataset.list;
     console.log("data is " + currentSrc);
     wx.previewImage({
-      current: '', // 当前显示图片的http链接
-      urls: [currentSrc] // 需要预览的图片http链接列表
+      current: currentSrc, // 当前显示图片的http链接
+      urls: srcList // 需要预览的图片http链接列表
     })
   },
   viewProfile: function (event) {
@@ -26,53 +35,22 @@ Page({
     })
 
   },
+  pullCard: function (cardID) {
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
+    let recordID = cardID
 
-  },
+    var Card = new wx.BaaS.TableObject(52108)
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
+    Card.get(recordID).then(res => {
+      console.log(res.data);
+      var card = res.data;
+      card.created_at = util.formatTime(card.created_at, 'Y-M-D h:m:s')
+      this.setData({
+        card: card
+      });
+      // success
+    }, err => {
+      // err
+    })
   }
 })
