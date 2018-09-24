@@ -15,11 +15,7 @@ Page({
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     istreehole: false,
     ishidename: true,
-    paths: [
-      "https://cloud-minapp-20256.cloud.ifanrusercontent.com/1g40LXqXTTOKpNfk.jpg",
-      "https://cloud-minapp-20256.cloud.ifanrusercontent.com/1g40LXqAjoiyyppI.jpg",
-      "https://cloud-minapp-20256.cloud.ifanrusercontent.com/1g40LXjqjlmjVgPK.jpg"
-    ],
+    paths: [],
   },
 
   /**
@@ -54,57 +50,23 @@ Page({
     }
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function() {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function() {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function() {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function() {
-
-  },
-
-  getUserInfo: function(e) {
+  getUserInfo: function (e) {
+    var id = 0
     wx.BaaS.handleUserInfo(e).then(res => {
+      console.log('！！！！')
+      id = res.id
+      let MyUser = new wx.BaaS.User()
+      MyUser.get(id).then(res => {
+        console.log(res.data)
+        //这里获取到的是云端数据
+        app.globalData.BaaSAvatar = res.data.avatar
+        wx.setStorageSync('BaaSAvatar', res.data.avatar)
+        // success
+      }, err => {
+        // err
+      })
+      app.globalData.userId = id
+      wx.setStorageSync('userId', id)
       // res 包含用户完整信息
     }, res => {
       // **res 有两种情况**：用户拒绝授权，res 包含基本用户信息：id、openid、unionid；其他类型的错误，如网络断开、请求超时等，将返回 Error 对象（详情见下方注解）
@@ -117,12 +79,14 @@ Page({
       })
     }
   },
-  userInput: function(e) {
+
+  userInput: function (e) {
     this.setData({
       hasuserInput: true,
       text: e.detail.value,
     });
   },
+
   chooseImage: function(e) {
     var that = this;
     wx.chooseImage({
@@ -188,22 +152,24 @@ Page({
       success: function(res) {
         if (res.confirm) {
           that.Files_upload()
-          that.Information_upload()
-          wx.showToast({
-            title: "发布成功",
-            duration: 1000,
-            icon: "success",
-          })
+          that.uploadInterval()
         }
       },
     })
   },
 
+  uploadInterval: function() {
+    var that = this
+    var intervalId = setInterval(function(){
+      if (that.data.paths.length == that.data.files.length){
+        that.Information_upload()
+        clearInterval(intervalId)
+      }
+    }, 1000)
+  },
+
   Information_upload: function() {
-    console.log(this.data.files)
-    console.log(this.data.files.type)
-    console.log(this.data.paths)
-    console.log(this.data.paths.type)
+    var that = this
     let tableID = 52108
     let SendProduct = new wx.BaaS.TableObject(tableID)
     let sendproduct = SendProduct.create()
@@ -211,28 +177,39 @@ Page({
       text: this.data.text,
       imgs: this.data.paths,
       creator_name: this.data.userInfo.nickName,
+      creator_avatar: wx.getStorageSync('BaaSAvatar')
     }
     console.log(data.imgs)
     if (this.data.istreehole) {
       if (this.data.ishidename) {
         sendproduct.set('class', 0)
         sendproduct.set('status', 1)
-        sendproduct.set(data)
-        sendproduct.save().then(res => {}, err => {})
       } else {
         sendproduct.set('class', 0)
         sendproduct.set('status', 0)
-        sendproduct.set(data)
-        sendproduct.save().then(res => {}, err => {})
       }
     } else {
       sendproduct.set('class', 1)
       sendproduct.set('status', 0)
-      sendproduct.set(data)
-      sendproduct.save().then(res => {
-        console.log(res)
-      }, err => {})
     }
+    sendproduct.set(data)
+    sendproduct.save().then(res => {
+      console.log(res)
+      wx.showToast({
+        title: "发布成功",
+        duration: 1000,
+        icon: "success",
+      })
+      that.clearData()
+    }, err => { })
+  },
+
+  clearData: function(){
+    this.setData({
+      text: '',
+      paths: [],
+      files: [],
+    });
   },
 
   Files_upload: function() {

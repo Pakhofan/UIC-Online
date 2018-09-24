@@ -52,6 +52,16 @@ Page({
       console.log('！！！！')
       console.log(res)
       id = res.id
+      let MyUser = new wx.BaaS.User()
+      MyUser.get(id).then(res => {
+        console.log(res.data)
+        //这里获取到的是云端数据
+        app.globalData.BaaSAvatar = res.data.avatar
+        wx.setStorageSync('BaaSAvatar', res.data.avatar)
+        // success
+      }, err => {
+        // err
+      })
       app.globalData.userId = id
       wx.setStorageSync('userId', id)
       // res 包含用户完整信息
