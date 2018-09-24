@@ -72,10 +72,12 @@ Page({
       // **res 有两种情况**：用户拒绝授权，res 包含基本用户信息：id、openid、unionid；其他类型的错误，如网络断开、请求超时等，将返回 Error 对象（详情见下方注解）
     })
     app.globalData.userInfo = e.detail.userInfo
-    this.setData({
-      userInfo: e.detail.userInfo,
-      hasUserInfo: true,
-    })
+    if (e.detail.userInfo) {
+      this.setData({
+        userInfo: e.detail.userInfo,
+        hasUserInfo: true,
+      })
+    }
   },
 
   userInput: function (e) {
