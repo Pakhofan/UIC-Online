@@ -151,6 +151,9 @@ Page({
       confirmColor: "#333",
       success: function(res) {
         if (res.confirm) {
+          wx.showLoading({
+            title: '上传中',
+          });
           that.Files_upload()
           that.uploadInterval()
         }
@@ -164,6 +167,7 @@ Page({
       if (that.data.paths.length == that.data.files.length){
         that.Information_upload()
         clearInterval(intervalId)
+        wx.hideLoading({});
       }
     }, 1000)
   },

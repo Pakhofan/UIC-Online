@@ -124,6 +124,10 @@
   width: 600rpx;
 }
 
+.sendContainer{
+  margin-bottom: 50px;
+}
+
 .card_sendarea{
   background-color: #fff;
   margin: 0 auto;
