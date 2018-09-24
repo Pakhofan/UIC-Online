@@ -4,11 +4,15 @@
     <view class='topRightContainer'>
       <i class="icon-menu"></i>
     </view>
-    <view bindtap='viewProfile' class="headContainer" data-id='{{card.created_by}}'>
+    <view wx:if="{{card.status == 1}}" class="headContainer">
+      <image class="headPic" mode='aspectFill' src="{{anonymousAvatarUrl}}"></image>
+    </view>
+    <view wx:else bindtap='viewProfile' class="headContainer" data-id='{{card.created_by}}'>
       <image class="headPic" mode='aspectFill' src="{{card.creator_avatar}}"></image>
     </view>
     <view class="headRightContainer">
-      <view bindtap='viewProfile' class="name" data-id='{{card.created_by}}'>{{card.creator_name}}</view>
+    <view wx:if="{{card.status == 1}}" class="name">匿名</view>
+      <view wx:else bindtap='viewProfile' class="name" data-id='{{card.created_by}}'>{{card.creator_name}}</view>
       <view class="date">{{card.created_at}}</view>
     </view>
     <view class="contentContainer">

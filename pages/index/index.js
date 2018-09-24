@@ -12,7 +12,8 @@ Page({
     sliderLeft: 0,
     testImg: "https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=3537273527,3254803069&fm=26&gp=0.jpg",
     cards:[],
-    webpCode: '!/format/webp'
+    webpCode: '!/format/webp',
+    anonymousAvatarUrl: 'https://cloud-minapp-20256.cloud.ifanrusercontent.com/1g4MkWmjmCtMquLU.png!/format/webp'
   },
   onLoad: function() {
     var that = this;
