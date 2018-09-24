@@ -32,14 +32,14 @@
                 </view>
                 <view class="pictureContainer">
                   <view class='pictureRow'>
-                    <image class="picture" wx:if="{{item.imgs[0]}}" src="{{item.imgs[0]}}" mode="aspectFill" catchtap='viewImage' data-src="{{item.imgs[0]}}" data-list="{{item.imgs}}"></image>
-                    <image class="picture" wx:if="{{item.imgs[1]}}" src="{{item.imgs[1]}}" mode="aspectFill" catchtap='viewImage' data-src="{{item.imgs[1]}}" data-list="{{item.imgs}}"></image>
-                    <image class="picture" wx:if="{{item.imgs[2]}}" src="{{item.imgs[2]}}" mode="aspectFill" catchtap='viewImage' data-src="{{item.imgs[2]}}" data-list="{{item.imgs}}"></image>
+                    <image class="picture" wx:if="{{item.imgs[0]}}" src="{{item.imgs[0] + webpCode}}" mode="aspectFill" catchtap='viewImage' data-src="{{item.imgs[0]}}" data-list="{{item.imgs}}"></image>
+                    <image class="picture" wx:if="{{item.imgs[1]}}" src="{{item.imgs[1] + webpCode}}" mode="aspectFill" catchtap='viewImage' data-src="{{item.imgs[1]}}" data-list="{{item.imgs}}"></image>
+                    <image class="picture" wx:if="{{item.imgs[2]}}" src="{{item.imgs[2] + webpCode}}" mode="aspectFill" catchtap='viewImage' data-src="{{item.imgs[2]}}" data-list="{{item.imgs}}"></image>
                   </view>
                   <view class='pictureRow'>
-                    <image class="picture" wx:if="{{item.imgs[3]}}" src="{{item.imgs[3]}}" mode="aspectFill" catchtap='viewImage' data-src="{{item.imgs[3]}}" data-list="{{item.imgs}}"></image>
-                    <image class="picture" wx:if="{{item.imgs[4]}}" src="{{item.imgs[4]}}" mode="aspectFill" catchtap='viewImage' data-src="{{item.imgs[4]}}" data-list="{{item.imgs}}"></image>
-                    <image class="picture" wx:if="{{item.imgs[5]}}" src="{{item.imgs[5]}}" mode="aspectFill" catchtap='viewImage' data-src="{{item.imgs[5]}}" data-list="{{item.imgs}}"></image>
+                    <image class="picture" wx:if="{{item.imgs[3]}}" src="{{item.imgs[3] + webpCode}}" mode="aspectFill" catchtap='viewImage' data-src="{{item.imgs[3]}}" data-list="{{item.imgs}}"></image>
+                    <image class="picture" wx:if="{{item.imgs[4]}}" src="{{item.imgs[4] + webpCode}}" mode="aspectFill" catchtap='viewImage' data-src="{{item.imgs[4]}}" data-list="{{item.imgs}}"></image>
+                    <image class="picture" wx:if="{{item.imgs[5]}}" src="{{item.imgs[5] + webpCode}}" mode="aspectFill" catchtap='viewImage' data-src="{{item.imgs[5]}}" data-list="{{item.imgs}}"></image>
                   </view>
                 </view>
               </view>
@@ -78,14 +78,14 @@
                 </view>
                 <view class="pictureContainer">
                   <view class='pictureRow'>
-                    <image class="picture" wx:if="{{item.imgs[0]}}" src="{{item.imgs[0]}}" mode="aspectFill" catchtap='viewImage' data-src="{{item.imgs[0]}}" data-list="{{item.imgs}}"></image>
-                    <image class="picture" wx:if="{{item.imgs[1]}}" src="{{item.imgs[1]}}" mode="aspectFill" catchtap='viewImage' data-src="{{item.imgs[1]}}" data-list="{{item.imgs}}"></image>
-                    <image class="picture" wx:if="{{item.imgs[2]}}" src="{{item.imgs[2]}}" mode="aspectFill" catchtap='viewImage' data-src="{{item.imgs[2]}}" data-list="{{item.imgs}}"></image>
+                    <image class="picture" wx:if="{{item.imgs[0]}}" src="{{item.imgs[0] + webpCode}}" mode="aspectFill" catchtap='viewImage' data-src="{{item.imgs[0]}}" data-list="{{item.imgs}}"></image>
+                    <image class="picture" wx:if="{{item.imgs[1]}}" src="{{item.imgs[1] + webpCode}}" mode="aspectFill" catchtap='viewImage' data-src="{{item.imgs[1]}}" data-list="{{item.imgs}}"></image>
+                    <image class="picture" wx:if="{{item.imgs[2]}}" src="{{item.imgs[2] + webpCode}}" mode="aspectFill" catchtap='viewImage' data-src="{{item.imgs[2]}}" data-list="{{item.imgs}}"></image>
                   </view>
                   <view class='pictureRow'>
-                    <image class="picture" wx:if="{{item.imgs[3]}}" src="{{item.imgs[3]}}" mode="aspectFill" catchtap='viewImage' data-src="{{item.imgs[3]}}" data-list="{{item.imgs}}"></image>
-                    <image class="picture" wx:if="{{item.imgs[4]}}" src="{{item.imgs[4]}}" mode="aspectFill" catchtap='viewImage' data-src="{{item.imgs[4]}}" data-list="{{item.imgs}}"></image>
-                    <image class="picture" wx:if="{{item.imgs[5]}}" src="{{item.imgs[5]}}" mode="aspectFill" catchtap='viewImage' data-src="{{item.imgs[5]}}" data-list="{{item.imgs}}"></image>
+                    <image class="picture" wx:if="{{item.imgs[3]}}" src="{{item.imgs[3] + webpCode}}" mode="aspectFill" catchtap='viewImage' data-src="{{item.imgs[3]}}" data-list="{{item.imgs}}"></image>
+                    <image class="picture" wx:if="{{item.imgs[4]}}" src="{{item.imgs[4] + webpCode}}" mode="aspectFill" catchtap='viewImage' data-src="{{item.imgs[4]}}" data-list="{{item.imgs}}"></image>
+                    <image class="picture" wx:if="{{item.imgs[5]}}" src="{{item.imgs[5] + webpCode}}" mode="aspectFill" catchtap='viewImage' data-src="{{item.imgs[5]}}" data-list="{{item.imgs}}"></image>
                   </view>
                 </view>
               </view>
@@ -124,14 +124,14 @@
                 </view>
                 <view class="pictureContainer">
                   <view class='pictureRow'>
-                    <image class="picture" wx:if="{{item.imgs[0]}}" src="{{item.imgs[0]}}" mode="aspectFill" catchtap='viewImage' data-src="{{item.imgs[0]}}" data-list="{{item.imgs}}"></image>
-                    <image class="picture" wx:if="{{item.imgs[1]}}" src="{{item.imgs[1]}}" mode="aspectFill" catchtap='viewImage' data-src="{{item.imgs[1]}}" data-list="{{item.imgs}}"></image>
-                    <image class="picture" wx:if="{{item.imgs[2]}}" src="{{item.imgs[2]}}" mode="aspectFill" catchtap='viewImage' data-src="{{item.imgs[2]}}" data-list="{{item.imgs}}"></image>
+                    <image class="picture" wx:if="{{item.imgs[0]}}" src="{{item.imgs[0] + webpCode}}" mode="aspectFill" catchtap='viewImage' data-src="{{item.imgs[0]}}" data-list="{{item.imgs}}"></image>
+                    <image class="picture" wx:if="{{item.imgs[1]}}" src="{{item.imgs[1] + webpCode}}" mode="aspectFill" catchtap='viewImage' data-src="{{item.imgs[1]}}" data-list="{{item.imgs}}"></image>
+                    <image class="picture" wx:if="{{item.imgs[2]}}" src="{{item.imgs[2] + webpCode}}" mode="aspectFill" catchtap='viewImage' data-src="{{item.imgs[2]}}" data-list="{{item.imgs}}"></image>
                   </view>
                   <view class='pictureRow'>
-                    <image class="picture" wx:if="{{item.imgs[3]}}" src="{{item.imgs[3]}}" mode="aspectFill" catchtap='viewImage' data-src="{{item.imgs[3]}}" data-list="{{item.imgs}}"></image>
-                    <image class="picture" wx:if="{{item.imgs[4]}}" src="{{item.imgs[4]}}" mode="aspectFill" catchtap='viewImage' data-src="{{item.imgs[4]}}" data-list="{{item.imgs}}"></image>
-                    <image class="picture" wx:if="{{item.imgs[5]}}" src="{{item.imgs[5]}}" mode="aspectFill" catchtap='viewImage' data-src="{{item.imgs[5]}}" data-list="{{item.imgs}}"></image>
+                    <image class="picture" wx:if="{{item.imgs[3]}}" src="{{item.imgs[3] + webpCode}}" mode="aspectFill" catchtap='viewImage' data-src="{{item.imgs[3]}}" data-list="{{item.imgs}}"></image>
+                    <image class="picture" wx:if="{{item.imgs[4]}}" src="{{item.imgs[4] + webpCode}}" mode="aspectFill" catchtap='viewImage' data-src="{{item.imgs[4]}}" data-list="{{item.imgs}}"></image>
+                    <image class="picture" wx:if="{{item.imgs[5]}}" src="{{item.imgs[5] + webpCode}}" mode="aspectFill" catchtap='viewImage' data-src="{{item.imgs[5]}}" data-list="{{item.imgs}}"></image>
                   </view>
                 </view>
               </view>

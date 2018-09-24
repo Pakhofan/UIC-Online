@@ -11,7 +11,8 @@ Page({
     sliderOffset: 0,
     sliderLeft: 0,
     testImg: "https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=3537273527,3254803069&fm=26&gp=0.jpg",
-    cards:[]
+    cards:[],
+    webpCode: '!/format/webp'
   },
   onLoad: function() {
     var that = this;
