@@ -16,9 +16,13 @@ Page({
    */
   onLoad: function (option) {
     var currentId = option.id;
+    this.setData({
+      currentId: currentId
+    });
     //从index传入的cardID
     console.log(currentId)
     this.pullCard(currentId)
+    this.pullComments()
   },
   viewImage: function (event) {
     var currentSrc = event.currentTarget.dataset.src;
@@ -30,8 +34,9 @@ Page({
     })
   },
   viewProfile: function (event) {
+    var userId = event.currentTarget.dataset.id;
     wx.navigateTo({
-      url: "../profile/profile"
+      url: "../profile/profile?id=" + userId
     })
 
   },
@@ -52,5 +57,30 @@ Page({
     }, err => {
       // err
     })
+  },
+  pullComments: function () {
+    let currentId = this.data.currentId
+    var Comment = new wx.BaaS.TableObject(52142)
+
+    let query = new wx.BaaS.Query()
+    query.contains('parent_id', currentId)
+
+    Comment.setQuery(query).find().then(res => {
+      console.log(res.data);
+      var commentList = res.data.objects;
+      //console.log(commentList[0].created_at);
+      for (var i = 0; i < commentList.length; i++) {
+        console.log(i);
+        commentList[i].created_at = util.formatTime(commentList[i].created_at, 'Y-M-D h:m:s')
+        commentList[i].floor = i + 1
+      }
+      this.setData({
+        comments: commentList
+      });
+      // success
+    }, err => {
+      // err
+    })
+
   }
 })

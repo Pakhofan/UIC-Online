@@ -4,11 +4,11 @@
     <view class='topRightContainer'>
       <i class="icon-menu"></i>
     </view>
-    <view bindtap='viewProfile' class="headContainer">
+    <view bindtap='viewProfile' class="headContainer" data-id='{{card.created_by}}'>
       <image class="headPic" mode='aspectFill' src="{{card.creator_avatar}}"></image>
     </view>
     <view class="headRightContainer">
-      <view bindtap='viewProfile' class="name">{{card.creator_name}}</view>
+      <view bindtap='viewProfile' class="name" data-id='{{card.created_by}}'>{{card.creator_name}}</view>
       <view class="date">{{card.created_at}}</view>
     </view>
     <view class="contentContainer">
@@ -36,57 +36,25 @@
 
   </view>
   <view class='card'>
-    <view class='commentRow' id='firstCommentRow'>
-      <view class='topRightContainer'>
-        <view class='floor'># 1</view>
-      </view>
-      <view bindtap='viewProfile' class="headContainer">
-        <image class="headPic" mode='aspectFill' src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1536490234935&di=59e3abdd861579e8f3109fd1f2c2993f&imgtype=0&src=http%3A%2F%2Fwww.feizl.com%2Fupload2007%2Fallimg%2F170726%2F1940255V6-14.jpg"></image>
-      </view>
-      <view class="headRightContainerB">
-        <view bindtap='viewProfile' class="name">Clearave</view>
-        <view class="date">1 小时前</view>
-      </view>
-      <view class="contentContainer">
-        <view class="text">
-          <text selectable="true">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </text>
+    <block wx:for='{{comments}}'>
+      <view class='commentRow'>
+        <view class='topRightContainer'>
+          <view class='floor'># {{item.floor}}</view>
+        </view>
+        <view bindtap='viewProfile' class="headContainer" data-id='{{item.created_by}}'>
+          <image class="headPic" mode='aspectFill' src="{{item.creator_avatar}}"></image>
+        </view>
+        <view class="headRightContainerB">
+          <view bindtap='viewProfile' class="name" data-id='{{item.created_by}}'>{{item.creator_name}}</view>
+          <view class="date">{{item.created_at}}</view>
+        </view>
+        <view class="contentContainer">
+          <view class="text">
+            <text selectable="true">{{item.text}}</text>
+          </view>
         </view>
       </view>
-    </view>
-    <view class='commentRow'>
-      <view class='topRightContainer'>
-        <view class='floor'># 2</view>
-      </view>
-      <view bindtap='viewProfile' class="headContainer">
-        <image class="headPic" mode='aspectFill' src="http://img2.imgtn.bdimg.com/it/u=4163885218,1747615568&fm=27&gp=0.jpg"></image>
-      </view>
-      <view class="headRightContainerB">
-        <view bindtap='viewProfile' class="name">忧郁的台湾女孩</view>
-        <view class="date">2 小时前</view>
-      </view>
-      <view class="contentContainer">
-        <view class="text">
-          <text selectable="true">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </text>
-        </view>
-      </view>
-    </view>
-    <view class='commentRow'>
-      <view class='topRightContainer'>
-        <view class='floor'># 3</view>
-      </view>
-      <view bindtap='viewProfile' class="headContainer">
-        <image class="headPic" mode='aspectFill' src="http://img.zcool.cn/community/01f11a563877ef6ac7259e0f7ea3b6.jpg@1280w_1l_2o_100sh.jpg"></image>
-      </view>
-      <view class="headRightContainerB">
-        <view bindtap='viewProfile' class="name">小黄鸭</view>
-        <view class="date">3 小时前</view>
-      </view>
-      <view class="contentContainer">
-        <view class="text">
-          <text selectable="true">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </text>
-        </view>
-      </view>
-    </view>
+    </block>
   </view>
   <view class='listContainer'>
     <view class='list'>

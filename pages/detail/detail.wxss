@@ -126,6 +126,7 @@
 .floor{
   margin-top: 5px;
   font-size: 12pt;
+  line-height: 12pt;
   color: rgba(200, 200, 200, 0.9);
 }
 

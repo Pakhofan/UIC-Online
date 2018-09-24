@@ -62,7 +62,7 @@ Page({
     Card.setQuery(query).limit(10).offset(0).orderBy('-created_at').find().then(res => {
       console.log(res.data);
       var cardList = res.data.objects;
-      console.log(cardList[0].created_at);
+      //console.log(cardList[0].created_at);
       for (var i = 0; i < cardList.length; i ++){
         console.log(i);
         cardList[i].created_at = util.formatTime(cardList[i].created_at, 'Y-M-D h:m:s')
