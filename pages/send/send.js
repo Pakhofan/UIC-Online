@@ -181,21 +181,11 @@ Page({
       text: this.data.text,
       imgs: this.data.paths,
       creator_name: this.data.userInfo.nickName,
-      creator_avatar: wx.getStorageSync('BaaSAvatar')
+      creator_avatar: wx.getStorageSync('BaaSAvatar'),
+      category: this.data.istreehole? 0 : 1,
+      status: this.data.istreehole ? (this.data.ishidename? 1 : 0) : 0
     }
     console.log(data.imgs)
-    if (this.data.istreehole) {
-      if (this.data.ishidename) {
-        sendproduct.set('class', 0)
-        sendproduct.set('status', 1)
-      } else {
-        sendproduct.set('class', 0)
-        sendproduct.set('status', 0)
-      }
-    } else {
-      sendproduct.set('class', 1)
-      sendproduct.set('status', 0)
-    }
     sendproduct.set(data)
     sendproduct.save().then(res => {
       console.log(res)

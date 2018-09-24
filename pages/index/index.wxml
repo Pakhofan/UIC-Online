@@ -67,7 +67,7 @@
         <view id="indexPage">
           <block wx:for="{{cards}}">
             <block wx:if="{{item.status < 2}}">
-              <view bindtap='viewDetail' data-id='{{item.id}}' class='card' wx:if="{{item.class == 0}}">
+              <view bindtap='viewDetail' data-id='{{item.id}}' class='card' wx:if="{{item.category == 0}}">
                 <view class='topRightContainer'>
                   <i class="icon-menu"></i>
                 </view>
@@ -119,7 +119,7 @@
         <view id="indexPage">
           <block wx:for="{{cards}}">
             <block wx:if="{{item.status < 2}}">
-              <view bindtap='viewDetail' data-id='{{item.id}}' class='card' wx:if="{{item.class == 1}}">
+              <view bindtap='viewDetail' data-id='{{item.id}}' class='card' wx:if="{{item.category == 1}}">
                 <view class='topRightContainer'>
                   <i class="icon-menu"></i>
                 </view>
