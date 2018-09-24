@@ -25,6 +25,9 @@ Page({
     });
     this.pullCards();
   },
+  onPullDownRefresh: function () {
+    this.pullCards();
+  },
   tabClick: function (e) {
     this.setData({
       sliderOffset: e.currentTarget.offsetLeft,
@@ -70,6 +73,11 @@ Page({
       this.setData({
         cards: cardList
       });
+      wx.stopPullDownRefresh({
+        success: res => {
+          console.log(res)
+        }
+      })
       // success
     }, err => {
       // err
