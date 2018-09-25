@@ -1,6 +1,9 @@
 <!--pages/detail/detail.wxml-->
 <view class='pageColumn'>
   <view class='card'>
+    <view class='menuContainer'>
+      <i class="icon-menu"></i>
+    </view>
     <view class='firstRow'>
       <view wx:if="{{card.status == 1}}" class="firstRowItemA">
         <image class="headPic" mode='aspectFill' src="{{anonymousAvatarUrl}}"></image>
@@ -12,9 +15,6 @@
         <view wx:if="{{card.status == 1}}" class="name">匿名</view>
         <view wx:else bindtap='viewProfile' class="name" data-id='{{card.created_by}}'>{{card.creator_name}}</view>
         <view class="date">{{card.created_at}}</view>
-      </view>
-      <view class='firstRowItemC'>
-        <i class="icon-menu"></i>
       </view>
     </view>
     <view class="contentContainer">
