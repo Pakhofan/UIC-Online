@@ -75,18 +75,17 @@ view, text, button{
 }
 
 .menuContainer{
-  position: absolute;
-  top: 60px;
+  position: relative;
+  top: 0px;
   left: 700rpx;
 }
 
 .icon-menu {
   position: absolute;
-  left: -30px;
+  left: -42.5px;
   display: inline-block;
   width: 25px;
   height: 3px;
-  margin-right: 42.5px;
   padding: 5px 0;
   border-top: 3px solid;
   border-bottom: 3px solid;
@@ -146,9 +145,28 @@ button {
 }
 
 .buttonB {
+  color: #1aad19;
+  background-color: rgb(255, 255, 255);
+  border-color: #1aad19;
+}
+
+.buttonC {
+  color: #000;
+  background-color: rgb(255, 255, 255);
+  border-color: #ddd;
+}
+
+.buttonA:active {
+  background-color: rgba(9, 187, 7, 0.6);
+}
+
+.buttonB:active {
   color: #fff;
-  background-color: rgb(136, 206, 135);
-  border-color: #98dd96;
+  background-color: #1aad19;
+}
+
+.buttonC:active {
+  background-color: rgba(200, 200, 200, 0.6);
 }
 
 .selectionRow{

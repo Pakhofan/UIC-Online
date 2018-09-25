@@ -12,25 +12,27 @@
     </view>
     <view class="weui-tab__panel">
       <view class="weui-tab__content" hidden="{{activeIndex != 0}}">
-        <view id="indexPage">
+        <view class='pageColumn' id='indexPage'>
           <block wx:for="{{cards}}">
             <block wx:if="{{item.status < 2}}">
               <view bindtap='viewDetail' data-id='{{item.id}}' class='card'>
-                <view class='topRightContainer'>
+                <view class='menuContainer'>
                   <i class="icon-menu"></i>
                 </view>
-                <view wx:if="{{item.status == 1}}" class="headContainer">
-                  <image class="headPic" mode='aspectFill' src="{{anonymousAvatarUrl}}"></image>
-                </view>
-                <view wx:else catchtap='viewProfile' data-id='{{item.created_by}}' class="headContainer">
-                  <image class="headPic" mode='aspectFill' src="{{item.creator_avatar}}"></image>
-                </view>
-                <view class="headRightContainer">
-                  <view wx:if="{{item.status == 1}}" class="name">匿名</view>
-                  <view wx:else class="name" catchtap='viewProfile' data-id='{{item.created_by}}'>
-                    {{item.creator_name}}
+                <view class='firstRow'>
+                  <view wx:if="{{item.status == 1}}" class="firstRowItemA">
+                    <image class="headPic" mode='aspectFill' src="{{anonymousAvatarUrl}}"></image>
                   </view>
-                  <view class="date">{{item.created_at}}</view>
+                  <view wx:else catchtap='viewProfile' data-id='{{item.created_by}}' class="firstRowItemA">
+                    <image class="headPic" mode='aspectFill' src="{{item.creator_avatar}}"></image>
+                  </view>
+                  <view class="firstRowItemB">
+                    <view wx:if="{{item.status == 1}}" class="name">匿名</view>
+                    <view wx:else class="name" catchtap='viewProfile' data-id='{{item.created_by}}'>
+                      {{item.creator_name}}
+                    </view>
+                    <view class="date">{{item.created_at}}</view>
+                  </view>
                 </view>
                 <view class="contentContainer">
                   <view class="text">
@@ -64,25 +66,27 @@
         </view>
       </view>
       <view class="weui-tab__content" hidden="{{activeIndex != 1}}">
-        <view id="indexPage">
+        <view class='pageColumn' id='indexPage'>
           <block wx:for="{{cards}}">
             <block wx:if="{{item.status < 2}}">
               <view bindtap='viewDetail' data-id='{{item.id}}' class='card' wx:if="{{item.category == 0}}">
-                <view class='topRightContainer'>
+                <view class='menuContainer'>
                   <i class="icon-menu"></i>
                 </view>
-                <view wx:if="{{item.status == 1}}" class="headContainer">
-                  <image class="headPic" mode='aspectFill' src="{{anonymousAvatarUrl}}"></image>
-                </view>
-                <view wx:else catchtap='viewProfile' data-id='{{item.created_by}}' class="headContainer">
-                  <image class="headPic" mode='aspectFill' src="{{item.creator_avatar}}"></image>
-                </view>
-                <view class="headRightContainer">
-                  <view wx:if="{{item.status == 1}}" class="name">匿名</view>
-                  <view wx:else class="name" catchtap='viewProfile' data-id='{{item.created_by}}'>
-                    {{item.creator_name}}
+                <view class='firstRow'>
+                  <view wx:if="{{item.status == 1}}" class="firstRowItemA">
+                    <image class="headPic" mode='aspectFill' src="{{anonymousAvatarUrl}}"></image>
                   </view>
-                  <view class="date">{{item.created_at}}</view>
+                  <view wx:else catchtap='viewProfile' data-id='{{item.created_by}}' class="firstRowItemA">
+                    <image class="headPic" mode='aspectFill' src="{{item.creator_avatar}}"></image>
+                  </view>
+                  <view class="firstRowItemB">
+                    <view wx:if="{{item.status == 1}}" class="name">匿名</view>
+                    <view wx:else class="name" catchtap='viewProfile' data-id='{{item.created_by}}'>
+                      {{item.creator_name}}
+                    </view>
+                    <view class="date">{{item.created_at}}</view>
+                  </view>
                 </view>
                 <view class="contentContainer">
                   <view class="text">
@@ -116,25 +120,27 @@
         </view>
       </view>
       <view class="weui-tab__content" hidden="{{activeIndex != 2}}">
-        <view id="indexPage">
+        <view class='pageColumn' id='indexPage'>
           <block wx:for="{{cards}}">
             <block wx:if="{{item.status < 2}}">
               <view bindtap='viewDetail' data-id='{{item.id}}' class='card' wx:if="{{item.category == 1}}">
-                <view class='topRightContainer'>
+                <view class='menuContainer'>
                   <i class="icon-menu"></i>
                 </view>
-                <view wx:if="{{item.status == 1}}" class="headContainer">
-                  <image class="headPic" mode='aspectFill' src="{{anonymousAvatarUrl}}"></image>
-                </view>
-                <view wx:else catchtap='viewProfile' data-id='{{item.created_by}}' class="headContainer">
-                  <image class="headPic" mode='aspectFill' src="{{item.creator_avatar}}"></image>
-                </view>
-                <view class="headRightContainer">
-                  <view wx:if="{{item.status == 1}}" class="name">匿名</view>
-                  <view wx:else class="name" catchtap='viewProfile' data-id='{{item.created_by}}'>
-                    {{item.creator_name}}
+                <view class='firstRow'>
+                  <view wx:if="{{item.status == 1}}" class="firstRowItemA">
+                    <image class="headPic" mode='aspectFill' src="{{anonymousAvatarUrl}}"></image>
                   </view>
-                  <view class="date">{{item.created_at}}</view>
+                  <view wx:else catchtap='viewProfile' data-id='{{item.created_by}}' class="firstRowItemA">
+                    <image class="headPic" mode='aspectFill' src="{{item.creator_avatar}}"></image>
+                  </view>
+                  <view class="firstRowItemB">
+                    <view wx:if="{{item.status == 1}}" class="name">匿名</view>
+                    <view wx:else class="name" catchtap='viewProfile' data-id='{{item.created_by}}'>
+                      {{item.creator_name}}
+                    </view>
+                    <view class="date">{{item.created_at}}</view>
+                  </view>
                 </view>
                 <view class="contentContainer">
                   <view class="text">
