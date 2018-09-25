@@ -1,35 +1,32 @@
 /* pages/detail/detail.wxss */
+
+.pageColumn {
+  margin: 0 auto;
+  width: 700rpx;
+}
+
 .card {
   background-color: #fff;
-  margin: 0 auto;
-  margin-top:25px;
-  margin-bottom: 50rpx;
-  padding-bottom: 25rpx;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  padding-top: 30px;
+  padding-bottom: 30px;
   width: 700rpx;
   height: auto;
   border-radius: 2px;
   box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.2);
 }
 
-.headRightContainer {
-  height: 50px;
-  width: 450rpx;
-  margin-left: 50rpx;
-  float: right;
+.firstRow {
+  height: 40px;
+  align-items: flex-start;
+  display: flex;
+  flex-direction: row;
 }
 
-.headRightContainerB {
-  height: 50px;
-  width: 300rpx;
-  margin-left: 150rpx;
-  float: left;
-}
-
-.headContainer {
-  height: 0px;
-  margin-left: 40rpx;
-  margin-top: 40rpx;
-  float: left;
+.firstRowItemA {
+  height: 40px;
+  margin-left: 30px;
 }
 
 .headPic {
@@ -40,21 +37,29 @@
   float: left;
 }
 
+.firstRowItemB {
+  height: 40px;
+  width: auto;
+  margin-left: 15px;
+}
+
 .name {
   font-size: 16px;
+  line-height: 20px;
   color: #4f94cd;
 }
 
 .date {
   font-size: 11px;
+  line-height: 20px;
   color: #999;
 }
 
-.topRightContainer {
-  height: 30px;
-  float: right;
-  margin-right: 50rpx;
-  margin-top: 20px;
+.firstRowItemC {
+  height: 40px;
+  margin-right: 30px;
+  flex: 1;
+  text-align: right;
 }
 
 .icon-menu {
@@ -69,18 +74,14 @@
   background-clip: content-box;
   opacity: 0.5;
 }
+
 .icon-menu:active {
   opacity: 0.3;
 }
 
 .contentContainer {
-  margin-top: 0rpx;
-  margin-left: 0rpx;
-  padding-top: 80px;
-  padding-left: 30rpx;
-  padding-right: 30rpx;
+  margin: 15px 30px;
   height: auto;
-  width: 650rpx;
 }
 
 .text {
@@ -110,23 +111,17 @@
   margin: 5rpx;
 }
 
-#firstCommentRow{
-  border-bottom-style: NONE;
-}
-
-.commentRow{
-  width: 650rpx;
-  padding-bottom: 20px;
-  margin: 0 auto;
-  border-top-style: solid;
+.commentLine {
+  margin: 10px 30px;
+  border-bottom-style: solid;
   border-color: rgba(200, 200, 200, 0.2);
   border-width: 1px;
 }
 
-.floor{
-  margin-top: 5px;
+.floor {
   font-size: 12pt;
-  line-height: 12pt;
+  line-height: 20px;
+  padding-bottom: 20px;
   color: rgba(200, 200, 200, 0.9);
 }
 
@@ -177,12 +172,22 @@
   text-align: center;
 }
 
+.inputText {
+  font-size: 16px;
+  margin-top: 30px;
+  margin-left: 5rpx;
+  padding: 10px;
+  border-style: dashed;
+  border-width: 1px;
+  border-color: rgba(0, 0, 0, 0.2);
+}
+
 button {
-  font-size: 11px;
+  font-size: 13px;
   text-align: center;
   width: 120rpx;
-  height: 25px;
-  line-height: 25px;
+  height: 30px;
+  line-height: 30px;
   border-radius: 4px;
 }
 
@@ -192,6 +197,31 @@ button {
   border-color: #09bb07;
 }
 
-.buttonA:active {
-  background-color: rgba(9, 187, 7, 0.6);
+.buttonB {
+  color: #fff;
+  background-color: rgb(136, 206, 135);
+  border-color: #98dd96;
+}
+
+#sendButton {
+  width: 200px;
+}
+
+.sendContainer {
+  padding-top: 30px;
+}
+
+.wx-switch-input {
+  width: 42px !important;
+  height: 22px !important;
+}
+
+.wx-switch-input::before {
+  width: 42px !important;
+  height: 22px !important;
+}
+
+.wx-switch-input::after {
+  width: 20px !important;
+  height: 20px !important;
 }
