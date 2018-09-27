@@ -17,16 +17,20 @@ view, text, button{
   width: 700rpx;
 }
 
-.card {
+.card,.shortCard{
   background-color: #fff;
   margin-top: 30px;
   margin-bottom: 30px;
   padding-top: 30px;
-  padding-bottom: 30px;
+  padding-bottom: 10px;
   width: 700rpx;
   height: auto;
   border-radius: 2px;
   box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.2);
+}
+
+.shortCard{
+  padding-top: 10px;
 }
 
 .firstRow {
@@ -167,6 +171,12 @@ button {
 
 .buttonC:active {
   background-color: rgba(200, 200, 200, 0.6);
+}
+
+.getUserInfoButton{
+  width: auto;
+  margin-left: 30px;
+  font-size: 12px;
 }
 
 .selectionRow{

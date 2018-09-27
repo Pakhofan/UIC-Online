@@ -27,10 +27,14 @@
                     <image class="headPic" mode='aspectFill' src="{{item.creator_avatar}}"></image>
                   </view>
                   <view class="firstRowItemB">
-                    <view wx:if="{{item.status == 1}}" class="name">匿名</view>
-                    <view wx:else class="name" catchtap='viewProfile' data-id='{{item.created_by}}'>
-                      {{item.creator_name}}
-                    </view>
+                    <block wx:if="{{item.status == 1}}">
+                      <view class="name">匿名</view>
+                    </block>
+                    <block wx:else>
+                      <view class="name" catchtap='viewProfile' data-id='{{item.created_by}}'>
+                        {{item.creator_name}}
+                      </view>
+                    </block>
                     <view class="date">{{item.created_at}}</view>
                   </view>
                 </view>
