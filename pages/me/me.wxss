@@ -87,9 +87,6 @@ button {
 }
 
 .Logout {
-  width: 200rpx;
-  margin: 0 auto;
+  margin-top: 20rpx;
   font-size: 12px;
-  position:fixed;
-  bottom:0;
 }

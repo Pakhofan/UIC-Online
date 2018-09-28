@@ -21,7 +21,7 @@
         <view class='listItemC'>
         </view>
       </view>
-      <view class='list'>
+      <view class='list' style='border-style:none;'>
         <button class='buttonA' wx:if="{{Change_WX}}" catchtap='onChange_WX'>保存</button>
         <button class='buttonA' wx:else catchtap='onChange_WX'>修改</button>
       </view>
