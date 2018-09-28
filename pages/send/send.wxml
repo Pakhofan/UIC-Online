@@ -45,20 +45,31 @@
   </view>
   <view class='shortCard'>
     <radio-group class="radio-group" bindchange="radioChange">
-      <radio class="radio" value="树洞" checked="true">
-        <text> 树洞</text>
-      </radio>
-      <radio class="radio" value="广场" checked="true">
-        <text> 广场</text>
-      </radio>
+      <view class='selectionRow'>
+        <view class="selectionRowItemA">
+          <radio class="radio" value="树洞" checked="true">
+            <text> 树洞</text>
+          </radio>
+        </view>
+        <view class="selectionRowItemB">
+          <block wx:if="{{istreehole}}">
+            <switch class='switch_Change' checked="true" bindchange="switch1Change">
+              <text>匿名</text>
+            </switch>
+          </block>
+        </view>
+      </view>
+      <view class='selectionRow'>
+        <view class="selectionRowItemA">
+          <radio class="radio" value="广场" checked="true">
+            <text> 广场</text>
+          </radio>
+        </view>
+      </view>
     </radio-group>
   </view>
-  <view wx:if="{{istreehole}}" class="card">
-    <switch class='switch_Change' checked="true" bindchange="switch1Change" />
-    <text>匿名发布</text>
-  </view>
   <view class='sendContainer'>
-    <button class='buttonA' wx:if="{{hasUserInfo && ((text.length > 0)|| files.length > 0)}}" id='sendButton' catchtap="onSendTap">发布</button>
-    <button class='buttonA' wx:else id='sendButton'>发布</button>
+    <button class='buttonA sendButton' wx:if="{{hasUserInfo && ((text.length > 0)|| files.length > 0)}}" catchtap="onSendTap">发布</button>
+    <button class='buttonADisable sendButton' wx:else>发布</button>
   </view>
 </view>
