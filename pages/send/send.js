@@ -82,7 +82,6 @@ Page({
 
   userInput: function (e) {
     this.setData({
-      hasuserInput: true,
       text: e.detail.value,
     });
   },

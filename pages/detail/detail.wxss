@@ -24,7 +24,7 @@
   color: rgba(200, 200, 200, 0.9);
 }
 
-#sendButton {
+.sendButton {
   width: 200px;
 }
 

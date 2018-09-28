@@ -16,13 +16,13 @@ Page({
     userInfo: {},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
-    ishidename: false,
+    ishidename: true,
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (option) {
+  onLoad: function(option) {
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,
@@ -59,7 +59,37 @@ Page({
     this.pullCard(currentId)
     this.pullComments()
   },
-  viewImage: function (event) {
+  getUserInfo: function(e) {
+    var id = 0
+    wx.BaaS.handleUserInfo(e).then(res => {
+      console.log('！！！！')
+      id = res.id
+      let MyUser = new wx.BaaS.User()
+      MyUser.get(id).then(res => {
+        console.log(res.data)
+        //这里获取到的是云端数据
+        app.globalData.BaaSAvatar = res.data.avatar
+        wx.setStorageSync('BaaSAvatar', res.data.avatar)
+        // success
+      }, err => {
+        // err
+      })
+      app.globalData.userId = id
+      wx.setStorageSync('userId', id)
+      // res 包含用户完整信息
+    }, res => {
+      // **res 有两种情况**：用户拒绝授权，res 包含基本用户信息：id、openid、unionid；其他类型的错误，如网络断开、请求超时等，将返回 Error 对象（详情见下方注解）
+    })
+    app.globalData.userInfo = e.detail.userInfo
+    if (e.detail.userInfo) {
+      this.setData({
+        userInfo: e.detail.userInfo,
+        hasUserInfo: true,
+      })
+    }
+  },
+
+  viewImage: function(event) {
     var currentSrc = event.currentTarget.dataset.src;
     var srcList = event.currentTarget.dataset.list;
     console.log("data is " + currentSrc);
@@ -68,14 +98,14 @@ Page({
       urls: srcList // 需要预览的图片http链接列表
     })
   },
-  viewProfile: function (event) {
+  viewProfile: function(event) {
     var userId = event.currentTarget.dataset.id;
     wx.navigateTo({
       url: "../profile/profile?id=" + userId
     })
 
   },
-  pullCard: function (cardID) {
+  pullCard: function(cardID) {
 
     let recordID = cardID
 
@@ -93,7 +123,7 @@ Page({
       // err
     })
   },
-  pullComments: function () {
+  pullComments: function() {
     let currentId = this.data.currentId
     var Comment = new wx.BaaS.TableObject(52142)
 
@@ -117,5 +147,73 @@ Page({
       // err
     })
 
-  }
+  },
+
+  userInput: function(e) {
+    this.setData({
+      hasuserInput: true,
+      text: e.detail.value,
+    });
+  },
+  switch1Change: function(e) {
+    this.setData({
+      ishidename: e.detail.value,
+    })
+  },
+  onSendTap: function(e) {
+    this.showModal()
+  },
+  showModal: function() {
+    var that = this;
+    wx.showModal({
+      title: "发布确认",
+      content: "确定发布此条评论吗",
+      showCancel: "True",
+      cancelText: "取消",
+      cancelcolor: "#666",
+      confirmText: "确认",
+      confirmColor: "#333",
+      success: function(res) {
+        if (res.confirm) {
+          wx.showLoading({
+            title: '上传中',
+          });
+          that.pushComment()
+        }
+      },
+    })
+  },
+  pushComment: function() {
+    var that = this
+    let tableID = 52142
+    let SendProduct = new wx.BaaS.TableObject(tableID)
+    let sendproduct = SendProduct.create()
+    let data = {
+      parent_id: this.data.currentId,
+      text: this.data.text,
+      creator_name: this.data.userInfo.nickName,
+      creator_avatar: wx.getStorageSync('BaaSAvatar'),
+      status: this.data.ishidename ? 1 : 0
+    }
+    console.log(data.imgs)
+    sendproduct.set(data)
+    sendproduct.save().then(res => {
+      console.log(res)
+      wx.showToast({
+        title: "发布成功",
+        duration: 1000,
+        icon: "success",
+      })
+      that.clearData()
+      that.pullComments()
+      wx.hideLoading({})
+    }, err => {})
+  },
+
+  clearData: function() {
+    this.setData({
+      text: '',
+    });
+  },
+
 })
