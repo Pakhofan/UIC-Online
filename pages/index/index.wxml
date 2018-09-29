@@ -31,9 +31,7 @@
                       <view class="name">匿名</view>
                     </block>
                     <block wx:else>
-                      <view class="name" catchtap='viewProfile' data-id='{{item.created_by}}'>
-                        {{item.creator_name}}
-                      </view>
+                      <view class="name" catchtap='viewProfile' data-id='{{item.created_by}}'>{{item.creator_name}}</view>
                     </block>
                     <view class="date">{{item.created_at}}</view>
                   </view>
