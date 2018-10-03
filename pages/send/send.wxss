@@ -39,6 +39,8 @@
   align-items: flex-start;
   display: flex;
   flex-direction: row;
+  font-size: 14px;
+  line-height: 24px;
 }
 
 .selectionRowItemA {
