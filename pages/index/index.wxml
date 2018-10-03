@@ -53,13 +53,18 @@
                     </view>
                   </view>
                 </view>
-
-                <view class='bottomContainer'>
-                  <view class='bottomRow'>
-                    <button bindtap='viewProfile' class='buttonC'>点赞 {{item.like_count}}</button>
-                    <button class='buttonB'>评论 {{item.comment_count}}</button>
+                <view class='lastRow'>
+                  <view class='lastRowItem' >
+                    <image class='iconButton' src='/imgs/share.png' style='opacity: 0.5;'></image>
+                    <text class='iconText'>分享</text>
                   </view>
-                  <view class='bottomRow'>
+                  <view class='lastRowItem' >
+                    <image class='iconButton' src='/imgs/comment.png'></image>
+                    <text class='iconText'>评论 {{item.comment_count}}</text>
+                  </view>
+                  <view class='lastRowItem' >
+                    <image class='iconButton' src='/imgs/like.png'></image>
+                    <text class='iconText'>点赞 {{item.like_count}}</text>
                   </view>
                 </view>
               </view>
