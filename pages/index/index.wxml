@@ -61,16 +61,27 @@
                     <view class='lastRowItem'>
                       <image class='iconButton' src='/imgs/comment.png'></image>
                       <text class='iconText'>
-                    <block wx:if='{{item.comment_count==0}}'>评论</block>
-                    <block wx:else> {{item.comment_count}}</block>
-                    </text>
+                        <block wx:if='{{item.comment_count==0}}'>评论</block>
+                        <block wx:else> {{item.comment_count}}</block>
+                      </text>
                     </view>
                     <view class='lastRowItem'>
-                      <image class='iconButton' src='/imgs/like.png'></image>
-                      <text class='iconText'>
-                    <block wx:if='{{item.comment_count==0}}'>点赞</block>
-                    <block wx:else> {{item.like_count}}</block>
-                    </text>
+                      <block wx:if='{{item.currUserLiked}}'>
+                        <view class='likeContainer' catchtap='tapUnlike' data-id='{{item.id}}' data-count='{{item.like_count}}'>
+                          <image class='iconButton' src='/imgs/likeRed.png'></image>
+                          <text class='iconText' style='color:#ff3737'> {{item.like_count+1}}
+                          </text>
+                        </view>
+                      </block>
+                      <block wx:else>
+                        <view class='likeContainer' catchtap='tapLike' data-id='{{item.id}}' data-count='{{item.like_count}}'>
+                          <image class='iconButton' src='/imgs/like.png'></image>
+                          <text class='iconText'>
+                            <block wx:if='{{item.like_count==0}}'>点赞</block>
+                            <block wx:else> {{item.like_count}}</block>
+                          </text>
+                        </view>
+                      </block>
                     </view>
                   </view>
                 </view>
