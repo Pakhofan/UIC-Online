@@ -68,8 +68,8 @@
                     <view class='lastRowItem'>
                       <block wx:if='{{item.currUserLiked}}'>
                         <view class='likeContainer' catchtap='tapUnlike' data-id='{{item.id}}' data-count='{{item.like_count}}'>
-                          <image class='iconButton' src='/imgs/likeRed.png'></image>
-                          <text class='iconText' style='color:#ff3737'> {{item.like_count+1}}
+                          <image class='iconButton' src='/imgs/liked.png'></image>
+                          <text class='iconText' style='color:#ff3737'> {{item.like_count}}
                           </text>
                         </view>
                       </block>

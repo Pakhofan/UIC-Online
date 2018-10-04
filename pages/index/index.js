@@ -155,6 +155,7 @@ Page({
   },
   handlerTabTap(e) {
     this._updateSelectedPage(e.currentTarget.dataset.index);
+    console.log('tab tap')
   },
   onPullDownRefresh: function() {
     this.pullCards();
@@ -218,12 +219,11 @@ Page({
     query.compare('created_by', '=', currentId)
 
     Like.setQuery(query).find().then(res => {
-      console.log(res.data);
+      //console.log(res.data);
       var likedList = res.data.objects;
       this.setData({
         likedList: likedList
       });
-      this.mergeLikeList()
       this.updateLikedCards()
       // success
     }, err => {
@@ -238,6 +238,7 @@ Page({
     for (var j = 0; j < cards.length; j++) {
       if (cards[j].id == cardId) {
         cards[j].currUserLiked = true
+        cards[j].like_count ++
       }
     }
     this.setData({
@@ -252,6 +253,7 @@ Page({
     for (var j = 0; j < cards.length; j++) {
       if (cards[j].id == cardId) {
         cards[j].currUserLiked = false
+        cards[j].like_count --
       }
     }
     this.setData({
@@ -270,7 +272,7 @@ Page({
     }
     like.set(data)
     like.save().then(res => {
-      console.log(res)
+      //console.log(res)
       that.pushLikeCount(cardId, 1)
     }, err => {})
   },
@@ -286,7 +288,7 @@ Page({
 
 
     MyTableObject.limit(10).offset(0).delete(query).then(res => {
-      console.log(res)
+      //console.log(res)
       that.pushLikeCount(cardId, -1)
     }, err => {
 
@@ -301,7 +303,7 @@ Page({
 
     comment.incrementBy('like_count', num)
     comment.update().then(res => {
-      console.log(res)
+      //console.log(res)
       // success
     }, err => {
       // err
