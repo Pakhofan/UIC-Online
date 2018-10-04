@@ -15,7 +15,7 @@ Page({
     Change_WX: true,
   },
 
-  onLoad: function() {
+  onShow: function() {
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,
@@ -42,9 +42,6 @@ Page({
         }
       })
     }
-  },
-  onShow: function() {
-
   },
   getUserInfo: function(e) {
     var id = 0
@@ -147,5 +144,6 @@ Page({
     this.setData({
       hasUserInfo: false
     })
+    app.globalData.userInfo = false
   }
 })
