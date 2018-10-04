@@ -199,6 +199,7 @@ Page({
     sendproduct.set(data)
     sendproduct.save().then(res => {
       console.log(res)
+      that.addCommentCount()
       wx.showToast({
         title: "发布成功",
         duration: 1000,
@@ -208,6 +209,22 @@ Page({
       that.pullComments()
       wx.hideLoading({})
     }, err => {})
+  },
+
+  addCommentCount: function() {
+    let tableID = 52108
+    let recordID = this.data.currentId
+
+    let Comment = new wx.BaaS.TableObject(tableID)
+    let comment = Comment.getWithoutData(recordID)
+
+    comment.incrementBy('comment_count', 1)
+    comment.update().then(res => {
+      console.log(res)
+      // success
+    }, err => {
+      // err
+    })
   },
 
   clearData: function() {
