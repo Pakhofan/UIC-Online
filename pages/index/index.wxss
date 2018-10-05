@@ -7,6 +7,7 @@
   right: 0;
   bottom: 0;
 }
+
 .withAnimate {
   transition: all 100ms ease;
   -webkit-transform: translate3d(0, 0, 0);
@@ -22,15 +23,18 @@
   -ms-perspective: 1000;
   perspective: 1000;
 }
+
 .stv-container .tab-bar {
   position: relative;
   display: flex;
   font-size: 30rpx;
   color: #666666;
 }
+
 .stv-container .tab-bar .tab-active {
   color: #09bb07;
 }
+
 .stv-container .tab-bar .tab {
   display: flex;
   align-items: center;
@@ -38,24 +42,28 @@
   padding-top: 16rpx;
   padding-bottom: 20rpx;
 }
+
 .stv-container .tab-bar .under-line {
   position: absolute;
   bottom: 0;
   height: 6rpx;
   background-color: #09bb07;
 }
+
 .stv-container .scroll-view {
   position: relative;
   width: 100%;
   height: 100%;
   background: #fff;
 }
+
 .stv-container .scroll-view .scroll-view-wrapper {
   position: absolute;
   top: 0;
   bottom: 0;
   display: flex;
 }
+
 .stv-container .scroll-view .scroll-view-wrapper .one-scene {
   height: 100%;
 }
@@ -75,7 +83,7 @@
   margin: 5rpx;
 }
 
-.singlePic{
+.singlePic {
   height: 400rpx;
   width: 400rpx;
   margin: 5rpx;
@@ -104,7 +112,7 @@ button {
   font-size: 11pt;
   text-align: center;
   margin: 0 auto;
-  width: 180rpx;
+  width: 150rpx;
   height: 26pt;
   line-height: 26pt;
   border-radius: 5px;
@@ -112,4 +120,21 @@ button {
   border-width: 1px;
   margin-top: 15px;
   margin-bottom: 15px;
+
+}
+
+.btn-sharetofriend {
+  font-size: 8pt;
+  text-align: left;
+  width: 150rpx;
+  height: 26pt;
+  line-height: 26pt;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  border: none;
+  background-color: #fff;
+}
+
+.btn-sharetofriend::after {
+  border: none;
 }
