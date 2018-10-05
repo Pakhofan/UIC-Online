@@ -1,15 +1,21 @@
 <!--pages/detail/detail.wxml-->
-<view>
+<view class='pageColumn'>
   <view class='card'>
-    <view class='topRightContainer'>
+    <view class='menuContainer'>
       <i class="icon-menu"></i>
     </view>
-    <view bindtap='viewProfile' class="headContainer">
-      <image class="headPic" mode='aspectFill' src="{{card.creator_avatar}}"></image>
-    </view>
-    <view class="headRightContainer">
-      <view bindtap='viewProfile' class="name">{{card.creator_name}}</view>
-      <view class="date">{{card.created_at}}</view>
+    <view class='firstRow'>
+      <view wx:if="{{card.status == 1}}" class="firstRowItemA">
+        <image class="headPic" mode='aspectFill' src="{{anonymousAvatarUrl}}"></image>
+      </view>
+      <view wx:else bindtap='viewProfile' class="firstRowItemA" data-id='{{card.created_by}}'>
+        <image class="headPic" mode='aspectFill' src="{{card.creator_avatar}}"></image>
+      </view>
+      <view class="firstRowItemB">
+        <view wx:if="{{card.status == 1}}" class="name">匿名</view>
+        <view wx:else bindtap='viewProfile' class="name" data-id='{{card.created_by}}'>{{card.creator_name}}</view>
+        <view class="date">{{card.created_at}}</view>
+      </view>
     </view>
     <view class="contentContainer">
       <view class="text">
@@ -17,16 +23,16 @@
       </view>
       <view class="pictureContainer">
         <view class='pictureRow'>
-          <image class="picture" wx:if="{{card.imgs[0]}}" src="{{card.imgs[0]}}" mode="aspectFill" catchtap='viewImage' data-src="{{card.imgs[0]}}" data-list="{{card.imgs}}"></image>
-          <image class="picture" wx:if="{{card.imgs[1]}}" src="{{card.imgs[1]}}" mode="aspectFill" catchtap='viewImage' data-src="{{card.imgs[1]}}" data-list="{{card.imgs}}"></image>
+          <image class="picture" wx:if="{{card.imgs[0]}}" src="{{card.imgs[0] + webpCode}}" mode="aspectFill" catchtap='viewImage' data-src="{{card.imgs[0]}}" data-list="{{card.imgs}}"></image>
+          <image class="picture" wx:if="{{card.imgs[1]}}" src="{{card.imgs[1] + webpCode}}" mode="aspectFill" catchtap='viewImage' data-src="{{card.imgs[1]}}" data-list="{{card.imgs}}"></image>
         </view>
         <view class='pictureRow'>
-          <image class="picture" wx:if="{{card.imgs[2]}}" src="{{card.imgs[2]}}" mode="aspectFill" catchtap='viewImage' data-src="{{card.imgs[2]}}" data-list="{{card.imgs}}"></image>
-          <image class="picture" wx:if="{{card.imgs[3]}}" src="{{card.imgs[3]}}" mode="aspectFill" catchtap='viewImage' data-src="{{card.imgs[3]}}" data-list="{{card.imgs}}"></image>
+          <image class="picture" wx:if="{{card.imgs[2]}}" src="{{card.imgs[2] + webpCode}}" mode="aspectFill" catchtap='viewImage' data-src="{{card.imgs[2]}}" data-list="{{card.imgs}}"></image>
+          <image class="picture" wx:if="{{card.imgs[3]}}" src="{{card.imgs[3] + webpCode}}" mode="aspectFill" catchtap='viewImage' data-src="{{card.imgs[3]}}" data-list="{{card.imgs}}"></image>
         </view>
         <view class='pictureRow'>
-          <image class="picture" wx:if="{{card.imgs[4]}}" src="{{card.imgs[4]}}" mode="aspectFill" catchtap='viewImage' data-src="{{card.imgs[4]}}" data-list="{{card.imgs}}"></image>
-          <image class="picture" wx:if="{{card.imgs[5]}}" src="{{card.imgs[5]}}" mode="aspectFill" catchtap='viewImage' data-src="{{card.imgs[5]}}" data-list="{{card.imgs}}"></image>
+          <image class="picture" wx:if="{{card.imgs[4]}}" src="{{card.imgs[4] + webpCode}}" mode="aspectFill" catchtap='viewImage' data-src="{{card.imgs[4]}}" data-list="{{card.imgs}}"></image>
+          <image class="picture" wx:if="{{card.imgs[5]}}" src="{{card.imgs[5] + webpCode}}" mode="aspectFill" catchtap='viewImage' data-src="{{card.imgs[5]}}" data-list="{{card.imgs}}"></image>
         </view>
       </view>
     </view>
@@ -35,73 +41,71 @@
 
 
   </view>
+
+  <block wx:if="{{comments.length != 0}}">
+    <view class='card'>
+      <block wx:for='{{comments}}'>
+        <view wx:if='{{item.floor != 1}}' class='commentLine'></view>
+        <view class='firstRow'>
+          <view wx:if="{{item.status == 1}}" class="firstRowItemA">
+            <image class="headPic" mode='aspectFill' src="{{anonymousAvatarUrl}}"></image>
+          </view>
+          <view wx:else bindtap='viewProfile' class="firstRowItemA" data-id='{{item.created_by}}'>
+            <image class="headPic" mode='aspectFill' src="{{item.creator_avatar}}"></image>
+          </view>
+          <view class="firstRowItemB">
+            <block wx:if="{{item.status == 1}}">
+              <view class="name">匿名</view>
+            </block>
+            <block wx:else>
+              <view bindtap='viewProfile' class="name" data-id='{{item.created_by}}'>{{item.creator_name}}</view>
+            </block>
+            <view class="date">{{item.created_at}}</view>
+          </view>
+          <view class='firstRowItemC'>
+            <view class='floor'># {{item.floor}}</view>
+          </view>
+        </view>
+        <view class="contentContainer">
+          <view class="text">
+            <text selectable="true">{{item.text}}</text>
+          </view>
+        </view>
+      </block>
+    </view>
+  </block>
+
   <view class='card'>
-    <view class='commentRow' id='firstCommentRow'>
-      <view class='topRightContainer'>
-        <view class='floor'># 1</view>
+    <view class='firstRow'>
+      <view wx:if="{{!hasUserInfo && canIUse}}" class='getUserInfoButtonContainer'>
+        <button class='getUserInfoButton' open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
       </view>
-      <view bindtap='viewProfile' class="headContainer">
-        <image class="headPic" mode='aspectFill' src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1536490234935&di=59e3abdd861579e8f3109fd1f2c2993f&imgtype=0&src=http%3A%2F%2Fwww.feizl.com%2Fupload2007%2Fallimg%2F170726%2F1940255V6-14.jpg"></image>
-      </view>
-      <view class="headRightContainerB">
-        <view bindtap='viewProfile' class="name">Clearave</view>
-        <view class="date">1 小时前</view>
-      </view>
-      <view class="contentContainer">
-        <view class="text">
-          <text selectable="true">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </text>
+      <block wx:else>
+        <view class="firstRowItemA">
+          <image class="headPic" mode='aspectFill' src="{{userInfo.avatarUrl}}"></image>
         </view>
-      </view>
-    </view>
-    <view class='commentRow'>
-      <view class='topRightContainer'>
-        <view class='floor'># 2</view>
-      </view>
-      <view bindtap='viewProfile' class="headContainer">
-        <image class="headPic" mode='aspectFill' src="http://img2.imgtn.bdimg.com/it/u=4163885218,1747615568&fm=27&gp=0.jpg"></image>
-      </view>
-      <view class="headRightContainerB">
-        <view bindtap='viewProfile' class="name">忧郁的台湾女孩</view>
-        <view class="date">2 小时前</view>
-      </view>
-      <view class="contentContainer">
-        <view class="text">
-          <text selectable="true">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </text>
+        <view class="firstRowItemB">
+          <view bindtap='viewProfile' class="name">{{userInfo.nickName}}</view>
+          <view class="date">即将发布</view>
         </view>
+      </block>
+    </view>
+    <view class="contentContainer">
+      <view class="inputText">
+        <textarea selectable="true" placeholder='输入要发送的内容...' value='{{text}}' maxlength='500' auto-height='ture' cursor-spacing='100' bindinput='userInput'></textarea>
+
+        <view class="weui-uploader__info" style='margin-top:5px;width:100%;text-align:end;color:#b2b2b2'>{{text.length}}/200</view>
       </view>
     </view>
-    <view class='commentRow'>
-      <view class='topRightContainer'>
-        <view class='floor'># 3</view>
-      </view>
-      <view bindtap='viewProfile' class="headContainer">
-        <image class="headPic" mode='aspectFill' src="http://img.zcool.cn/community/01f11a563877ef6ac7259e0f7ea3b6.jpg@1280w_1l_2o_100sh.jpg"></image>
-      </view>
-      <view class="headRightContainerB">
-        <view bindtap='viewProfile' class="name">小黄鸭</view>
-        <view class="date">3 小时前</view>
-      </view>
-      <view class="contentContainer">
-        <view class="text">
-          <text selectable="true">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </text>
-        </view>
+    <view class='selectionRow'>
+      <view class='selectionRowItemA'>
+        <switch style='height:30px;' checked="true" bindchange="switch1Change" />
+        <text style='line-height: 30px; font-size:15px; color:rgba(150, 150, 150, 0.9);'>匿名发布</text>
       </view>
     </view>
-  </view>
-  <view class='listContainer'>
-    <view class='list'>
-      <view class='listItemA'>微信号</view>
-      <view class='listItemB'>lqb153105</view>
-      <view class='listItemC'>
-        <button class='buttonA'>复制</button>
-      </view>
-    </view>
-    <view class='list'>
-      <view class='listItemA'>手机号</view>
-      <view class='listItemB'>15914496951</view>
-      <view class='listItemC'>
-        <button class='buttonA'>复制</button>
-      </view>
+    <view class='sendContainer'>
+      <button class='buttonA sendButton' wx:if="{{hasUserInfo && (text.length > 0)}}" catchtap="onSendTap">发布</button>
+      <button class='buttonADisable sendButton' wx:else>发布</button>
     </view>
   </view>
 

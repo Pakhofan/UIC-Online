@@ -15,7 +15,7 @@ Page({
     Change_WX: true,
   },
 
-  onLoad: function() {
+  onShow: function() {
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,
@@ -43,26 +43,36 @@ Page({
       })
     }
   },
-  onShow: function() {
-
-  },
   getUserInfo: function(e) {
     var id = 0
     wx.BaaS.handleUserInfo(e).then(res => {
       console.log('！！！！')
-      console.log(res.id)
+      console.log(res)
       id = res.id
+      let MyUser = new wx.BaaS.User()
+      MyUser.get(id).then(res => {
+        console.log(res.data)
+        //这里获取到的是云端数据
+        app.globalData.BaaSAvatar = res.data.avatar
+        wx.setStorageSync('BaaSAvatar', res.data.avatar)
+        // success
+      }, err => {
+        // err
+      })
       app.globalData.userId = id
       wx.setStorageSync('userId', id)
       // res 包含用户完整信息
     }, res => {
       // **res 有两种情况**：用户拒绝授权，res 包含基本用户信息：id、openid、unionid；其他类型的错误，如网络断开、请求超时等，将返回 Error 对象（详情见下方注解）
     })
-    app.globalData.userInfo = e.detail.userInfo
-    this.setData({
-      userInfo: e.detail.userInfo,
-      hasUserInfo: true,
-    })
+    if (e.detail.userInfo) {
+      app.globalData.userInfo = e.detail.userInfo
+      this.setData({
+        userInfo: e.detail.userInfo,
+        hasUserInfo: true,
+      })
+    }
+    console.log(app.globalData.userInfo)
   },
 
   onChange_WX: function(e) {
@@ -124,4 +134,16 @@ Page({
       text_Phone: e.detail.value.replace(/[^\d]/g, ''),
     })
   },
+
+  Logout: function(){
+    wx.BaaS.logout().then(res => {
+      // success
+    }, err => {
+      // err
+    })
+    this.setData({
+      hasUserInfo: false
+    })
+    app.globalData.userInfo = false
+  }
 })

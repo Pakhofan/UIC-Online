@@ -1,196 +1,34 @@
 /* pages/detail/detail.wxss */
-.card {
-  background-color: #fff;
-  margin: 0 auto;
-  margin-top:25px;
-  margin-bottom: 50rpx;
-  padding-bottom: 25rpx;
-  width: 700rpx;
-  height: auto;
-  border-radius: 2px;
-  box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.2);
-}
-
-.headRightContainer {
-  height: 50px;
-  width: 450rpx;
-  margin-left: 50rpx;
-  float: right;
-}
-
-.headRightContainerB {
-  height: 50px;
-  width: 300rpx;
-  margin-left: 150rpx;
-  float: left;
-}
-
-.headContainer {
-  height: 0px;
-  margin-left: 40rpx;
-  margin-top: 40rpx;
-  float: left;
-}
-
-.headPic {
-  width: 40px;
-  height: 40px;
-  background-color: whtie;
-  border-radius: 3px;
-  float: left;
-}
-
-.name {
-  font-size: 16px;
-  color: #4f94cd;
-}
-
-.date {
-  font-size: 11px;
-  color: #999;
-}
-
-.topRightContainer {
-  height: 30px;
-  float: right;
-  margin-right: 50rpx;
-  margin-top: 20px;
-}
-
-.icon-menu {
-  display: inline-block;
-  width: 25px;
-  height: 3px;
-  padding: 5px 0;
-  margin-top: 5px;
-  border-top: 3px solid;
-  border-bottom: 3px solid;
-  background-color: currentColor;
-  background-clip: content-box;
-  opacity: 0.5;
-}
-.icon-menu:active {
-  opacity: 0.3;
-}
-
-.contentContainer {
-  margin-top: 0rpx;
-  margin-left: 0rpx;
-  padding-top: 80px;
-  padding-left: 30rpx;
-  padding-right: 30rpx;
-  height: auto;
-  width: 650rpx;
-}
 
 .text {
   font-size: 16px;
 }
 
-.pictureContainer {
-  margin-top: 20rpx;
-  width: 650rpx;
-  margin: 0 auto;
-  align-items: flex-start;
-  display: flex;
-  flex-direction: column;
-  padding-top: 20rpx;
-  padding-bottom: 20rpx;
-}
-
-.pictureRow {
-  align-items: flex-start;
-  display: flex;
-  flex-direction: row;
-}
-
 .picture {
-  height: 310rpx;
-  width: 310rpx;
+  height: 290rpx;
+  width: 290rpx;
   margin: 5rpx;
 }
 
-#firstCommentRow{
-  border-bottom-style: NONE;
-}
-
-.commentRow{
-  width: 650rpx;
-  padding-bottom: 20px;
-  margin: 0 auto;
-  border-top-style: solid;
-  border-color: rgba(200, 200, 200, 0.2);
-  border-width: 1px;
-}
-
-.floor{
-  margin-top: 5px;
-  font-size: 12pt;
-  color: rgba(200, 200, 200, 0.9);
-}
-
-.listContainer {
-  font-size: 14px;
-  line-height: 30px;
-  margin: 0 auto;
-  margin-top: 30px;
-  margin-bottom: 100px;
-  padding-top: 5px;
-  padding-bottom: 10px;
-  width: 700rpx;
-  height: auto;
-  border-radius: 2px;
-  box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.2);
-}
-
-.list {
-  margin: 20px 20rpx;
-  height: 30px;
-  width: 600rpx;
-  margin-left: 50rpx;
-  align-items: flex-start;
-  display: flex;
-  flex-direction: row;
+.commentLine {
+  margin: 10px 30px;
   border-bottom-style: solid;
   border-color: rgba(200, 200, 200, 0.2);
   border-width: 1px;
 }
 
-.listItemA {
-  width: 175rpx;
-  height: 30px;
-  padding-left: 25rpx;
-  text-align: start;
+.floor {
+  font-size: 12pt;
+  line-height: 20px;
+  padding-bottom: 20px;
+  color: rgba(200, 200, 200, 0.9);
 }
 
-.listItemB {
-  width: 300rpx;
-  height: 30px;
-  padding-left: 25rpx;
-  text-align: start;
+.sendButton {
+  width: 200px;
 }
 
-.listItemC {
-  width: 175rpx;
-  height: 30px;
-  text-align: center;
+.sendContainer {
+  padding-top: 30px;
 }
 
-button {
-  font-size: 11px;
-  text-align: center;
-  width: 120rpx;
-  height: 25px;
-  line-height: 25px;
-  border-radius: 4px;
-}
-
-.buttonA {
-  color: #fff;
-  background-color: rgb(9, 187, 7);
-  border-color: #09bb07;
-}
-
-.buttonA:active {
-  background-color: rgba(9, 187, 7, 0.6);
-}

@@ -1,21 +1,20 @@
 <!--pages/send/send.wxml-->
-<view>
+<view class='pageColumn'>
   <view class='card'>
-    <view class='topRightContainer'>
-    </view>
-    <view wx:if="{{!hasUserInfo && canIUse}}" class='getUserInfoButtonContainer'>
-      <button class='getUserInfoButton' open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
-    </view>
-
-    <block wx:else>
-      <view class="headContainer">
-        <image class="headPic" mode='aspectFill' src="{{userInfo.avatarUrl}}"></image>
+    <view class='firstRow'>
+      <view wx:if="{{!hasUserInfo && canIUse}}" class='getUserInfoButtonContainer'>
+        <button class='getUserInfoButton' open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
       </view>
-      <view class="headRightContainer">
-        <view bindtap='viewProfile' class="name">{{userInfo.nickName}}</view>
-        <view class="date">即将发布</view>
-      </view>
-    </block>
+      <block wx:else>
+        <view class="firstRowItemA">
+          <image class="headPic" mode='aspectFill' src="{{userInfo.avatarUrl}}"></image>
+        </view>
+        <view class="firstRowItemB">
+          <view bindtap='viewProfile' class="name">{{userInfo.nickName}}</view>
+          <view class="date">即将发布</view>
+        </view>
+      </block>
+    </view>
 
     <view class="contentContainer">
       <view class="text">
@@ -44,9 +43,33 @@
       </view>
     </view>
   </view>
-  <view class='card'>
-  
+  <view class='shortCard'>
+    <radio-group class="radio-group" bindchange="radioChange">
+      <view class='selectionRow'>
+        <view class="selectionRowItemA">
+          <radio class="radio" value="树洞" checked="true">
+            <text> 树洞</text>
+          </radio>
+        </view>
+        <view class="selectionRowItemB">
+          <block wx:if="{{istreehole}}">
+            <switch class='switch_Change' checked="true" bindchange="switch1Change">
+              <text>匿名</text>
+            </switch>
+          </block>
+        </view>
+      </view>
+      <view class='selectionRow'>
+        <view class="selectionRowItemA">
+          <radio class="radio" value="广场" checked="true">
+            <text> 广场</text>
+          </radio>
+        </view>
+      </view>
+    </radio-group>
   </view>
-  <button class='buttonA' wx:if="{{hasUserInfo && ((text.length > 0)|| files.length > 0)}}" id='sendButton' catchtap="onSendTap">发布</button>
-  <button class='buttonB' wx:else id='sendButton'>发布</button>
+  <view class='sendContainer'>
+    <button class='buttonA sendButton' wx:if="{{hasUserInfo && ((text.length > 0)|| files.length > 0)}}" catchtap="onSendTap">发布</button>
+    <button class='buttonADisable sendButton' wx:else>发布</button>
+  </view>
 </view>

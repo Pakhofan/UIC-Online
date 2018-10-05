@@ -1,28 +1,32 @@
 <!--pages/me/me.wxml-->
-<view class="container">
-  <view class="userinfo">
-    <button class='getUserInfoButton' wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
-    <block wx:else>
-      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-    </block>
-  </view>
-  <view class='listContainer'>
-    <view class='list'>
-      <view class='listItemA'>微信号</view>
-      <textarea class='listItemB' placeholder='请输入信息' value="{{text_WX}}" maxlength='150' auto-height='ture' cursor-spacing='100' bindinput='userInput_WX' disabled="{{disabled_WX}}"></textarea>
-      <view class='listItemC'></view>
+<view class='pageColumn'>
+  <view class="container">
+    <view class="userinfo">
+      <button class='getUserInfoButton' wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
+      <block wx:else>
+        <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+        <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+        <button class='logout' catchtap='Logout'>登出</button>
+      </block>
     </view>
-    <view class='list'>
-      <view class='listItemA'>手机号</view>
-      <textarea class='listItemB' placeholder='请输入信息' value="{{text_Phone}}" maxlength='11' auto-height='ture' cursor-spacing='100' bindinput='userInput_Phone' disabled="{{disabled_WX}}"></textarea>
-      <view class='listItemC'>
+    <view class='listContainer'>
+      <view class='list'>
+        <view class='listItemA'>微信号</view>
+        <textarea class='listItemB' placeholder='请输入信息' value="{{text_WX}}" maxlength='150' auto-height='ture' cursor-spacing='100' bindinput='userInput_WX' disabled="{{disabled_WX}}"></textarea>
+        <view class='listItemC'></view>
+      </view>
+      <view class='list'>
+        <view class='listItemA'>手机号</view>
+        <textarea class='listItemB' placeholder='请输入信息' value="{{text_Phone}}" maxlength='11' auto-height='ture' cursor-spacing='100' bindinput='userInput_Phone' disabled="{{disabled_WX}}"></textarea>
+        <view class='listItemC'>
+        </view>
+      </view>
+      <view class='list' style='border-style:none;'>
+        <button class='buttonA' wx:if="{{Change_WX}}" catchtap='onChange_WX'>保存</button>
+        <button class='buttonA' wx:else catchtap='onChange_WX'>修改</button>
       </view>
     </view>
-    <view class='list'>
-      <button class='buttonA' wx:if="{{Change_WX}}" catchtap='onChange_WX'>保存</button>
-      <button class='buttonA' wx:else catchtap='onChange_WX'>修改</button>
-    </view>
+
   </view>
 
 </view>
