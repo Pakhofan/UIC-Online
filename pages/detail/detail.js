@@ -18,7 +18,7 @@ Page({
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     ishidename: true,
     comments:[],
-    showHomeButton: true,
+    showHomeButton: false,
   },
 
   /**
@@ -66,6 +66,11 @@ Page({
     if (sceneNum == 1007 || sceneNum == 1008){
       this.setData({
         showHomeButton: true
+      })
+    }
+    else{
+      this.setData({
+        showHomeButton: false
       })
     }
   },
@@ -249,6 +254,8 @@ Page({
     wx.switchTab({
       url: "../index/index"
     })
+    app.globalData.scene = 1000
+    //重置场景参数
   }
 
 })

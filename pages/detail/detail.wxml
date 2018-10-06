@@ -1,5 +1,5 @@
 <!--pages/detail/detail.wxml-->
-<view class='backToIndex' bindtap='backToIndex'>
+<view class='backToIndex' bindtap='backToIndex' wx:if='{{showHomeButton}}'>
   <image class='homeIcon' src='/imgs/home.png'></image>
   <text class='homeText'>返回主页</text>
 </view>
