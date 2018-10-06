@@ -45,7 +45,7 @@ Page({
     }, 500)
   },
   onShow: function(option) {
-    setTimeout(function () {
+    setTimeout(function() {
       wx.hideLoading({});
     }, 500)
   },
@@ -169,11 +169,11 @@ Page({
     console.log('!!!!!!!!!!!!!!!!!')
     this.pullCards();
   },
-  toLowerLoadCards: function () {
+  toLowerLoadCards: function() {
     console.log('################')
     this.pullCards();
   },
-  onReachBottom: function () {
+  onReachBottom: function() {
     this.pullCards();
   },
   viewImage: function(event) {
@@ -196,9 +196,15 @@ Page({
     if (event.target.dataset.tag != 'btn-sharetofriend') {
       var cardId = event.currentTarget.dataset.id;
       wx.navigateTo({
-        url: "../detail/detail?id=" + cardId
+        url: "../detail/detail?id=" + cardId + "&type=normal"
       })
     }
+  },
+  tapComment: function(event) {
+    var cardId = event.currentTarget.dataset.id;
+    wx.navigateTo({
+      url: "../detail/detail?id=" + cardId + "&type=comment"
+    })
   },
   pullCards: function() {
     wx.showNavigationBarLoading({})
@@ -226,12 +232,12 @@ Page({
         }
       })
       this.updateLikedCards()
-      setTimeout(function () {
+      setTimeout(function() {
         wx.hideNavigationBarLoading({})
       }, 500)
       // success
     }, err => {
-      setTimeout(function () {
+      setTimeout(function() {
         wx.hideNavigationBarLoading({})
       }, 500)
       // err

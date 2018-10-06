@@ -11,7 +11,7 @@
   <view class="scroll-view">
     <view bindtouchstart="handlerStart" catchtouchmove="handlerMove" bindtouchcancel="handlerCancel" bindtouchend="handlerEnd" class="scroll-view-wrapper {{!stv.tStart? 'withAnimate': ''}}" style="left: -{{stv.offset}}px">
       <view style="width: {{stv.windowWidth}}px;" wx:for="{{tabs}}" wx:key="unique" wx:for-index="tabsIdx" class="one-scene">
-        <scroll-view style="height:100%" scroll-y  bindscrolltoupper="toUpperLoadCards" bindscrolltolower="toLowerLoadCards" enable-back-to-top="true"  id='mainScrollView'>
+        <scroll-view style="height:100%" scroll-y bindscrolltoupper="toUpperLoadCards" bindscrolltolower="toLowerLoadCards" enable-back-to-top="true" id='mainScrollView'>
           <view class='pageColumn' id='indexColumn'>
             <block wx:for="{{cards}}">
               <block wx:if="{{item.status < 2}}">
@@ -64,11 +64,13 @@
                       <!-- <text class='iconText'>分享</text> -->
                     </view>
                     <view class='lastRowItem lastRowItemB'>
-                      <image class='iconButton' src='/imgs/comment.png'></image>
-                      <text class='iconText'>
-                        <block wx:if='{{item.comment_count==0}}'>评论</block>
-                        <block wx:else> {{item.comment_count}}</block>
-                      </text>
+                      <view class='commentContainer' catchtap='tapComment' data-id='{{item.id}}'>
+                        <image class='iconButton' src='/imgs/comment.png'></image>
+                        <text class='iconText'>
+                          <block wx:if='{{item.comment_count==0}}'>评论</block>
+                          <block wx:else> {{item.comment_count}}</block>
+                        </text>
+                      </view>
                     </view>
                     <view class='lastRowItem lastRowItemC'>
                       <block wx:if='{{item.currUserLiked}}'>

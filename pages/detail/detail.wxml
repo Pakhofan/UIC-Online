@@ -96,7 +96,7 @@
     </view>
     <view class="contentContainer">
       <view class="inputText">
-        <textarea selectable="true" placeholder='输入要发送的内容...' value='{{text}}' maxlength='500' auto-height='ture' cursor-spacing='100' bindinput='userInput'></textarea>
+        <textarea selectable="true" placeholder='输入要发送的内容...' value='{{text}}' maxlength='500' auto-height='ture' cursor-spacing='100' bindinput='userInput' focus='{{autoFocus}}'></textarea>
 
         <view class="weui-uploader__info" style='margin-top:5px;width:100%;text-align:end;color:#b2b2b2'>{{text.length}}/200</view>
       </view>

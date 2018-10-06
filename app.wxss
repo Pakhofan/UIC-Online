@@ -224,7 +224,7 @@ button {
   flex-direction: row;
 }
 
-.lastRowItem,.likeContainer,.shareContainer{
+.lastRowItem,.likeContainer,.commentContainer,.shareContainer{
   display: flex;
   align-items: center;
   justify-content:center;
@@ -234,7 +234,7 @@ button {
   text-align: start;
 }
 
-.likeContainer{
+.likeContainer,.commentContainer{
   width: auto;
 }
 

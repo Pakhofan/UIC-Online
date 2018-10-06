@@ -17,14 +17,22 @@ Page({
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     ishidename: true,
-    comments:[],
+    comments: [],
     showHomeButton: false,
+    autoFocus: false
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(option) {
+    console.log(option)
+    if (option.type == 'comment') {
+      console.log('comment!')
+      this.setData({
+        autoFocus: true
+      })
+    }
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,
@@ -63,12 +71,12 @@ Page({
   },
   onShow: function(option) {
     var sceneNum = app.globalData.scene
-    if (sceneNum == 1007 || sceneNum == 1008){
+    if (sceneNum == 1007 || sceneNum == 1008) {
       this.setData({
-        showHomeButton: true
+        showHomeButton: true,
+        autoFocus: true
       })
-    }
-    else{
+    } else {
       this.setData({
         showHomeButton: false
       })
