@@ -22,7 +22,7 @@
       </view>
     </view>
     <view class="contentContainer">
-      <view class="text">
+      <view class="text" wx:if="{{card.text!=null}}">
         <text selectable="true">{{card.text}}</text>
       </view>
       <view class="pictureContainer">
