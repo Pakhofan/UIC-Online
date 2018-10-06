@@ -224,7 +224,7 @@ button {
   flex-direction: row;
 }
 
-.lastRowItem,.likeContainer{
+.lastRowItem,.likeContainer,.shareContainer{
   display: flex;
   align-items: center;
   justify-content:center;
@@ -238,6 +238,15 @@ button {
   width: auto;
 }
 
+.shareContainer,.shareContainer:hover,.shareContainer:active{
+  width: auto;
+  line-height: 30px;
+  margin-top: 0;
+  margin-bottom: 0;
+  background-color: rgba(0, 0, 0, 0);
+  border-style: none;
+}
+
 .iconButton{
   width: 20px;
   height: 20px;
@@ -249,6 +258,19 @@ button {
   line-height: 20px;
   color: #ccc;
   font-size: 12px;
+}
+
+.lastRowItemA{
+  margin-left: 10rpx;
+  margin-right: 50rpx;
+}
+
+.lastRowItemB{
+  margin-left: 50rpx;
+}
+
+.lastRowItemC{
+  margin-right: 10rpx;
 }
 
 

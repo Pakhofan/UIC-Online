@@ -122,19 +122,3 @@ button {
   margin-bottom: 15px;
 
 }
-
-.btn-sharetofriend {
-  font-size: 8pt;
-  text-align: left;
-  width: 150rpx;
-  height: 26pt;
-  line-height: 26pt;
-  margin-top: 15px;
-  margin-bottom: 15px;
-  border: none;
-  background-color: #fff;
-}
-
-.btn-sharetofriend::after {
-  border: none;
-}
