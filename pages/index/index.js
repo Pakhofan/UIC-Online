@@ -44,6 +44,11 @@ Page({
       wx.hideLoading({});
     }, 500)
   },
+  onShow: function(option) {
+    setTimeout(function () {
+      wx.hideLoading({});
+    }, 500)
+  },
   handlerStart(e) {
     let {
       clientX,
@@ -97,7 +102,7 @@ Page({
       windowWidth
     } = stv;
     //快速滑动
-    if (endTime - this.tapStartTime <= 300) {
+    if (endTime - this.tapStartTime <= 500) {
       //向左
       if (Math.abs(this.tapStartY - clientY) < 75) {
         if (this.tapStartX - clientX > 5) {
@@ -160,6 +165,17 @@ Page({
   onPullDownRefresh: function() {
     this.pullCards();
   },
+  toUpperLoadCards: function() {
+    console.log('!!!!!!!!!!!!!!!!!')
+    this.pullCards();
+  },
+  toLowerLoadCards: function () {
+    console.log('################')
+    this.pullCards();
+  },
+  onReachBottom: function () {
+    this.pullCards();
+  },
   viewImage: function(event) {
     var currentSrc = event.currentTarget.dataset.src;
     var srcList = event.currentTarget.dataset.list;
@@ -185,12 +201,15 @@ Page({
     }
   },
   pullCards: function() {
+    wx.showNavigationBarLoading({})
     var Card = new wx.BaaS.TableObject(52108)
 
     var query = new wx.BaaS.Query()
     query.compare('status', '<', 2)
 
-    Card.setQuery(query).limit(10).offset(0).orderBy('-created_at').find().then(res => {
+    var cardLimit = this.data.cards.length + 10
+
+    Card.setQuery(query).limit(cardLimit).offset(0).orderBy('-created_at').find().then(res => {
       console.log(res.data);
       var cardList = res.data.objects;
       //console.log(cardList[0].created_at);
@@ -207,8 +226,14 @@ Page({
         }
       })
       this.updateLikedCards()
+      setTimeout(function () {
+        wx.hideNavigationBarLoading({})
+      }, 500)
       // success
     }, err => {
+      setTimeout(function () {
+        wx.hideNavigationBarLoading({})
+      }, 500)
       // err
     })
   },
@@ -234,6 +259,7 @@ Page({
 
   },
   tapLike: function(event) {
+    wx.vibrateShort({})
     console.log('tapLike')
     var cardId = event.currentTarget.dataset.id;
     var cards = this.data.cards
@@ -249,6 +275,7 @@ Page({
     this.pushLike(cardId)
   },
   tapUnlike: function(event) {
+    wx.vibrateShort({})
     console.log('tapUnlike')
     var cardId = event.currentTarget.dataset.id;
     var cards = this.data.cards
