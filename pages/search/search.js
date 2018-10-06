@@ -58,7 +58,7 @@ var app = getApp();
     //查询信息
     queryInformation: function(){
       var that = this
-      let tableID = 52142
+      let tableID = 52108
       let TableInfo = new wx.BaaS.TableObject(tableID)
       let Query = new wx.BaaS.Query()
       Query.contains('text',this.data.keywords)

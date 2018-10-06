@@ -150,5 +150,10 @@ Page({
     wx.navigateTo({
       url: '../search/search',
     })
+  },
+  OnhistoryTap: function(e){
+    wx.navigateTo({
+      url: '../history/history',
+    })
   }
 })
