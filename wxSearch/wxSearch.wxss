@@ -27,7 +27,7 @@
 .wxSearch-button{
   flex: 1;
   border: none !important;
-  color: cornflowerblue !important;
+  color: rgb(51, 80, 134) !important;
 }
 
 .wxSearchTitle{
