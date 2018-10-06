@@ -86,10 +86,20 @@
       </view>
       <block wx:else>
         <view class="firstRowItemA">
-          <image class="headPic" mode='aspectFill' src="{{userInfo.avatarUrl}}"></image>
+          <block wx:if='{{ishidename}}'>
+            <image class="headPic" mode='aspectFill' src="/imgs/anonymousAvatarA.png"></image>
+          </block>
+          <block wx:else>
+            <image class="headPic" mode='aspectFill' src="{{userInfo.avatarUrl}}"></image>
+          </block>
         </view>
         <view class="firstRowItemB">
-          <view bindtap='viewProfile' class="name">{{userInfo.nickName}}</view>
+          <block wx:if='{{ishidename}}'>
+            <view class="name">匿名</view>
+          </block>
+          <block wx:else>
+            <view bindtap='viewProfile' class="name">{{userInfo.nickName}}</view>
+          </block>
           <view class="date">即将发布</view>
         </view>
       </block>
@@ -101,10 +111,10 @@
         <view class="weui-uploader__info" style='margin-top:5px;width:100%;text-align:end;color:#b2b2b2'>{{text.length}}/200</view>
       </view>
     </view>
-    <view class='selectionRow'>
+    <view class='selectionRow' wx:if='{{istreehole}}'>
       <view class='selectionRowItemA'>
         <switch style='height:30px;' checked="true" bindchange="switch1Change" />
-        <text style='line-height: 30px; font-size:15px; color:rgba(150, 150, 150, 0.9);'>匿名发布</text>
+        <text style='line-height: 30px; font-size:15px; color:rgba(150, 150, 150, 0.9);'>匿名</text>
       </view>
     </view>
     <view class='sendContainer'>

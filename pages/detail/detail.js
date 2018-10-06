@@ -17,6 +17,7 @@ Page({
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     ishidename: true,
+    istreehole: true,
     comments: [],
     showHomeButton: false,
     autoFocus: false
@@ -141,6 +142,12 @@ Page({
       this.setData({
         card: card
       });
+      if (card.category!=0){
+        this.setData({
+          istreehole: false,
+          ishidename: false
+        });
+      }
       // success
     }, err => {
       // err
