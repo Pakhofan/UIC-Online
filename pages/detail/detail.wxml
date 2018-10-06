@@ -10,7 +10,7 @@
     </view>
     <view class='firstRow'>
       <view wx:if="{{card.status == 1}}" class="firstRowItemA">
-        <image class="headPic" mode='aspectFill' src="{{anonymousAvatarUrl}}"></image>
+        <image class="headPic" mode='aspectFill' src="/imgs/anonymousAvatarA.png"></image>
       </view>
       <view wx:else bindtap='viewProfile' class="firstRowItemA" data-id='{{card.created_by}}'>
         <image class="headPic" mode='aspectFill' src="{{card.creator_avatar}}"></image>
@@ -52,7 +52,7 @@
         <view wx:if='{{item.floor != 1}}' class='commentLine'></view>
         <view class='firstRow'>
           <view wx:if="{{item.status == 1}}" class="firstRowItemA">
-            <image class="headPic" mode='aspectFill' src="{{anonymousAvatarUrl}}"></image>
+            <image class="headPic" mode='aspectFill' src="/imgs/anonymousAvatarA.png"></image>
           </view>
           <view wx:else bindtap='viewProfile' class="firstRowItemA" data-id='{{item.created_by}}'>
             <image class="headPic" mode='aspectFill' src="{{item.creator_avatar}}"></image>
