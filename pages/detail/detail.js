@@ -17,6 +17,8 @@ Page({
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     ishidename: true,
+    comments:[],
+    showHomeButton: true,
   },
 
   /**
@@ -58,6 +60,14 @@ Page({
     console.log(currentId)
     this.pullCard(currentId)
     this.pullComments()
+  },
+  onShow: function(option) {
+    var sceneNum = app.globalData.scene
+    if (sceneNum == 1007 || sceneNum == 1008){
+      this.setData({
+        showHomeButton: true
+      })
+    }
   },
   getUserInfo: function(e) {
     var id = 0
@@ -232,5 +242,13 @@ Page({
       text: '',
     });
   },
+
+  backToIndex: function() {
+    console.log('backToIndex')
+    console.log(getCurrentPages())
+    wx.switchTab({
+      url: "../index/index"
+    })
+  }
 
 })
