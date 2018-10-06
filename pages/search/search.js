@@ -21,7 +21,7 @@ var app = getApp();
       var that = this
       WxSearch.wxSearchAddHisKey(that);
       console.log(that.data.keywords)
-
+      that.queryInformation()
     },
     wxSearchInput: function (e) {
       var that = this
@@ -29,7 +29,6 @@ var app = getApp();
       that.setData({
         keywords: e.detail.value
       })
-      that.queryInformation()
     },
     wxSerchFocus: function (e) {
       var that = this
