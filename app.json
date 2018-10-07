@@ -13,7 +13,7 @@
     "backgroundColor": "#eee",
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#FFF",
-    "navigationBarTitleText": "UIC失物招领",
+    "navigationBarTitleText": "UIC校友圈",
     "navigationBarTextStyle": "black"
   },
   "tabBar": {

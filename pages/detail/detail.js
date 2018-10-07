@@ -17,12 +17,23 @@ Page({
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     ishidename: true,
+    istreehole: true,
+    comments: [],
+    showHomeButton: false,
+    autoFocus: false
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(option) {
+    console.log(option)
+    if (option.type == 'comment') {
+      console.log('comment!')
+      this.setData({
+        autoFocus: true
+      })
+    }
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,
@@ -58,6 +69,19 @@ Page({
     console.log(currentId)
     this.pullCard(currentId)
     this.pullComments()
+  },
+  onShow: function(option) {
+    var sceneNum = app.globalData.scene
+    if (sceneNum == 1007 || sceneNum == 1008) {
+      this.setData({
+        showHomeButton: true,
+        autoFocus: true
+      })
+    } else {
+      this.setData({
+        showHomeButton: false
+      })
+    }
   },
   getUserInfo: function(e) {
     var id = 0
@@ -118,6 +142,12 @@ Page({
       this.setData({
         card: card
       });
+      if (card.category!=0){
+        this.setData({
+          istreehole: false,
+          ishidename: false
+        });
+      }
       // success
     }, err => {
       // err
@@ -232,5 +262,15 @@ Page({
       text: '',
     });
   },
+
+  backToIndex: function() {
+    console.log('backToIndex')
+    console.log(getCurrentPages())
+    wx.switchTab({
+      url: "../index/index"
+    })
+    app.globalData.scene = 1000
+    //重置场景参数
+  }
 
 })

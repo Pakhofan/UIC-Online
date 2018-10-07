@@ -28,7 +28,7 @@
   position: relative;
   display: flex;
   font-size: 30rpx;
-  color: #666666;
+  color: #666;
 }
 
 .stv-container .tab-bar .tab-active {
@@ -68,9 +68,17 @@
   height: 100%;
 }
 
-#indexPage {
-  margin-bottom: 50px;
+.tab-bar {
+  z-index: 999;
   background-color: white;
+}
+
+#mainScrollView {
+  overflow-y: none;
+}
+
+#indexColumn {
+  margin-bottom: 50px;
 }
 
 .text {
@@ -120,5 +128,4 @@ button {
   border-width: 1px;
   margin-top: 15px;
   margin-bottom: 15px;
-
 }

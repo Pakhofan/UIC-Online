@@ -7,10 +7,20 @@
       </view>
       <block wx:else>
         <view class="firstRowItemA">
-          <image class="headPic" mode='aspectFill' src="{{userInfo.avatarUrl}}"></image>
+          <block wx:if='{{istreehole&&ishidename}}'>
+            <image class="headPic" mode='aspectFill' src="/imgs/anonymousAvatarA.png"></image>
+          </block>
+          <block wx:else>
+            <image class="headPic" mode='aspectFill' src="{{userInfo.avatarUrl}}"></image>
+          </block>
         </view>
         <view class="firstRowItemB">
-          <view bindtap='viewProfile' class="name">{{userInfo.nickName}}</view>
+          <block wx:if='{{istreehole&&ishidename}}'>
+            <view class="name">匿名</view>
+          </block>
+          <block wx:else>
+            <view bindtap='viewProfile' class="name">{{userInfo.nickName}}</view>
+          </block>
           <view class="date">即将发布</view>
         </view>
       </block>
