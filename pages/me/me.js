@@ -145,5 +145,15 @@ Page({
       hasUserInfo: false
     })
     app.globalData.userInfo = false
+  },
+  OnsearchTap: function(e){
+    wx.navigateTo({
+      url: '../search/search',
+    })
+  },
+  OnhistoryTap: function(e){
+    wx.navigateTo({
+      url: '../history/history',
+    })
   }
 })

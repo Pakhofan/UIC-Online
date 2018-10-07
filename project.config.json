@@ -65,6 +65,11 @@
 					"name": "UI test",
 					"pathName": "pages/detail/detail",
 					"query": "id=5ba77a3367dac44d96255c4b"
+				},
+				{
+					"id": -1,
+					"name": "search",
+					"pathName": "pages/search/search"
 				}
 			]
 		}

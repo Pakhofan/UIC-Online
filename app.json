@@ -5,7 +5,9 @@
     "pages/profile/profile",
     "pages/detail/detail",
     "pages/send/send",
-    "pages/me/me"
+    "pages/me/me",
+    "pages/search/search",
+    "pages/history/history"
   ],
   "window": {
     "backgroundColor": "#eee",
