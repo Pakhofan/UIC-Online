@@ -33,11 +33,7 @@
 			"list": []
 		},
 		"miniprogram": {
-<<<<<<< HEAD
-			"current": 5,
-=======
 			"current": 1,
->>>>>>> upstream/master
 			"list": [
 				{
 					"id": -1,
