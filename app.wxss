@@ -322,9 +322,12 @@ button {
 .textBetweenLine{
   display: table;
 	width: 600rpx;
+  height: 32px;
+  margin-bottom: 15px;
+  padding-bottom: 15px;
 	line-height: 32px;
   margin: 0 auto;
-  font-size: 14pt;
+  font-size: 12pt;
   color: #ccc;
 	background-color: #fff;
 	white-space: nowrap;

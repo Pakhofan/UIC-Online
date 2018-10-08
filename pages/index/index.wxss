@@ -78,7 +78,8 @@
 }
 
 #indexColumn {
-  margin-bottom: 50px;
+  margin-bottom: 50rpx;
+  padding-bottom: 50rpx;
 }
 
 .text {

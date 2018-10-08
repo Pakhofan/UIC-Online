@@ -1,4 +1,8 @@
 /* pages/me/me.wxss */
+#mePage{
+  padding-bottom: 50px;
+}
+
 .userinfo {
   display: flex;
   flex-direction: column;
@@ -58,4 +62,13 @@ button {
   border-radius: 2px;
   box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.2);
   text-align: center;
+}
+
+.bottomText{
+  padding-top: 50px;
+  width: 700rpx;
+  text-align: center;
+  margin: 0 auto;
+  font-size: 11pt;
+  color: #929292;
 }
