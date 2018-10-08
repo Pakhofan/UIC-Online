@@ -224,7 +224,7 @@ button {
   flex-direction: row;
 }
 
-.lastRowItem,.likeContainer{
+.lastRowItem,.likeContainer,.commentContainer,.shareContainer{
   display: flex;
   align-items: center;
   justify-content:center;
@@ -234,8 +234,17 @@ button {
   text-align: start;
 }
 
-.likeContainer{
+.likeContainer,.commentContainer{
   width: auto;
+}
+
+.shareContainer,.shareContainer:hover,.shareContainer:active{
+  width: auto;
+  line-height: 30px;
+  margin-top: 0;
+  margin-bottom: 0;
+  background-color: rgba(0, 0, 0, 0);
+  border-style: none;
 }
 
 .iconButton{
@@ -249,6 +258,19 @@ button {
   line-height: 20px;
   color: #ccc;
   font-size: 12px;
+}
+
+.lastRowItemA{
+  margin-left: 10rpx;
+  margin-right: 50rpx;
+}
+
+.lastRowItemB{
+  margin-left: 50rpx;
+}
+
+.lastRowItemC{
+  margin-right: 10rpx;
 }
 
 
@@ -295,4 +317,28 @@ button {
   width: 175rpx;
   height: 30px;
   text-align: center;
+}
+
+.textBetweenLine{
+  display: table;
+	width: 600rpx;
+  height: 32px;
+  margin-bottom: 15px;
+  padding-bottom: 15px;
+	line-height: 32px;
+  margin: 0 auto;
+  font-size: 12pt;
+  color: #ccc;
+	background-color: #fff;
+	white-space: nowrap;
+	border-spacing: 10px 0;
+}
+
+.textBetweenLine:before,.textBetweenLine:after{
+	display: table-cell;
+	content: '';
+	width: 50%;
+	background: -webkit-linear-gradient(#eee,#eee) repeat-x left center;
+	background: linear-gradient(#eee,#eee) repeat-x left center;
+	background-size: 1px 1px;
 }

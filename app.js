@@ -17,7 +17,7 @@ App({
     wx.login({
       success: res => {
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
-        
+
       }
     })
 
@@ -48,6 +48,24 @@ App({
         }
       }
     })
+
+    wx.getSystemInfo({
+      success: res => {
+        this.globalData.statusBarHeight = res.statusBarHeight
+      }
+    })
+  },
+  onShow: function(res) {
+    switch (res.scene) {
+      case 1007:
+        this.globalData.scene = 1007
+        break;
+      case 1008:
+        this.globalData.scene = 1008
+        break;
+      default:
+        this.globalData.scene = 1000;
+    }
   },
   globalData: {
     userInfo: null,

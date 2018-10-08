@@ -1,4 +1,8 @@
 <!--pages/detail/detail.wxml-->
+<view class='backToIndex' bindtap='backToIndex' wx:if='{{showHomeButton}}'>
+  <image class='homeIcon' src='/imgs/home.png'></image>
+  <text class='homeText'>返回主页</text>
+</view>
 <view class='pageColumn'>
   <view class='card'>
     <view class='menuContainer'>
@@ -6,7 +10,7 @@
     </view>
     <view class='firstRow'>
       <view wx:if="{{card.status == 1}}" class="firstRowItemA">
-        <image class="headPic" mode='aspectFill' src="{{anonymousAvatarUrl}}"></image>
+        <image class="headPic" mode='aspectFill' src="/imgs/anonymousAvatarA.png"></image>
       </view>
       <view wx:else bindtap='viewProfile' class="firstRowItemA" data-id='{{card.created_by}}'>
         <image class="headPic" mode='aspectFill' src="{{card.creator_avatar}}"></image>
@@ -14,11 +18,11 @@
       <view class="firstRowItemB">
         <view wx:if="{{card.status == 1}}" class="name">匿名</view>
         <view wx:else bindtap='viewProfile' class="name" data-id='{{card.created_by}}'>{{card.creator_name}}</view>
-        <view class="date">{{card.created_at}}</view>
+        <view class="date">{{card.created_at_format}}</view>
       </view>
     </view>
     <view class="contentContainer">
-      <view class="text">
+      <view class="text" wx:if="{{card.text!=null}}">
         <text selectable="true">{{card.text}}</text>
       </view>
       <view class="pictureContainer">
@@ -44,11 +48,11 @@
 
   <block wx:if="{{comments.length != 0}}">
     <view class='card'>
-      <block wx:for='{{comments}}'>
+      <block wx:for='{{comments}}' wx:key='_id'>
         <view wx:if='{{item.floor != 1}}' class='commentLine'></view>
         <view class='firstRow'>
           <view wx:if="{{item.status == 1}}" class="firstRowItemA">
-            <image class="headPic" mode='aspectFill' src="{{anonymousAvatarUrl}}"></image>
+            <image class="headPic" mode='aspectFill' src="/imgs/anonymousAvatarA.png"></image>
           </view>
           <view wx:else bindtap='viewProfile' class="firstRowItemA" data-id='{{item.created_by}}'>
             <image class="headPic" mode='aspectFill' src="{{item.creator_avatar}}"></image>
@@ -60,7 +64,7 @@
             <block wx:else>
               <view bindtap='viewProfile' class="name" data-id='{{item.created_by}}'>{{item.creator_name}}</view>
             </block>
-            <view class="date">{{item.created_at}}</view>
+            <view class="date">{{item.created_at_format}}</view>
           </view>
           <view class='firstRowItemC'>
             <view class='floor'># {{item.floor}}</view>
@@ -82,25 +86,35 @@
       </view>
       <block wx:else>
         <view class="firstRowItemA">
-          <image class="headPic" mode='aspectFill' src="{{userInfo.avatarUrl}}"></image>
+          <block wx:if='{{ishidename}}'>
+            <image class="headPic" mode='aspectFill' src="/imgs/anonymousAvatarA.png"></image>
+          </block>
+          <block wx:else>
+            <image class="headPic" mode='aspectFill' src="{{userInfo.avatarUrl}}"></image>
+          </block>
         </view>
         <view class="firstRowItemB">
-          <view bindtap='viewProfile' class="name">{{userInfo.nickName}}</view>
+          <block wx:if='{{ishidename}}'>
+            <view class="name">匿名</view>
+          </block>
+          <block wx:else>
+            <view bindtap='viewProfile' class="name">{{userInfo.nickName}}</view>
+          </block>
           <view class="date">即将发布</view>
         </view>
       </block>
     </view>
     <view class="contentContainer">
       <view class="inputText">
-        <textarea selectable="true" placeholder='输入要发送的内容...' value='{{text}}' maxlength='500' auto-height='ture' cursor-spacing='100' bindinput='userInput'></textarea>
+        <textarea selectable="true" placeholder='输入要发送的内容...' value='{{text}}' maxlength='500' auto-height='ture' cursor-spacing='100' bindinput='userInput' focus='{{autoFocus}}'></textarea>
 
         <view class="weui-uploader__info" style='margin-top:5px;width:100%;text-align:end;color:#b2b2b2'>{{text.length}}/200</view>
       </view>
     </view>
-    <view class='selectionRow'>
+    <view class='selectionRow' wx:if='{{istreehole}}'>
       <view class='selectionRowItemA'>
         <switch style='height:30px;' checked="true" bindchange="switch1Change" />
-        <text style='line-height: 30px; font-size:15px; color:rgba(150, 150, 150, 0.9);'>匿名发布</text>
+        <text style='line-height: 30px; font-size:15px; color:rgba(150, 150, 150, 0.9);'>匿名</text>
       </view>
     </view>
     <view class='sendContainer'>

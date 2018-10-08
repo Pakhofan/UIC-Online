@@ -1,4 +1,8 @@
 /* pages/me/me.wxss */
+#mePage{
+  padding-bottom: 50px;
+}
+
 .userinfo {
   display: flex;
   flex-direction: column;
@@ -38,11 +42,33 @@ button {
 }
 
 .buttonA:active {
-  background-color: rgba(9, 187, 7, 0.6);
+  background-color: rgba(7, 65, 6, 0.6);
 }
 
 .logout {
   width: auto;
   margin-top: 20rpx;
   font-size: 12px;
+}
+
+.history-info{
+  font-size: 14px;
+  line-height: 30px;
+  margin-top: 30px;
+  padding-top: 5px;
+  padding-bottom: 10px;
+  width: 700rpx;
+  height: auto;
+  border-radius: 2px;
+  box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+.bottomText{
+  padding-top: 50px;
+  width: 700rpx;
+  text-align: center;
+  margin: 0 auto;
+  font-size: 11pt;
+  color: #929292;
 }
