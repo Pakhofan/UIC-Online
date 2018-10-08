@@ -18,7 +18,7 @@
       <view class="firstRowItemB">
         <view wx:if="{{card.status == 1}}" class="name">匿名</view>
         <view wx:else bindtap='viewProfile' class="name" data-id='{{card.created_by}}'>{{card.creator_name}}</view>
-        <view class="date">{{card.created_at}}</view>
+        <view class="date">{{card.created_at_format}}</view>
       </view>
     </view>
     <view class="contentContainer">
@@ -48,7 +48,7 @@
 
   <block wx:if="{{comments.length != 0}}">
     <view class='card'>
-      <block wx:for='{{comments}}'>
+      <block wx:for='{{comments}}' wx:key='_id'>
         <view wx:if='{{item.floor != 1}}' class='commentLine'></view>
         <view class='firstRow'>
           <view wx:if="{{item.status == 1}}" class="firstRowItemA">
@@ -64,7 +64,7 @@
             <block wx:else>
               <view bindtap='viewProfile' class="name" data-id='{{item.created_by}}'>{{item.creator_name}}</view>
             </block>
-            <view class="date">{{item.created_at}}</view>
+            <view class="date">{{item.created_at_format}}</view>
           </view>
           <view class='firstRowItemC'>
             <view class='floor'># {{item.floor}}</view>

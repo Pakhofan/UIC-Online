@@ -13,7 +13,7 @@
       <view style="width: {{stv.windowWidth}}px;" wx:for="{{tabs}}" wx:key="unique" wx:for-index="tabsIdx" class="one-scene">
         <scroll-view style="height:100%" scroll-y bindscrolltoupper="toUpperLoadCards" bindscrolltolower="toLowerLoadCards" enable-back-to-top="true" id='mainScrollView'>
           <view class='pageColumn' id='indexColumn'>
-            <block wx:for="{{cards}}">
+            <block wx:for="{{cards}}" wx:key="_id">
               <block wx:if="{{item.status < 2}}">
                 <view bindtap='viewDetail' data-id='{{item.id}}' class='card' wx:if="{{tabsIdx==0?true:(item.category == tabsIdx - 1)}}">
                   <view class='menuContainer'>
@@ -33,7 +33,7 @@
                       <block wx:else>
                         <view class="name" catchtap='viewProfile' data-id='{{item.created_by}}'>{{item.creator_name}}</view>
                       </block>
-                      <view class="date">{{item.created_at}}</view>
+                      <view class="date">{{item.created_at_format}}</view>
                     </view>
                   </view>
                   <view class="contentContainer">

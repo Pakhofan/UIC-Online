@@ -36,7 +36,9 @@ Page({
       })
       this.tabsCount = tabs.length;
     } catch (e) {}
-    this.pullCards();
+    if (!this.data.pullingCards) {
+      this.pullCards();
+    }
   },
   onReady: function(option) {
     this.pullLikedList();
@@ -48,6 +50,9 @@ Page({
     setTimeout(function() {
       wx.hideLoading({});
     }, 500)
+    if (!this.data.pullingCards) {
+      this.pullCards();
+    }
   },
   handlerStart(e) {
     let {
@@ -105,13 +110,13 @@ Page({
     if (endTime - this.tapStartTime <= 500) {
       //向左
       if (Math.abs(this.tapStartY - clientY) < 75) {
-        if (this.tapStartX - clientX > 5) {
+        if (this.tapStartX - clientX > 15) {
           if (activeTab < this.tabsCount - 1) {
             this.setData({
               activeTab: ++activeTab
             })
           }
-        } else if (this.tapStartX - clientX < -5) {
+        } else if (this.tapStartX - clientX < -15) {
           if (activeTab > 0) {
             this.setData({
               activeTab: --activeTab
@@ -163,18 +168,26 @@ Page({
     console.log('tab tap')
   },
   onPullDownRefresh: function() {
-    this.pullCards();
+    if (!this.data.pullingCards) {
+      this.pullCards();
+    }
   },
   toUpperLoadCards: function() {
     console.log('!!!!!!!!!!!!!!!!!')
-    this.pullCards();
+    if (!this.data.pullingCards) {
+      this.pullCards();
+    }
   },
   toLowerLoadCards: function() {
     console.log('################')
-    this.pullCards();
+    if (!this.data.pullingCards) {
+      this.pullCards();
+    }
   },
   onReachBottom: function() {
-    this.pullCards();
+    if (!this.data.pullingCards) {
+      this.pullCards();
+    }
   },
   viewImage: function(event) {
     var currentSrc = event.currentTarget.dataset.src;
@@ -207,6 +220,9 @@ Page({
     })
   },
   pullCards: function() {
+    this.setData({
+      pullingCards: true
+    });
     wx.showNavigationBarLoading({})
     var Card = new wx.BaaS.TableObject(52108)
 
@@ -221,6 +237,7 @@ Page({
       //console.log(cardList[0].created_at);
       for (var i = 0; i < cardList.length; i++) {
         console.log(i);
+        cardList[i].created_at_format = util.calculatedFormatTime(cardList[i].created_at, 'Y-M-D h:m:s')
         cardList[i].created_at = util.formatTime(cardList[i].created_at, 'Y-M-D h:m:s')
       }
       this.setData({
@@ -235,11 +252,17 @@ Page({
       setTimeout(function() {
         wx.hideNavigationBarLoading({})
       }, 500)
+      this.setData({
+        pullingCards: false
+      });
       // success
     }, err => {
       setTimeout(function() {
         wx.hideNavigationBarLoading({})
       }, 500)
+      this.setData({
+        pullingCards: false
+      });
       // err
     })
   },
