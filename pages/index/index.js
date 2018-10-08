@@ -21,7 +21,20 @@ Page({
     pullingCards: false,
     toLower: false
   },
-  onLoad: function(options) {
+  onLoad: function (options) {
+
+    if (options.scene) {
+
+      var scene = decodeURIComponent(options.scene)
+      console.log(scene)
+      parames = scene.split("_")
+      if (parames[0] == 'detail') {
+        url = "/pages/detail/detail?id=" + parames[1]
+      }
+      wx.navigateTo({
+        url: url
+      })
+    }
     wx.showLoading({
       title: '加载中',
     });
@@ -42,14 +55,14 @@ Page({
       this.pullCards();
     }
   },
-  onReady: function(option) {
+  onReady: function (option) {
     this.pullLikedList();
-    setTimeout(function() {
+    setTimeout(function () {
       wx.hideLoading({});
     }, 500)
   },
-  onShow: function(option) {
-    setTimeout(function() {
+  onShow: function (option) {
+    setTimeout(function () {
       wx.hideLoading({});
     }, 500)
     if (!this.data.pullingCards) {
@@ -169,18 +182,18 @@ Page({
     this._updateSelectedPage(e.currentTarget.dataset.index);
     console.log('tab tap')
   },
-  onPullDownRefresh: function() {
+  onPullDownRefresh: function () {
     if (!this.data.pullingCards) {
       this.pullCards();
     }
   },
-  toUpperLoadCards: function() {
+  toUpperLoadCards: function () {
     console.log('!!!!!!!!!!!!!!!!!')
     if (!this.data.pullingCards) {
       this.pullCards();
     }
   },
-  toLowerLoadCards: function() {
+  toLowerLoadCards: function () {
     console.log('################')
     if (!this.data.pullingCards) {
       this.pullCards();
@@ -189,12 +202,12 @@ Page({
       toLower: true
     });
   },
-  onReachBottom: function() {
+  onReachBottom: function () {
     if (!this.data.pullingCards) {
       this.pullCards();
     }
   },
-  viewImage: function(event) {
+  viewImage: function (event) {
     var currentSrc = event.currentTarget.dataset.src;
     var srcList = event.currentTarget.dataset.list;
     console.log("data is " + currentSrc);
@@ -203,14 +216,14 @@ Page({
       urls: srcList // 需要预览的图片http链接列表
     })
   },
-  viewProfile: function(event) {
+  viewProfile: function (event) {
     var userId = event.currentTarget.dataset.id;
     wx.navigateTo({
       url: "../profile/profile?id=" + userId
     })
 
   },
-  viewDetail: function(event) {
+  viewDetail: function (event) {
     if (event.target.dataset.tag != 'btn-sharetofriend') {
       var cardId = event.currentTarget.dataset.id;
       wx.navigateTo({
@@ -218,13 +231,13 @@ Page({
       })
     }
   },
-  tapComment: function(event) {
+  tapComment: function (event) {
     var cardId = event.currentTarget.dataset.id;
     wx.navigateTo({
       url: "../detail/detail?id=" + cardId + "&type=comment"
     })
   },
-  pullCards: function() {
+  pullCards: function () {
     this.setData({
       pullingCards: true
     });
@@ -254,7 +267,7 @@ Page({
         }
       })
       this.updateLikedCards()
-      setTimeout(function() {
+      setTimeout(function () {
         wx.hideNavigationBarLoading({})
       }, 500)
       this.setData({
@@ -262,7 +275,7 @@ Page({
       });
       // success
     }, err => {
-      setTimeout(function() {
+      setTimeout(function () {
         wx.hideNavigationBarLoading({})
       }, 500)
       this.setData({
@@ -271,7 +284,7 @@ Page({
       // err
     })
   },
-  pullLikedList: function() {
+  pullLikedList: function () {
     var that = this
     let currentId = wx.getStorageSync('userId')
     var Like = new wx.BaaS.TableObject(52143)
@@ -292,7 +305,7 @@ Page({
     })
 
   },
-  tapLike: function(event) {
+  tapLike: function (event) {
     wx.vibrateShort({})
     console.log('tapLike')
     var cardId = event.currentTarget.dataset.id;
@@ -308,7 +321,7 @@ Page({
     });
     this.pushLike(cardId)
   },
-  tapUnlike: function(event) {
+  tapUnlike: function (event) {
     wx.vibrateShort({})
     console.log('tapUnlike')
     var cardId = event.currentTarget.dataset.id;
@@ -324,7 +337,7 @@ Page({
     });
     this.deleteLike(cardId)
   },
-  pushLike: function(cardId) {
+  pushLike: function (cardId) {
     console.log('Like++')
     var that = this
     let tableID = 52143
@@ -339,7 +352,7 @@ Page({
       that.pushLikeCount(cardId, 1)
     }, err => {})
   },
-  deleteLike: function(cardId) {
+  deleteLike: function (cardId) {
     console.log('Like--')
     var that = this
     let tableID = 52143
@@ -357,7 +370,7 @@ Page({
 
     })
   },
-  pushLikeCount: function(cardId, num) {
+  pushLikeCount: function (cardId, num) {
     let tableID = 52108
     let recordID = cardId
 
@@ -372,7 +385,7 @@ Page({
       // err
     })
   },
-  setLikeCache: function(cardId, option) {
+  setLikeCache: function (cardId, option) {
     //option 为1时设 likeCache[cardId] 为true
     var likeCache = this.data.likeCache
     if (option == 1) {
@@ -384,7 +397,7 @@ Page({
       likeCache: likeCache
     });
   },
-  mergeLikeList: function() {
+  mergeLikeList: function () {
     var that = this
     var likeCache = this.data.likeCache
     if (likeCache.length > 0) {
@@ -398,7 +411,7 @@ Page({
     }
     this.updateLikedCards()
   },
-  updateLikedCards: function() {
+  updateLikedCards: function () {
     var cards = this.data.cards
     var likedList = this.data.likedList
     if (likedList) {
@@ -417,7 +430,7 @@ Page({
   },
 
   // test share to friend
-  onShareAppMessage: function(ops) {
+  onShareAppMessage: function (ops) {
     if (ops.from === 'button') {
       // 来自页面内转发按钮
       console.log("xxx" + ops.target)
@@ -428,11 +441,11 @@ Page({
     return {
       title: text,
       path: 'pages/detail/detail?id=' + cardid,
-      success: function(res) {
+      success: function (res) {
         // 转发成功
         console.log("转发成功:" + JSON.stringify(res));
       },
-      fail: function(res) {
+      fail: function (res) {
         // 转发失败
         console.log("转发失败:" + JSON.stringify(res));
       }
