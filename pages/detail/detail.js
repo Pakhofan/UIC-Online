@@ -258,7 +258,7 @@ Page({
 
   // create qrcode
   createqrcode: function(e) {
-    console.log(e.currentTarget.dataset.id)
+    // console.log(e.currentTarget.dataset.id)
     const params = {
       scene: 'detail' + '_' + e.currentTarget.dataset.id,
       page: 'pages/index/index',
@@ -277,6 +277,7 @@ Page({
 
     }).catch(err => {
       console.log(err)
+      console.log("上线后才可以调用")
     })
   },
 
