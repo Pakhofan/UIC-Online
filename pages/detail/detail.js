@@ -137,7 +137,7 @@ Page({
     Card.get(recordID).then(res => {
       console.log(res.data);
       var card = res.data;
-      card.created_at = util.formatTime(card.created_at, 'Y-M-D h:m:s')
+      card.created_at_format = util.calculatedFormatTime(card.created_at, 'Y-M-D h:m:s')
       this.setData({
         card: card
       });
@@ -159,7 +159,7 @@ Page({
       //console.log(commentList[0].created_at);
       for (var i = 0; i < commentList.length; i++) {
         console.log(i);
-        commentList[i].created_at = util.formatTime(commentList[i].created_at, 'Y-M-D h:m:s')
+        commentList[i].created_at_format = util.calculatedFormatTime(commentList[i].created_at, 'Y-M-D h:m:s')
         commentList[i].floor = i + 1
       }
       this.setData({

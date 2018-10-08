@@ -13,7 +13,7 @@
     "backgroundColor": "#eee",
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#FFF",
-    "navigationBarTitleText": "UIC校友圈",
+    "navigationBarTitleText": "UIC Online",
     "navigationBarTextStyle": "black"
   },
   "tabBar": {
