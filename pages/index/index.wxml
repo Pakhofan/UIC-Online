@@ -94,6 +94,7 @@
                 </view>
               </block>
             </block>
+            <view class='textBetweenLine' wx:if='{{toLower}}'>我是有底线的</view>
           </view>
         </scroll-view>
       </view>

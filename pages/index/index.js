@@ -18,6 +18,8 @@ Page({
     webpCode: '!/format/webp',
     anonymousAvatarUrl: 'https://cloud-minapp-20256.cloud.ifanrusercontent.com/1g4MkWmjmCtMquLU.png!/format/webp',
     likeCache: [],
+    pullingCards: false,
+    toLower: false
   },
   onLoad: function(options) {
     wx.showLoading({
@@ -183,6 +185,9 @@ Page({
     if (!this.data.pullingCards) {
       this.pullCards();
     }
+    this.setData({
+      toLower: true
+    });
   },
   onReachBottom: function() {
     if (!this.data.pullingCards) {
