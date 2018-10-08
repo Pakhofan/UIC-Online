@@ -5,13 +5,15 @@
     "pages/profile/profile",
     "pages/detail/detail",
     "pages/send/send",
-    "pages/me/me"
+    "pages/me/me",
+    "pages/search/search",
+    "pages/history/history"
   ],
   "window": {
     "backgroundColor": "#eee",
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#FFF",
-    "navigationBarTitleText": "UIC失物招领",
+    "navigationBarTitleText": "UIC校友圈",
     "navigationBarTextStyle": "black"
   },
   "tabBar": {

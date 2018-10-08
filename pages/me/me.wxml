@@ -1,5 +1,5 @@
 <!--pages/me/me.wxml-->
-<view class='pageColumn'>
+<view class='pageColumn' id='mePage'>
   <view class="container">
     <view class="userinfo">
       <button class='getUserInfoButton' wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
@@ -28,5 +28,7 @@
     </view>
 
   </view>
-
+  <button class='history-info' catchtap='OnhistoryTap'>历史信息</button>
+  <button class='history-info' catchtap='OnsearchTap'>搜索</button>
+  <view class="bottomText">Copyright ©300E 2018</view>
 </view>
