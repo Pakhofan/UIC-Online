@@ -20,6 +20,20 @@ Page({
         likeCache: [],
     },
     onLoad: function (options) {
+        // deal with qrcode
+        if (options.scene) {
+
+            var scene = decodeURIComponent(options.scene)
+            console.log(scene)
+            parames = scene.split("_")
+            if(parames[0] == 'detail'){
+                url = "/pages/detail/detail?id=" + parames[1]
+            }
+            wx.navigateTo({
+                url: url
+            })
+        }
+
         wx.showLoading({
             title: '加载中',
         });

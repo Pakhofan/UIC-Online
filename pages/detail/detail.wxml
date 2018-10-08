@@ -2,7 +2,7 @@
 <view class='pageColumn'>
   <view class='card'>
     <view class='menuContainer'>
-      <i class="icon-menu"></i>
+      <i catchtap="createqrcode" data-id='{{card.id}}' class="icon-menu"></i>
     </view>
     <view class='firstRow'>
       <view wx:if="{{card.status == 1}}" class="firstRowItemA">

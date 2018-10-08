@@ -56,9 +56,12 @@
                                     <view class='lastRow'>
                                         <view class='lastRowItem'>
 
-                                            <image class='iconButton' src='/imgs/share.png' style='opacity: 0.5;'></image>
-                                            <button open-type='share' data-tag='btn-sharetofriend' data-cardId='{{item.id}}' data-text='{{item.text}}' class='btn-sharetofriend' size='mini'>
-                                                <text class='iconText'>分享</text>
+                                            <!-- <image class='iconButton' src='/imgs/share.png' style='opacity: 0.5;'></image> -->
+                                            <button open-type='share' data-tag='btn-sharetofriend' data-cardId='{{item.id}}' data-text='{{item.text}}' class='btn-sharetofriend' size='mini'>  
+                                            <view class='lastRowItem'>
+                                            <image class='iconButton shareimg' src='/imgs/share.png' style='opacity: 0.5;'></image>
+                                                <text class='iconText sharetext'>分享</text>
+                                                </view>
                                             </button>
 
                                             <!-- <text class='iconText'>分享</text> -->
