@@ -111,174 +111,174 @@ Page({
       })
     }
   },
-    
-    viewImage: function(event) {
-        var currentSrc = event.currentTarget.dataset.src;
-        var srcList = event.currentTarget.dataset.list;
-        console.log("data is " + currentSrc);
-        wx.previewImage({
-            current: currentSrc, // 当前显示图片的http链接
-            urls: srcList // 需要预览的图片http链接列表
-        })
-    },
-    viewProfile: function(event) {
-        var userId = event.currentTarget.dataset.id;
-        wx.navigateTo({
-            url: "../profile/profile?id=" + userId
-        })
 
-    },
-    pullCard: function(cardID) {
+  viewImage: function(event) {
+    var currentSrc = event.currentTarget.dataset.src;
+    var srcList = event.currentTarget.dataset.list;
+    console.log("data is " + currentSrc);
+    wx.previewImage({
+      current: currentSrc, // 当前显示图片的http链接
+      urls: srcList // 需要预览的图片http链接列表
+    })
+  },
+  viewProfile: function(event) {
+    var userId = event.currentTarget.dataset.id;
+    wx.navigateTo({
+      url: "../profile/profile?id=" + userId
+    })
 
-        let recordID = cardID
+  },
+  pullCard: function(cardID) {
 
-        var Card = new wx.BaaS.TableObject(52108)
+    let recordID = cardID
 
-        Card.get(recordID).then(res => {
-            console.log(res.data);
-            var card = res.data;
-            card.created_at = util.formatTime(card.created_at, 'Y-M-D h:m:s')
-            this.setData({
-                card: card
-            });
-            // success
-        }, err => {
-            // err
-        })
-    },
-    pullComments: function() {
-        let currentId = this.data.currentId
-        var Comment = new wx.BaaS.TableObject(52142)
+    var Card = new wx.BaaS.TableObject(52108)
 
-        let query = new wx.BaaS.Query()
-        query.contains('parent_id', currentId)
+    Card.get(recordID).then(res => {
+      console.log(res.data);
+      var card = res.data;
+      card.created_at = util.formatTime(card.created_at, 'Y-M-D h:m:s')
+      this.setData({
+        card: card
+      });
+      // success
+    }, err => {
+      // err
+    })
+  },
+  pullComments: function() {
+    let currentId = this.data.currentId
+    var Comment = new wx.BaaS.TableObject(52142)
 
-        Comment.setQuery(query).find().then(res => {
-            console.log(res.data);
-            var commentList = res.data.objects;
-            //console.log(commentList[0].created_at);
-            for (var i = 0; i < commentList.length; i++) {
-                console.log(i);
-                commentList[i].created_at = util.formatTime(commentList[i].created_at, 'Y-M-D h:m:s')
-                commentList[i].floor = i + 1
-            }
-            this.setData({
-                comments: commentList
-            });
-            // success
-        }, err => {
-            // err
-        })
+    let query = new wx.BaaS.Query()
+    query.contains('parent_id', currentId)
 
-    },
+    Comment.setQuery(query).find().then(res => {
+      console.log(res.data);
+      var commentList = res.data.objects;
+      //console.log(commentList[0].created_at);
+      for (var i = 0; i < commentList.length; i++) {
+        console.log(i);
+        commentList[i].created_at = util.formatTime(commentList[i].created_at, 'Y-M-D h:m:s')
+        commentList[i].floor = i + 1
+      }
+      this.setData({
+        comments: commentList
+      });
+      // success
+    }, err => {
+      // err
+    })
 
-    userInput: function(e) {
-        this.setData({
-            hasuserInput: true,
-            text: e.detail.value,
-        });
-    },
-    switch1Change: function(e) {
-        this.setData({
-            ishidename: e.detail.value,
-        })
-    },
-    onSendTap: function(e) {
-        this.showModal()
-    },
-    showModal: function() {
-        var that = this;
-        wx.showModal({
-            title: "发布确认",
-            content: "确定发布此条评论吗",
-            showCancel: "True",
-            cancelText: "取消",
-            cancelcolor: "#666",
-            confirmText: "确认",
-            confirmColor: "#333",
-            success: function(res) {
-                if (res.confirm) {
-                    wx.showLoading({
-                        title: '上传中',
-                    });
-                    that.pushComment()
-                }
-            },
-        })
-    },
-    pushComment: function() {
-        var that = this
-        let tableID = 52142
-        let SendProduct = new wx.BaaS.TableObject(tableID)
-        let sendproduct = SendProduct.create()
-        let data = {
-            parent_id: this.data.currentId,
-            text: this.data.text,
-            creator_name: this.data.userInfo.nickName,
-            creator_avatar: wx.getStorageSync('BaaSAvatar'),
-            status: this.data.ishidename ? 1 : 0
+  },
+
+  userInput: function(e) {
+    this.setData({
+      hasuserInput: true,
+      text: e.detail.value,
+    });
+  },
+  switch1Change: function(e) {
+    this.setData({
+      ishidename: e.detail.value,
+    })
+  },
+  onSendTap: function(e) {
+    this.showModal()
+  },
+  showModal: function() {
+    var that = this;
+    wx.showModal({
+      title: "发布确认",
+      content: "确定发布此条评论吗",
+      showCancel: "True",
+      cancelText: "取消",
+      cancelcolor: "#666",
+      confirmText: "确认",
+      confirmColor: "#333",
+      success: function(res) {
+        if (res.confirm) {
+          wx.showLoading({
+            title: '上传中',
+          });
+          that.pushComment()
         }
-        console.log(data.imgs)
-        sendproduct.set(data)
-        sendproduct.save().then(res => {
-            console.log(res)
-            that.addCommentCount()
-            wx.showToast({
-                title: "发布成功",
-                duration: 1000,
-                icon: "success",
-            })
-            that.clearData()
-            that.pullComments()
-            wx.hideLoading({})
-        }, err => {})
-    },
-
-    addCommentCount: function() {
-        let tableID = 52108
-        let recordID = this.data.currentId
-
-        let Comment = new wx.BaaS.TableObject(tableID)
-        let comment = Comment.getWithoutData(recordID)
-
-        comment.incrementBy('comment_count', 1)
-        comment.update().then(res => {
-            console.log(res)
-            // success
-        }, err => {
-            // err
-        })
-    },
-
-    clearData: function() {
-        this.setData({
-            text: '',
-        });
-    },
-
-    // create qrcode
-    createqrcode: function(e) {
-        // console.log(e.currentTarget.dataset.id)
-        const params = {
-            scene: 'detail'+'_'+e.currentTarget.dataset.id,
-            page: 'pages/index/index',
-            width: 230
-        }
-
-        wx.BaaS.getWXACode('wxacodeunlimit', params).then(res => {
-            this.setData({
-                imageBase64: res.image
-            })
-            // console.log(res)
-
-            wx.previewImage({
-                urls: [res.image],
-            })
-
-        }).catch(err => {
-            console.log(err)
-        })
+      },
+    })
+  },
+  pushComment: function() {
+    var that = this
+    let tableID = 52142
+    let SendProduct = new wx.BaaS.TableObject(tableID)
+    let sendproduct = SendProduct.create()
+    let data = {
+      parent_id: this.data.currentId,
+      text: this.data.text,
+      creator_name: this.data.userInfo.nickName,
+      creator_avatar: wx.getStorageSync('BaaSAvatar'),
+      status: this.data.ishidename ? 1 : 0
     }
+    console.log(data.imgs)
+    sendproduct.set(data)
+    sendproduct.save().then(res => {
+      console.log(res)
+      that.addCommentCount()
+      wx.showToast({
+        title: "发布成功",
+        duration: 1000,
+        icon: "success",
+      })
+      that.clearData()
+      that.pullComments()
+      wx.hideLoading({})
+    }, err => {})
+  },
+
+  addCommentCount: function() {
+    let tableID = 52108
+    let recordID = this.data.currentId
+
+    let Comment = new wx.BaaS.TableObject(tableID)
+    let comment = Comment.getWithoutData(recordID)
+
+    comment.incrementBy('comment_count', 1)
+    comment.update().then(res => {
+      console.log(res)
+      // success
+    }, err => {
+      // err
+    })
+  },
+
+  clearData: function() {
+    this.setData({
+      text: '',
+    });
+  },
+
+  // create qrcode
+  createqrcode: function(e) {
+    console.log(e.currentTarget.dataset.id)
+    const params = {
+      scene: 'detail' + '_' + e.currentTarget.dataset.id,
+      page: 'pages/index/index',
+      width: 230
+    }
+
+    wx.BaaS.getWXACode('wxacodeunlimit', params).then(res => {
+      this.setData({
+        imageBase64: res.image
+      })
+      // console.log(res)
+
+      wx.previewImage({
+        urls: [res.image],
+      })
+
+    }).catch(err => {
+      console.log(err)
+    })
+  },
 
   backToIndex: function() {
     console.log('backToIndex')
