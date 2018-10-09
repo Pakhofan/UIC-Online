@@ -52,6 +52,7 @@ App({
     wx.getSystemInfo({
       success: res => {
         this.globalData.statusBarHeight = res.statusBarHeight
+        this.globalData.platform = res.platform
       }
     })
   },
@@ -71,5 +72,6 @@ App({
     userInfo: null,
     userId: null,
     BaaSAvatar: null,
+    platform: null,
   }
 })

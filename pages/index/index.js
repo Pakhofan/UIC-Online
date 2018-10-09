@@ -54,6 +54,11 @@ Page({
     if (!this.data.pullingCards) {
       this.pullCards();
     }
+    if (app.globalData.platform == 'ios'){
+      this.setData({
+        webpCode: ''
+      })
+    }
   },
   onReady: function(option) {
     this.pullLikedList();
