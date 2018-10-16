@@ -163,7 +163,7 @@ Page({
       }
       stv.offset = stv.windowWidth * page;
     }
-    stv.tStart = false;
+    //stv.tStart = false;
     this.setData({
       stv: this.data.stv
     })

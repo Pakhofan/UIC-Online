@@ -68,6 +68,11 @@ Page({
     console.log(currentId)
     this.pullCard(currentId)
     this.pullComments()
+    if (app.globalData.platform == 'ios') {
+      this.setData({
+        webpCode: ''
+      })
+    }
   },
   onShow: function(option) {
     var sceneNum = app.globalData.scene
