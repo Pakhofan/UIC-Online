@@ -15,7 +15,8 @@
 * [知晓云开发文档](https://doc.minapp.com)
 * [知晓云云端管理页](https://cloud.minapp.com/dashboard)
 #### 其他开发资源
-* 快速入门推荐：[微信小程序开发视频教程](https://www.youtube.com/playlist?list=PLXbU-2B80FvA5bNILAS8-zY3_KkE-PVn0) (youtube)
+* [github使用教程(gitbeijing)](http://gitbeijing.com/)
+* 微信小程序快速入门推荐：[微信小程序开发视频教程](https://www.youtube.com/playlist?list=PLXbU-2B80FvA5bNILAS8-zY3_KkE-PVn0) (需要[梯子](https://github.com/loremwalker/WebSiteUseful))
 * [微信小程序开发资源汇总](https://github.com/justjavac/awesome-wechat-weapp)
 ## 账号密码（请勿泄露）
 ### 微信小程序
