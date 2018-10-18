@@ -390,32 +390,32 @@ Page({
       // err
     })
   },
-  setLikeCache: function(cardId, option) {
-    //option 为1时设 likeCache[cardId] 为true
-    var likeCache = this.data.likeCache
-    if (option == 1) {
-      likeCache[cardId] = true
-    } else {
-      likeCache[cardId] = false
-    }
-    this.setData({
-      likeCache: likeCache
-    });
-  },
-  mergeLikeList: function() {
-    var that = this
-    var likeCache = this.data.likeCache
-    if (likeCache.length > 0) {
-      for (var i = 0; i < likeCache.length; i++) {
-        if (likeCache[i].value) {
-          that.setData({
-            likedList: that.data.likedList.concat(likeCache[i])
-          });
-        }
-      }
-    }
-    this.updateLikedCards()
-  },
+  // setLikeCache: function(cardId, option) {
+  //   //option 为1时设 likeCache[cardId] 为true
+  //   var likeCache = this.data.likeCache
+  //   if (option == 1) {
+  //     likeCache[cardId] = true
+  //   } else {
+  //     likeCache[cardId] = false
+  //   }
+  //   this.setData({
+  //     likeCache: likeCache
+  //   });
+  // },
+  // mergeLikeList: function() {
+  //   var that = this
+  //   var likeCache = this.data.likeCache
+  //   if (likeCache.length > 0) {
+  //     for (var i = 0; i < likeCache.length; i++) {
+  //       if (likeCache[i].value) {
+  //         that.setData({
+  //           likedList: that.data.likedList.concat(likeCache[i])
+  //         });
+  //       }
+  //     }
+  //   }
+  //   this.updateLikedCards()
+  // },
   updateLikedCards: function() {
     var cards = this.data.cards
     var likedList = this.data.likedList
