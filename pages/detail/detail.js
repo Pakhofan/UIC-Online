@@ -15,8 +15,8 @@ Page({
     userInfo: {},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
-    ishidename: true,
-    istreehole: true,
+    ishidename: false,
+    istreehole: false,
     comments: [],
     showHomeButton: false,
     autoFocus: false
@@ -141,6 +141,12 @@ Page({
 
     Card.get(recordID).then(res => {
       console.log(res.data);
+      if (res.data.category==0){
+        this.setData({
+          ishidename: true,
+          istreehole: true
+        })
+      }
       var card = res.data;
       card.created_at_format = util.calculatedFormatTime(card.created_at, 'Y-M-D h:m:s')
       this.setData({
