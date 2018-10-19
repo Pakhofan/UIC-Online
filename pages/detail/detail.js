@@ -19,7 +19,8 @@ Page({
     istreehole: false,
     comments: [],
     showHomeButton: false,
-    autoFocus: false
+    autoFocus: false,
+    liking: false,
   },
 
   /**
@@ -328,7 +329,13 @@ Page({
 
   },
   tapLike: function(event) {
+    if (this.data.liking) {
+      return
+    }
     wx.vibrateShort({})
+    this.setData({
+      liking: true
+    });
     console.log('tapLike')
     console.log(event)
     var card = this.data.card
@@ -338,6 +345,12 @@ Page({
       card: card
     });
     this.pushLike(this.data.currentId)
+    var that = this
+    setTimeout(function () {
+      that.setData({
+        liking: false
+      });
+    }, 1500)
   },
   tapUnlike: function(event) {
     wx.vibrateShort({})
