@@ -16,6 +16,14 @@ Page({
     istreehole: false,
     ishidename: true,
     paths: [],
+    isopen: false,
+    items: [
+      {value: '寻找物品' },
+      {value: '失物发现', checked: 'true' },
+      {value: '餐饮美食' },
+      {value: '新闻事件' },
+      {value: '二手交易' },
+    ],
   },
 
   /**
@@ -112,7 +120,7 @@ Page({
     }
   },
 
-  switch1Change: function(e) {
+  hidenameChange: function(e) {
     this.setData({
       ishidename: e.detail.value,
     })
@@ -166,7 +174,9 @@ Page({
       creator_name: this.data.userInfo.nickName,
       creator_avatar: wx.getStorageSync('BaaSAvatar'),
       category: this.data.istreehole? 0 : 1,
-      status: this.data.istreehole ? (this.data.ishidename? 1 : 0) : 0
+      status: this.data.istreehole ? (this.data.ishidename? 1 : 0) : 0,
+      Label: this.data.Label,
+      Position: this.data.Position,
     }
     console.log(data.imgs)
     sendproduct.set(data)
@@ -212,6 +222,26 @@ Page({
 
       }, err => {})
     }
+  },
+
+  switch_label: function(e){
+    this.setData({
+      isopen: !this.data.isopen
+    })
+  },
+
+  labelboxChange: function (e) {
+    console.log('checkbox发生change事件，携带value值为：', e.detail.value)
+    this.setData({
+      Label: e.detail.value,
+    })
+  },
+
+  userInput_Position: function(e){
+    console.log(e.detail.value)
+    this.setData({
+      Position: e.detail.value,
+    })
   },
 
 })
