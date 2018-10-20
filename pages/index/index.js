@@ -21,6 +21,7 @@ Page({
     likeCache: [],
     pullingCards: false,
     toLower: false,
+    liking: false,
   },
   onLoad: function(options) {
 
@@ -321,7 +322,13 @@ Page({
 
   },
   tapLike: function(event) {
+    if(this.data.liking){
+      return
+    }
     wx.vibrateShort({})
+    this.setData({
+      liking: true
+    });
     console.log('tapLike')
     var cardId = event.currentTarget.dataset.id;
     var cards = this.data.cards
@@ -335,6 +342,12 @@ Page({
       cards: cards
     });
     this.pushLike(cardId)
+    var that = this
+    setTimeout(function () {
+      that.setData({
+        liking: false
+      });
+    }, 1500)
   },
   tapUnlike: function(event) {
     wx.vibrateShort({})
