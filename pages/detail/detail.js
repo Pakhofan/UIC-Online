@@ -15,11 +15,12 @@ Page({
     userInfo: {},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
-    ishidename: true,
-    istreehole: true,
+    ishidename: false,
+    istreehole: false,
     comments: [],
     showHomeButton: false,
-    autoFocus: false
+    autoFocus: false,
+    liking: false,
   },
 
   /**
@@ -68,13 +69,22 @@ Page({
     console.log(currentId)
     this.pullCard(currentId)
     this.pullComments()
+    if (app.globalData.platform == 'ios') {
+      this.setData({
+        webpCode: ''
+      })
+    }
+    this.pullLikedList()
   },
   onShow: function(option) {
-    var sceneNum = app.globalData.scene
-    if (sceneNum == 1007 || sceneNum == 1008) {
+    // var sceneNum = app.globalData.scene
+    // if (sceneNum == 1007 || sceneNum == 1008) {}
+    // 根据用户场景改界面（2018年10月18日22点53分）
+    if (getCurrentPages().length == 1) {
+      //页面路径为1时添加主页按钮
       this.setData({
         showHomeButton: true,
-        autoFocus: true
+        autoFocus: false
       })
     } else {
       this.setData({
@@ -136,6 +146,12 @@ Page({
 
     Card.get(recordID).then(res => {
       console.log(res.data);
+      if (res.data.category == 0) {
+        this.setData({
+          ishidename: true,
+          istreehole: true
+        })
+      }
       var card = res.data;
       card.created_at_format = util.calculatedFormatTime(card.created_at, 'Y-M-D h:m:s')
       this.setData({
@@ -289,6 +305,155 @@ Page({
     })
     app.globalData.scene = 1000
     //重置场景参数
-  }
+  },
+
+  pullLikedList: function() {
+    var that = this
+    let currentId = wx.getStorageSync('userId')
+    var Like = new wx.BaaS.TableObject(52143)
+
+    let query = new wx.BaaS.Query()
+    query.compare('created_by', '=', currentId)
+
+    Like.setQuery(query).find().then(res => {
+      //console.log(res.data);
+      var likedList = res.data.objects;
+      this.setData({
+        likedList: likedList
+      });
+      this.updateLikedObjects()
+      // success
+    }, err => {
+      // err
+    })
+
+  },
+  tapLike: function(event) {
+    if (this.data.liking) {
+      return
+    }
+    wx.vibrateShort({})
+    this.setData({
+      liking: true
+    });
+    console.log('tapLike')
+    console.log(event)
+    var card = this.data.card
+    card.currUserLiked = true
+    card.like_count++;
+    this.setData({
+      card: card
+    });
+    this.pushLike(this.data.currentId)
+    var that = this
+    setTimeout(function () {
+      that.setData({
+        liking: false
+      });
+    }, 1500)
+  },
+  tapUnlike: function(event) {
+    wx.vibrateShort({})
+    console.log('tapUnlike')
+    console.log(event)
+    var card = this.data.card
+    card.currUserLiked = false
+    card.like_count--;
+    this.setData({
+      card: card
+    });
+    this.deleteLike(this.data.currentId)
+  },
+  pushLike: function (to_id) {
+    console.log('Like++')
+    var that = this
+    let tableID = 52143
+    let Like = new wx.BaaS.TableObject(tableID)
+    let like = Like.create()
+    let data = {
+      to_id: to_id,
+    }
+    like.set(data)
+    like.save().then(res => {
+      //console.log(res)
+      that.pushLikeCount(to_id, 1)
+    }, err => {})
+  },
+  deleteLike: function (to_id) {
+    console.log('Like--')
+    var that = this
+    let tableID = 52143
+    let currentId = wx.getStorageSync('userId')
+    let MyTableObject = new wx.BaaS.TableObject(tableID)
+    let query = new wx.BaaS.Query()
+    query.compare('created_by', '=', currentId)
+    query.compare('to_id', '=', to_id)
+
+
+    MyTableObject.limit(10).offset(0).delete(query).then(res => {
+      //console.log(res)
+      that.pushLikeCount(to_id, -1)
+    }, err => {
+
+    })
+  },
+  pushLikeCount: function (to_id, num) {
+    let tableID = 52108
+    let recordID = to_id
+
+    let Object = new wx.BaaS.TableObject(tableID)
+    let my_object = Object.getWithoutData(recordID)
+
+    my_object.incrementBy('like_count', num)
+    my_object.update().then(res => {
+      //console.log(res)
+      // success
+    }, err => {
+      // err
+    })
+  },
+  updateLikedObjects: function() {
+    var card = this.data.card
+    var likedList = this.data.likedList
+    var currentCardId = this.data.currentId
+    if (likedList) {
+      for (var i = 0; i < likedList.length; i++) {
+        if (currentCardId == likedList[i].to_id) {
+          card.currUserLiked = true
+        }
+      }
+    }
+    this.setData({
+      card: card
+    });
+  },
+
+  onShareAppMessage: function(ops) {
+    if (ops.from === 'button') {
+      // 来自页面内转发按钮
+      console.log("xxx" + ops.target)
+      console.log(ops.target.dataset.cardid)
+      var cardid = ops.target.dataset.cardid;
+      var text = ops.target.dataset.text;
+    }
+    return {
+      title: text,
+      path: 'pages/detail/detail?id=' + cardid,
+      success: function(res) {
+        // 转发成功
+        console.log("转发成功:" + JSON.stringify(res));
+      },
+      fail: function(res) {
+        // 转发失败
+        console.log("转发失败:" + JSON.stringify(res));
+      }
+    }
+  },
+
+  tapComment: function(event) {
+    this.setData({
+      autoFocus: true
+    })
+  },
 
 })

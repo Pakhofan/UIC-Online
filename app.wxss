@@ -12,6 +12,11 @@ view, text, button{
   font-family: MicroSoft Yahei,Helvetica Neue, Helvetica, Arial, sans-serif;
 }
 
+page{
+  width: 750rpx;
+  height: auto;
+}
+
 .pageColumn {
   margin: 0 auto;
   width: 700rpx;
