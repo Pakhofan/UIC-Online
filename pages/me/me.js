@@ -74,7 +74,7 @@ Page({
     }
     console.log(app.globalData.userInfo)
   },
-
+  //修改或保存按钮
   onChange_WX: function(e) {
     if (this.data.Change_WX) {
       this.showModal();
@@ -85,7 +85,7 @@ Page({
       })
     }
   },
-
+  //信息更新确认弹出框
   showModal: function() {
     var that = this;
     wx.showModal({
@@ -107,7 +107,7 @@ Page({
       },
     })
   },
-
+  //信息更新
   information_update: function() {
     let MyUser = new wx.BaaS.User()
     let currentUser = MyUser.getCurrentUserWithoutData()
@@ -123,19 +123,20 @@ Page({
 
   },
 
-
+  //微信号输入
   userInput_WX: function(e) {
     this.setData({
       text_WX: e.detail.value,
     })
   },
+  //手机号输入
   userInput_Phone: function(e) {
     this.setData({
       text_Phone: e.detail.value.replace(/[^\d]/g, ''),
     })
   },
-
-  Logout: function(){
+  //登出
+  Logout: function() {
     wx.BaaS.logout().then(res => {
       // success
     }, err => {
@@ -146,12 +147,14 @@ Page({
     })
     app.globalData.userInfo = false
   },
-  OnsearchTap: function(e){
+  //搜索界面跳转按钮
+  OnsearchTap: function(e) {
     wx.navigateTo({
       url: '../search/search',
     })
   },
-  OnhistoryTap: function(e){
+  //历史信息按钮跳转
+  OnhistoryTap: function(e) {
     wx.navigateTo({
       url: '../history/history',
     })
