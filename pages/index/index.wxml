@@ -46,7 +46,10 @@
                     </view>
                   </view>
                   <view class="contentContainer">
-                    <view class="text" wx:if="{{item.text!=null}}">
+                    <view class="text" wx:if="{{item.text!=null||item.label!=null}}">
+                      <block wx:for="{{item.label}}">
+                        <text class='labelText' selectable="true">#{{item}}# </text>
+                      </block>
                       <text selectable="true">{{item.text}}</text>
                     </view>
                     <view class="pictureContainer">
@@ -61,6 +64,10 @@
                         <image class="picture" wx:if="{{item.imgs[5]}}" src="{{item.imgs[5] + webpCode}}" mode="aspectFill" catchtap='viewImage' data-src="{{item.imgs[5]}}" data-list="{{item.imgs}}"></image>
                       </view>
                     </view>
+                  </view>
+                  <view class='listB' wx:if="{{item.position!=null}}">
+                    <image class='iconButton' src='/imgs/position.png'></image>
+                    <text class='positionText'>{{item.position}}</text>
                   </view>
                   <view class='lastRow'>
                     <view class='lastRowItem lastRowItemA'>

@@ -17,7 +17,7 @@ Page({
     ishidename: true,
     paths: [],
     isopen: false,
-    items: [{
+    labelDefault: [{
         value: '寻找物品'
       },
       {
@@ -184,8 +184,8 @@ Page({
       creator_avatar: wx.getStorageSync('BaaSAvatar'),
       category: this.data.istreehole ? 0 : 1,
       status: this.data.istreehole ? (this.data.ishidename ? 1 : 0) : 0,
-      Label: this.data.Label,
-      Position: this.data.Position,
+      label: this.data.label,
+      position: this.data.position,
     }
     console.log(data.imgs)
     sendproduct.set(data)
@@ -201,10 +201,34 @@ Page({
   },
   //清除数据
   clearData: function() {
+    let labelDefault = [{
+        value: '寻找物品',
+        checked: false
+      },
+      {
+        value: '失物发现',
+        checked: false
+      },
+      {
+        value: '餐饮美食',
+        checked: false
+      },
+      {
+        value: '新闻事件',
+        checked: false
+      },
+      {
+        value: '二手交易',
+        checked: false
+      },
+    ]
     this.setData({
       text: '',
       paths: [],
       files: [],
+      label: [],
+      position: '',
+      labelDefault: labelDefault
     });
   },
   //图片上传
@@ -233,23 +257,23 @@ Page({
     }
   },
   //标签switch开关
-  switch_label: function(e) {
+  switchLabel: function(e) {
     this.setData({
       isopen: !this.data.isopen
     })
   },
   //标签box点击
-  labelboxChange: function(e) {
+  labelBoxChange: function(e) {
     console.log('checkbox发生change事件，携带value值为：', e.detail.value)
     this.setData({
-      Label: e.detail.value,
+      label: e.detail.value,
     })
   },
   //用户输入位置
-  userInput_Position: function(e) {
+  userInputPosition: function(e) {
     console.log(e.detail.value)
     this.setData({
-      Position: e.detail.value,
+      position: e.detail.value,
     })
   },
 
