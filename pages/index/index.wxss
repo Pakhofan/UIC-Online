@@ -148,3 +148,7 @@ button {
 .btn-sharetofriend::after {
   border: none;
 }
+
+button::after{
+    border: none;
+}
