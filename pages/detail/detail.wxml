@@ -3,7 +3,7 @@
   <image class='homeIcon' src='/imgs/home.png'></image>
   <text class='homeText'>返回主页</text>
 </view>
-<view class='pageColumn'>
+<view class='pageColumn' style='padding-bottom: 20px;'>
   <view class='card'>
     <view class='menuContainer'>
       <i catchtap="createqrcode" data-id='{{card.id}}' class="icon-menu"></i>
@@ -38,6 +38,44 @@
           <image class="picture" wx:if="{{card.imgs[4]}}" src="{{card.imgs[4] + webpCode}}" mode="aspectFill" catchtap='viewImage' data-src="{{card.imgs[4]}}" data-list="{{card.imgs}}"></image>
           <image class="picture" wx:if="{{card.imgs[5]}}" src="{{card.imgs[5] + webpCode}}" mode="aspectFill" catchtap='viewImage' data-src="{{card.imgs[5]}}" data-list="{{card.imgs}}"></image>
         </view>
+      </view>
+    </view>
+    <view class='lastRow'>
+      <view class='lastRowItem lastRowItemA'>
+        <button open-type='share' data-tag='btn-sharetofriend' data-cardId='{{card.id}}' data-text='{{card.text}}' class='shareContainer'>
+          <image class='iconButton' src='/imgs/share.png' style='opacity: 0.5;'></image>
+
+          <text class='iconText'>分享</text>
+        </button>
+
+        <!-- <text class='iconText'>分享</text> -->
+      </view>
+      <view class='lastRowItem lastRowItemB'>
+        <view class='commentContainer' catchtap='tapComment' data-id='{{card.id}}'>
+          <image class='iconButton' src='/imgs/comment.png'></image>
+          <text class='iconText'>
+                          <block wx:if='{{card.comment_count==0}}'>评论</block>
+                          <block wx:else> {{card.comment_count}}</block>
+                        </text>
+        </view>
+      </view>
+      <view class='lastRowItem lastRowItemC'>
+        <block wx:if='{{card.currUserLiked}}'>
+          <view class='likeContainer' catchtap='tapUnlike' data-id='{{card.id}}' data-count='{{card.like_count}}'>
+            <image class='iconButton' src='/imgs/liked.png'></image>
+            <text class='iconText' style='color:#ff3737'> {{card.like_count}}
+                          </text>
+          </view>
+        </block>
+        <block wx:else>
+          <view class='likeContainer' catchtap='tapLike' data-id='{{card.id}}' data-count='{{card.like_count}}'>
+            <image class='iconButton' src='/imgs/like.png'></image>
+            <text class='iconText'>
+                            <block wx:if='{{card.like_count==0}}'>点赞</block>
+                            <block wx:else> {{card.like_count}}</block>
+                          </text>
+          </view>
+        </block>
       </view>
     </view>
 
@@ -79,7 +117,7 @@
     </view>
   </block>
 
-  <view class='card'>
+  <view class='card' style='margin-bottom:50px;'>
     <view class='firstRow'>
       <view wx:if="{{!hasUserInfo && canIUse}}" class='getUserInfoButtonContainer'>
         <button class='getUserInfoButton' open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>

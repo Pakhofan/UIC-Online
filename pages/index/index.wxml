@@ -1,6 +1,15 @@
 <!--index.wxml-->
-
-
+<view class='searchContainer'>
+  <import src="/wxSearch/wxSearch.wxml" />
+  <view class="wxSearch-section">
+    <view class="wxSearch-pancel">
+      <input bindinput="wxSearchInput" bindfocus="wxSerchFocus" value="{{wxSearchData.value}}" bindblur="wxSearchBlur" class="wxSearch-input" placeholder="搜索关键词" />
+      <button class="wxSearch-button" bindtap="wxSearchFn" size="mini" plain="true">搜索</button>
+    </view>
+  </view>
+</view>
+<template is="wxSearch" data="{{wxSearchData}}" />
+<view class='mainListContainer'>
 <view class="stv-container">
   <view class="tab-bar">
     <view wx:for="{{tabs}}" wx:key="unique" data-index="{{index}}" bindtap="handlerTabTap" class="tab {{activeTab==index?'tab-active':''}}" style="width: {{stv.windowWidth/tabs.length}}px">
@@ -8,7 +17,7 @@
     </view>
     <view style="width: {{stv.lineWidth}}px; margin-left:{{stv.lineWidth/2}}px; left: {{stv.offset/tabs.length}}px" class="under-line {{!stv.tStart? 'withAnimate': ''}}"></view>
   </view>
-  <view class="scroll-view">
+  <view class="scroll-view" style='height:{{scrollViewHeight}}px'>
     <view bindtouchstart="handlerStart" catchtouchmove="handlerMove" bindtouchcancel="handlerCancel" bindtouchend="handlerEnd" class="scroll-view-wrapper {{!stv.tStart? 'withAnimate': ''}}" style="left: -{{stv.offset}}px">
       <view style="width: {{stv.windowWidth}}px;" wx:for="{{tabs}}" wx:key="unique" wx:for-index="tabsIdx" class="one-scene">
         <scroll-view style="height:100%" scroll-y bindscrolltoupper="toUpperLoadCards" bindscrolltolower="toLowerLoadCards" enable-back-to-top="true" id='mainScrollView'>
@@ -100,4 +109,5 @@
       </view>
     </view>
   </view>
+</view>
 </view>

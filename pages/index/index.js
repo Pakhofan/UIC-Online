@@ -3,6 +3,7 @@
 const app = getApp();
 const util = require('../../utils/util.js')
 var sliderWidth = 96;
+var WxSearch = require('../../wxSearch/wxSearch.js');
 
 Page({
   data: {
@@ -19,7 +20,8 @@ Page({
     anonymousAvatarUrl: 'https://cloud-minapp-20256.cloud.ifanrusercontent.com/1g4MkWmjmCtMquLU.png!/format/webp',
     likeCache: [],
     pullingCards: false,
-    toLower: false
+    toLower: false,
+    liking: false,
   },
   onLoad: function(options) {
 
@@ -43,6 +45,9 @@ Page({
         tabs
       } = this.data;
       var res = wx.getSystemInfoSync()
+      this.setData({
+        scrollViewHeight: res.windowHeight - 80
+      })
       this.windowWidth = res.windowWidth;
       this.data.stv.lineWidth = (this.windowWidth / this.data.tabs.length) / 2;
       this.data.stv.windowWidth = res.windowWidth;
@@ -54,11 +59,17 @@ Page({
     if (!this.data.pullingCards) {
       this.pullCards();
     }
-    if (app.globalData.platform == 'ios'){
+    if (app.globalData.platform == 'ios') {
       this.setData({
         webpCode: ''
       })
     }
+    var that = this;
+    //初始化的时候渲染wxSearchdata
+    WxSearch.init(that, 43, ['weappdev', '小程序', 'wxParse', 'wxSearch', 'wxNotification']);
+    WxSearch.initMindKeys(['weappdev.com', '微信小程序开发', '微信开发', '微信小程序']);
+
+    console.log(getCurrentPages());
   },
   onReady: function(option) {
     this.pullLikedList();
@@ -163,7 +174,7 @@ Page({
       }
       stv.offset = stv.windowWidth * page;
     }
-    stv.tStart = false;
+    //stv.tStart = false;
     this.setData({
       stv: this.data.stv
     })
@@ -259,7 +270,7 @@ Page({
       var cardList = res.data.objects;
       //console.log(cardList[0].created_at);
       for (var i = 0; i < cardList.length; i++) {
-        console.log(i);
+        //console.log(i);
         cardList[i].created_at_format = util.calculatedFormatTime(cardList[i].created_at, 'Y-M-D h:m:s')
         cardList[i].created_at = util.formatTime(cardList[i].created_at, 'Y-M-D h:m:s')
       }
@@ -311,7 +322,13 @@ Page({
 
   },
   tapLike: function(event) {
+    if(this.data.liking){
+      return
+    }
     wx.vibrateShort({})
+    this.setData({
+      liking: true
+    });
     console.log('tapLike')
     var cardId = event.currentTarget.dataset.id;
     var cards = this.data.cards
@@ -325,6 +342,12 @@ Page({
       cards: cards
     });
     this.pushLike(cardId)
+    var that = this
+    setTimeout(function () {
+      that.setData({
+        liking: false
+      });
+    }, 1500)
   },
   tapUnlike: function(event) {
     wx.vibrateShort({})
@@ -390,32 +413,32 @@ Page({
       // err
     })
   },
-  setLikeCache: function(cardId, option) {
-    //option 为1时设 likeCache[cardId] 为true
-    var likeCache = this.data.likeCache
-    if (option == 1) {
-      likeCache[cardId] = true
-    } else {
-      likeCache[cardId] = false
-    }
-    this.setData({
-      likeCache: likeCache
-    });
-  },
-  mergeLikeList: function() {
-    var that = this
-    var likeCache = this.data.likeCache
-    if (likeCache.length > 0) {
-      for (var i = 0; i < likeCache.length; i++) {
-        if (likeCache[i].value) {
-          that.setData({
-            likedList: that.data.likedList.concat(likeCache[i])
-          });
-        }
-      }
-    }
-    this.updateLikedCards()
-  },
+  // setLikeCache: function(cardId, option) {
+  //   //option 为1时设 likeCache[cardId] 为true
+  //   var likeCache = this.data.likeCache
+  //   if (option == 1) {
+  //     likeCache[cardId] = true
+  //   } else {
+  //     likeCache[cardId] = false
+  //   }
+  //   this.setData({
+  //     likeCache: likeCache
+  //   });
+  // },
+  // mergeLikeList: function() {
+  //   var that = this
+  //   var likeCache = this.data.likeCache
+  //   if (likeCache.length > 0) {
+  //     for (var i = 0; i < likeCache.length; i++) {
+  //       if (likeCache[i].value) {
+  //         that.setData({
+  //           likedList: that.data.likedList.concat(likeCache[i])
+  //         });
+  //       }
+  //     }
+  //   }
+  //   this.updateLikedCards()
+  // },
   updateLikedCards: function() {
     var cards = this.data.cards
     var likedList = this.data.likedList
@@ -456,6 +479,62 @@ Page({
       }
     }
 
+  },
+
+
+  wxSearchFn: function(e) {
+    var that = this
+    WxSearch.wxSearchAddHisKey(that);
+    console.log(that.data.keywords)
+    that.queryInformation()
+  },
+  wxSearchInput: function(e) {
+    var that = this
+    WxSearch.wxSearchInput(e, that);
+    that.setData({
+      keywords: e.detail.value
+    })
+  },
+  wxSerchFocus: function(e) {
+    var that = this
+    WxSearch.wxSearchFocus(e, that);
+  },
+  wxSearchBlur: function(e) {
+    var that = this
+    WxSearch.wxSearchBlur(e, that);
+  },
+  wxSearchKeyTap: function(e) {
+    var that = this
+    WxSearch.wxSearchKeyTap(e, that);
+  },
+  wxSearchDeleteKey: function(e) {
+    var that = this
+    WxSearch.wxSearchDeleteKey(e, that);
+  },
+  wxSearchDeleteAll: function(e) {
+    var that = this;
+    WxSearch.wxSearchDeleteAll(that);
+  },
+  wxSearchTap: function(e) {
+    var that = this
+    WxSearch.wxSearchHiddenPancel(that);
+  },
+  //查询信息
+  queryInformation: function() {
+    var that = this
+    let tableID = 52108
+    let TableInfo = new wx.BaaS.TableObject(tableID)
+    let Query = new wx.BaaS.Query()
+    Query.contains('text', this.data.keywords)
+    TableInfo.setQuery(Query).find().then(res => {
+      // success
+      console.log(res.data.objects)
+      this.setData({
+        returnInfo: res.data.objects
+      })
+    }, err => {
+      // err
+    })
   }
 
 
