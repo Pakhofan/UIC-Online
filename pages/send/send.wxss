@@ -181,3 +181,37 @@
   height: 100%;
   opacity: 0;
 }
+
+.listItemA {
+  width: 175rpx;
+  height: 10px;
+  padding-left: 25rpx;
+  text-align: start;
+  font-size: 14px;
+}
+
+.listItemB{
+  font-size: 14px;
+}
+
+.listItemC{
+  width: 100%;
+  text-align: start;
+}
+
+#label{
+  padding-left: 10rpx;
+  text-align: start;
+  font-size: 14px;
+}
+
+.switch_label{
+  padding-left: 0rpx;
+  margin-left: 25rpx;
+}
+
+.checkbox{
+  flex-direction: column;
+  font-size: 14px;
+  padding: 11rpx;
+}

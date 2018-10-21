@@ -72,12 +72,12 @@ Page({
     console.log(getCurrentPages());
   },
   onReady: function(option) {
-    this.pullLikedList();
     setTimeout(function() {
       wx.hideLoading({});
     }, 500)
   },
-  onShow: function(option) {
+  onShow: function (option) {
+    this.pullLikedList();
     setTimeout(function() {
       wx.hideLoading({});
     }, 500)
@@ -347,10 +347,16 @@ Page({
       that.setData({
         liking: false
       });
-    }, 1500)
+    }, 1000)
   },
   tapUnlike: function(event) {
+    if (this.data.liking) {
+      return
+    }
     wx.vibrateShort({})
+    this.setData({
+      liking: true
+    });
     console.log('tapUnlike')
     var cardId = event.currentTarget.dataset.id;
     var cards = this.data.cards
@@ -364,6 +370,12 @@ Page({
       cards: cards
     });
     this.deleteLike(cardId)
+    var that = this
+    setTimeout(function () {
+      that.setData({
+        liking: false
+      });
+    }, 1000)
   },
   pushLike: function(cardId) {
     console.log('Like++')

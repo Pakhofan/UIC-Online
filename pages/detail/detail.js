@@ -74,7 +74,6 @@ Page({
         webpCode: ''
       })
     }
-    this.pullLikedList()
   },
   onShow: function(option) {
     // var sceneNum = app.globalData.scene
@@ -91,6 +90,7 @@ Page({
         showHomeButton: false
       })
     }
+    this.pullLikedList();
   },
   getUserInfo: function(e) {
     var id = 0
@@ -350,9 +350,16 @@ Page({
       that.setData({
         liking: false
       });
-    }, 1500)
+    }, 1000)
   },
   tapUnlike: function(event) {
+    if (this.data.liking) {
+      return
+    }
+    wx.vibrateShort({})
+    this.setData({
+      liking: true
+    });
     wx.vibrateShort({})
     console.log('tapUnlike')
     console.log(event)
@@ -363,6 +370,12 @@ Page({
       card: card
     });
     this.deleteLike(this.data.currentId)
+    var that = this
+    setTimeout(function () {
+      that.setData({
+        liking: false
+      });
+    }, 1000)
   },
   pushLike: function (to_id) {
     console.log('Like++')
