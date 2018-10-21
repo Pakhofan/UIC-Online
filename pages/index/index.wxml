@@ -46,7 +46,7 @@
                     </view>
                   </view>
                   <view class='Label'>
-                    <text style='font-size:12px'>{{item.Label}}</text>
+                    <text style='font-size:12px'>{{item.label}}</text>
                   </view>
                   <view class="contentContainer">
                     <view class="text" wx:if="{{item.text!=null}}">
@@ -67,7 +67,7 @@
                   </view>
                   <view class='PositionRow'>
                   <text style='font-size:14px' wx:if="{{item.Position}}">位置(需要一个图标)</text>
-                  <text style='font-size:14px'>{{item.Position}}</text>
+                  <text style='font-size:14px'>{{item.position}}</text>
                   </view>
                   <view class='lastRow'>
                     <view class='lastRowItem lastRowItemA'>
