@@ -45,6 +45,9 @@
                       <view class="date">{{item.created_at_format}}</view>
                     </view>
                   </view>
+                  <view class='Label'>
+                    <text style='font-size:12px'>{{item.Label}}</text>
+                  </view>
                   <view class="contentContainer">
                     <view class="text" wx:if="{{item.text!=null}}">
                       <text selectable="true">{{item.text}}</text>
@@ -61,6 +64,10 @@
                         <image class="picture" wx:if="{{item.imgs[5]}}" src="{{item.imgs[5] + webpCode}}" mode="aspectFill" catchtap='viewImage' data-src="{{item.imgs[5]}}" data-list="{{item.imgs}}"></image>
                       </view>
                     </view>
+                  </view>
+                  <view class='PositionRow'>
+                  <text style='font-size:14px' wx:if="{{item.Position}}">位置(需要一个图标)</text>
+                  <text style='font-size:14px'>{{item.Position}}</text>
                   </view>
                   <view class='lastRow'>
                     <view class='lastRowItem lastRowItemA'>
