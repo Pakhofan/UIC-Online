@@ -299,9 +299,22 @@ button {
   align-items: flex-start;
   display: flex;
   flex-direction: row;
+}
+
+.underLine{
   border-bottom-style: solid;
   border-color: rgba(200, 200, 200, 0.2);
   border-width: 1px;
+}
+
+.listB {
+  margin: 10px 20rpx;
+  height: 15px;
+  width: 600rpx;
+  margin-left: 50rpx;
+  align-items: flex-start;
+  display: flex;
+  flex-direction: row;
 }
 
 .listItemA {
@@ -346,4 +359,14 @@ button {
 	background: -webkit-linear-gradient(#eee,#eee) repeat-x left center;
 	background: linear-gradient(#eee,#eee) repeat-x left center;
 	background-size: 1px 1px;
+}
+
+.labelText{
+  color: rgb(226, 114, 30)
+}
+
+.positionText{
+  color: #4f94cd;
+  font-size: 13px;
+  line-height: 20px;
 }

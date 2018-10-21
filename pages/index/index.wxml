@@ -10,28 +10,25 @@
 </view>
 <template is="wxSearch" data="{{wxSearchData}}" />
 <view class='mainListContainer'>
-<view class="stv-container">
-  <view class="tab-bar">
-    <view wx:for="{{tabs}}" wx:key="unique" data-index="{{index}}" bindtap="handlerTabTap" class="tab {{activeTab==index?'tab-active':''}}" style="width: {{stv.windowWidth/tabs.length}}px">
-      <text>{{item}}</text>
+  <view class="stv-container">
+    <view class="tab-bar">
+      <view wx:for="{{tabs}}" wx:key="unique" data-index="{{index}}" bindtap="handlerTabTap" class="tab {{activeTab==index?'tab-active':''}}" style="width: {{stv.windowWidth/tabs.length}}px">
+        <text>{{item}}</text>
+      </view>
+      <view style="width: {{stv.lineWidth}}px; margin-left:{{stv.lineWidth/2}}px; left: {{stv.offset/tabs.length}}px" class="under-line {{!stv.tStart? 'withAnimate': ''}}"></view>
     </view>
-    <view style="width: {{stv.lineWidth}}px; margin-left:{{stv.lineWidth/2}}px; left: {{stv.offset/tabs.length}}px" class="under-line {{!stv.tStart? 'withAnimate': ''}}"></view>
-  </view>
-  <view class="scroll-view" style='height:{{scrollViewHeight}}px'>
-    <view bindtouchstart="handlerStart" catchtouchmove="handlerMove" bindtouchcancel="handlerCancel" bindtouchend="handlerEnd" class="scroll-view-wrapper {{!stv.tStart? 'withAnimate': ''}}" style="left: -{{stv.offset}}px">
-      <view style="width: {{stv.windowWidth}}px;" wx:for="{{tabs}}" wx:key="unique" wx:for-index="tabsIdx" class="one-scene">
-        <scroll-view style="height:100%" scroll-y bindscrolltoupper="toUpperLoadCards" bindscrolltolower="toLowerLoadCards" enable-back-to-top="true" id='mainScrollView'>
-          <view class='pageColumn' id='indexColumn'>
-            <block wx:for="{{cards}}" wx:key="_id">
-              <block wx:if="{{item.status < 2}}">
-                <view bindtap='viewDetail' data-id='{{item.id}}' class='card' wx:if="{{tabsIdx==0?true:(item.category == tabsIdx - 1)}}">
-                  <view class='menuContainer'>
-                    <i class="icon-menu"></i>
-                  </view>
-                  <view class='firstRow'>
-                    <view wx:if="{{item.status == 1}}" class="firstRowItemA">
-                      <image class="headPic" mode='aspectFill' src="/imgs/anonymousAvatarA.png"></image>
+    <view class="scroll-view" style='height:{{scrollViewHeight}}px'>
+      <view bindtouchstart="handlerStart" catchtouchmove="handlerMove" bindtouchcancel="handlerCancel" bindtouchend="handlerEnd" class="scroll-view-wrapper {{!stv.tStart? 'withAnimate': ''}}" style="left: -{{stv.offset}}px">
+        <view style="width: {{stv.windowWidth}}px;" wx:for="{{tabs}}" wx:key="unique" wx:for-index="tabsIdx" class="one-scene">
+          <scroll-view style="height:100%" scroll-y bindscrolltoupper="toUpperLoadCards" bindscrolltolower="toLowerLoadCards" enable-back-to-top="true" id='mainScrollView'>
+            <view class='pageColumn' id='indexColumn'>
+              <block wx:for="{{cards}}" wx:key="_id">
+                <block wx:if="{{item.status < 2}}">
+                  <view bindtap='viewDetail' data-id='{{item.id}}' class='card' wx:if="{{tabsIdx==0?true:(item.category == tabsIdx - 1)}}">
+                    <view class='menuContainer'>
+                      <i class="icon-menu"></i>
                     </view>
+<<<<<<< HEAD
                     <view wx:else catchtap='viewProfile' data-id='{{item.created_by}}' class="firstRowItemA">
                       <image class="headPic" mode='aspectFill' src="{{item.creator_avatar}}"></image>
                     </view>
@@ -45,76 +42,105 @@
                       <view class="date">{{item.created_at_format}}</view>
                     </view>
                   </view>
-                  <view class='Label'>
-                    <text style='font-size:12px'>{{item.label}}</text>
-                  </view>
                   <view class="contentContainer">
                     <view class="text" wx:if="{{item.text!=null}}">
                       <text selectable="true">{{item.text}}</text>
-                    </view>
-                    <view class="pictureContainer">
-                      <view class='pictureRow'>
-                        <image class="picture" wx:if="{{item.imgs[0]}}" src="{{item.imgs[0] + webpCode}}" mode="aspectFill" catchtap='viewImage' data-src="{{item.imgs[0]}}" data-list="{{item.imgs}}"></image>
-                        <image class="picture" wx:if="{{item.imgs[1]}}" src="{{item.imgs[1] + webpCode}}" mode="aspectFill" catchtap='viewImage' data-src="{{item.imgs[1]}}" data-list="{{item.imgs}}"></image>
-                        <image class="picture" wx:if="{{item.imgs[2]}}" src="{{item.imgs[2] + webpCode}}" mode="aspectFill" catchtap='viewImage' data-src="{{item.imgs[2]}}" data-list="{{item.imgs}}"></image>
+=======
+                    <view class='firstRow'>
+                      <view wx:if="{{item.status == 1}}" class="firstRowItemA">
+                        <image class="headPic" mode='aspectFill' src="/imgs/anonymousAvatarA.png"></image>
                       </view>
-                      <view class='pictureRow'>
-                        <image class="picture" wx:if="{{item.imgs[3]}}" src="{{item.imgs[3] + webpCode}}" mode="aspectFill" catchtap='viewImage' data-src="{{item.imgs[3]}}" data-list="{{item.imgs}}"></image>
-                        <image class="picture" wx:if="{{item.imgs[4]}}" src="{{item.imgs[4] + webpCode}}" mode="aspectFill" catchtap='viewImage' data-src="{{item.imgs[4]}}" data-list="{{item.imgs}}"></image>
-                        <image class="picture" wx:if="{{item.imgs[5]}}" src="{{item.imgs[5] + webpCode}}" mode="aspectFill" catchtap='viewImage' data-src="{{item.imgs[5]}}" data-list="{{item.imgs}}"></image>
+                      <view wx:else catchtap='viewProfile' data-id='{{item.created_by}}' class="firstRowItemA">
+                        <image class="headPic" mode='aspectFill' src="{{item.creator_avatar}}"></image>
+                      </view>
+                      <view class="firstRowItemB">
+                        <block wx:if="{{item.status == 1}}">
+                          <view class="name">匿名 </view>
+                        </block>
+                        <block wx:else>
+                          <view class="name" catchtap='viewProfile' data-id='{{item.created_by}}'>{{item.creator_name}}</view>
+                        </block>
+                        <view class="date">{{item.created_at_format}}</view>
+                      </view>
+>>>>>>> upstream/master
+                    </view>
+                    <view class="contentContainer">
+                      <view class="text" wx:if="{{item.text!=null||item.label!=null}}">
+                        <block wx:for="{{item.label}}">
+                          <text class='labelText' selectable="true">#{{item}}# </text>
+                        </block>
+                        <text selectable="true">{{item.text}}</text>
+                      </view>
+                      <view class="pictureContainer">
+                        <view class='pictureRow'>
+                          <image class="picture" wx:if="{{item.imgs[0]}}" src="{{item.imgs[0] + webpCode}}" mode="aspectFill" catchtap='viewImage' data-src="{{item.imgs[0]}}" data-list="{{item.imgs}}"></image>
+                          <image class="picture" wx:if="{{item.imgs[1]}}" src="{{item.imgs[1] + webpCode}}" mode="aspectFill" catchtap='viewImage' data-src="{{item.imgs[1]}}" data-list="{{item.imgs}}"></image>
+                          <image class="picture" wx:if="{{item.imgs[2]}}" src="{{item.imgs[2] + webpCode}}" mode="aspectFill" catchtap='viewImage' data-src="{{item.imgs[2]}}" data-list="{{item.imgs}}"></image>
+                        </view>
+                        <view class='pictureRow'>
+                          <image class="picture" wx:if="{{item.imgs[3]}}" src="{{item.imgs[3] + webpCode}}" mode="aspectFill" catchtap='viewImage' data-src="{{item.imgs[3]}}" data-list="{{item.imgs}}"></image>
+                          <image class="picture" wx:if="{{item.imgs[4]}}" src="{{item.imgs[4] + webpCode}}" mode="aspectFill" catchtap='viewImage' data-src="{{item.imgs[4]}}" data-list="{{item.imgs}}"></image>
+                          <image class="picture" wx:if="{{item.imgs[5]}}" src="{{item.imgs[5] + webpCode}}" mode="aspectFill" catchtap='viewImage' data-src="{{item.imgs[5]}}" data-list="{{item.imgs}}"></image>
+                        </view>
                       </view>
                     </view>
-                  </view>
-                  <view class='PositionRow'>
-                  <text style='font-size:14px' wx:if="{{item.Position}}">位置(需要一个图标)</text>
-                  <text style='font-size:14px'>{{item.position}}</text>
-                  </view>
+<<<<<<< HEAD
                   <view class='lastRow'>
                     <view class='lastRowItem lastRowItemA'>
                       <button open-type='share' data-tag='btn-sharetofriend' data-cardId='{{item.id}}' data-text='{{item.text}}' class='shareContainer'>
                         <image class='iconButton' src='/imgs/share.png' style='opacity: 0.5;'></image>
-
-                        <text class='iconText'>分享</text>
-                      </button>
-
-                      <!-- <text class='iconText'>分享</text> -->
+=======
+                    <view class='listB' wx:if="{{item.position!=null}}">
+                      <image class='iconButton' src='/imgs/position.png'></image>
+                      <text class='positionText'>{{item.position}}</text>
                     </view>
-                    <view class='lastRowItem lastRowItemB'>
-                      <view class='commentContainer' catchtap='tapComment' data-id='{{item.id}}'>
-                        <image class='iconButton' src='/imgs/comment.png'></image>
-                        <text class='iconText'>
+                    <view class='lastRow'>
+                      <view class='lastRowItem lastRowItemA'>
+                        <button open-type='share' data-tag='btn-sharetofriend' data-cardId='{{item.id}}' data-text='{{item.text}}' class='shareContainer'>
+                          <image class='iconButton' src='/imgs/share.png' style='opacity: 0.5;'></image>
+>>>>>>> upstream/master
+
+                          <text class='iconText'>分享</text>
+                        </button>
+
+                        <!-- <text class='iconText'>分享</text> -->
+                      </view>
+                      <view class='lastRowItem lastRowItemB'>
+                        <view class='commentContainer' catchtap='tapComment' data-id='{{item.id}}'>
+                          <image class='iconButton' src='/imgs/comment.png'></image>
+                          <text class='iconText'>
                           <block wx:if='{{item.comment_count==0}}'>评论</block>
                           <block wx:else> {{item.comment_count}}</block>
                         </text>
-                      </view>
-                    </view>
-                    <view class='lastRowItem lastRowItemC'>
-                      <block wx:if='{{item.currUserLiked}}'>
-                        <view class='likeContainer' catchtap='tapUnlike' data-id='{{item.id}}' data-count='{{item.like_count}}'>
-                          <image class='iconButton' src='/imgs/liked.png'></image>
-                          <text class='iconText' style='color:#ff3737'> {{item.like_count}}
-                          </text>
                         </view>
-                      </block>
-                      <block wx:else>
-                        <view class='likeContainer' catchtap='tapLike' data-id='{{item.id}}' data-count='{{item.like_count}}'>
-                          <image class='iconButton' src='/imgs/like.png'></image>
-                          <text class='iconText'>
+                      </view>
+                      <view class='lastRowItem lastRowItemC'>
+                        <block wx:if='{{item.currUserLiked}}'>
+                          <view class='likeContainer' catchtap='tapUnlike' data-id='{{item.id}}' data-count='{{item.like_count}}'>
+                            <image class='iconButton' src='/imgs/liked.png'></image>
+                            <text class='iconText' style='color:#ff3737'> {{item.like_count}}
+                          </text>
+                          </view>
+                        </block>
+                        <block wx:else>
+                          <view class='likeContainer' catchtap='tapLike' data-id='{{item.id}}' data-count='{{item.like_count}}'>
+                            <image class='iconButton' src='/imgs/like.png'></image>
+                            <text class='iconText'>
                             <block wx:if='{{item.like_count==0}}'>点赞</block>
                             <block wx:else> {{item.like_count}}</block>
                           </text>
-                        </view>
-                      </block>
+                          </view>
+                        </block>
+                      </view>
                     </view>
                   </view>
-                </view>
+                </block>
               </block>
-            </block>
-            <view class='textBetweenLine' wx:if='{{toLower}}'>我是有底线的</view>
-          </view>
-        </scroll-view>
+              <view class='textBetweenLine' wx:if='{{toLower}}'>我是有底线的</view>
+            </view>
+          </scroll-view>
+        </view>
       </view>
     </view>
   </view>
-</view>
 </view>

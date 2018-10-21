@@ -56,16 +56,16 @@
   <view class='card'>
     <view class='list'>
       <view class='listItemA'>位置（选填）</view>
-      <textarea class='listItemB' placeholder='请输入信息' value="{{Position}}" maxlength='150' auto-height='ture' cursor-spacing='100' bindinput='userInput_Position'></textarea>
+      <textarea class='listItemB' placeholder='请输入信息' value="{{position}}" maxlength='150' auto-height='true' cursor-spacing='100' bindinput='userInputPosition'></textarea>
     </view>
     <view class='listItemC'>
-      <switch class='switch_label' checked="{{isopen}}" bindchange="switch_label">
+      <switch class='switchLabel' checked="{{isopen}}" bindchange="switchLabel">
         <text id='label'>标签</text>
       </switch>
     </view>
     <block wx:if="{{isopen}}">
-      <checkbox-group bindchange="labelboxChange">
-        <label class="checkbox" wx:for="{{items}}">
+      <checkbox-group bindchange="labelBoxChange">
+        <label class="checkbox" wx:for="{{labelDefault}}">
           <checkbox class="checkbox" value="{{item.value}}" checked="{{item.checked}}" />{{item.value}}
         </label>
       </checkbox-group>
@@ -81,7 +81,7 @@
         </view>
         <view class="selectionRowItemB">
           <block wx:if="{{istreehole}}">
-            <switch class='switch_Change' checked="true" bindchange="hidenameChange">
+            <switch class='switchChange' checked="true" bindchange="hidenameChange">
               <text>匿名</text>
             </switch>
           </block>
