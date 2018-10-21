@@ -498,7 +498,9 @@ Page({
     var that = this
     WxSearch.wxSearchAddHisKey(that);
     console.log(that.data.keywords)
-    that.queryInformation()
+      wx.navigateTo({
+        url: '../search/search?keywords=' + that.data.keywords,
+      })
   },
   wxSearchInput: function(e) {
     var that = this
