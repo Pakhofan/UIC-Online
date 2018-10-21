@@ -16,6 +16,23 @@ Page({
     istreehole: false,
     ishidename: true,
     paths: [],
+    isopen: false,
+    items: [{
+        value: '寻找物品'
+      },
+      {
+        value: '失物发现'
+      },
+      {
+        value: '餐饮美食'
+      },
+      {
+        value: '新闻事件'
+      },
+      {
+        value: '二手交易'
+      },
+    ],
   },
 
   /**
@@ -34,7 +51,7 @@ Page({
     }
   },
 
-  getUserInfo: function (e) {
+  getUserInfo: function(e) {
     var id = 0
     wx.BaaS.handleUserInfo(e).then(res => {
       console.log('！！！！')
@@ -64,7 +81,7 @@ Page({
     }
   },
 
-  userInput: function (e) {
+  userInput: function(e) {
     this.setData({
       text: e.detail.value,
     });
@@ -112,7 +129,7 @@ Page({
     }
   },
 
-  switch1Change: function(e) {
+  hidenameChange: function(e) {
     this.setData({
       ishidename: e.detail.value,
     })
@@ -121,7 +138,7 @@ Page({
   onSendTap: function(e) {
     this.showModal()
   },
-
+  //发布确认弹出框
   showModal: function() {
     var that = this;
     wx.showModal({
@@ -146,15 +163,15 @@ Page({
 
   uploadInterval: function() {
     var that = this
-    var intervalId = setInterval(function(){
-      if (that.data.paths.length == that.data.files.length){
+    var intervalId = setInterval(function() {
+      if (that.data.paths.length == that.data.files.length) {
         that.Information_upload()
         clearInterval(intervalId)
         wx.hideLoading({});
       }
     }, 1000)
   },
-
+  //上传发布内容
   Information_upload: function() {
     var that = this
     let tableID = 52108
@@ -165,8 +182,10 @@ Page({
       imgs: this.data.paths,
       creator_name: this.data.userInfo.nickName,
       creator_avatar: wx.getStorageSync('BaaSAvatar'),
-      category: this.data.istreehole? 0 : 1,
-      status: this.data.istreehole ? (this.data.ishidename? 1 : 0) : 0
+      category: this.data.istreehole ? 0 : 1,
+      status: this.data.istreehole ? (this.data.ishidename ? 1 : 0) : 0,
+      Label: this.data.Label,
+      Position: this.data.Position,
     }
     console.log(data.imgs)
     sendproduct.set(data)
@@ -178,17 +197,17 @@ Page({
         icon: "success",
       })
       that.clearData()
-    }, err => { })
+    }, err => {})
   },
-
-  clearData: function(){
+  //清除数据
+  clearData: function() {
     this.setData({
       text: '',
       paths: [],
       files: [],
     });
   },
-
+  //图片上传
   Files_upload: function() {
     let MyFile = new wx.BaaS.File()
     for (var i = 0; i < this.data.files.length; ++i) {
@@ -212,6 +231,26 @@ Page({
 
       }, err => {})
     }
+  },
+  //标签switch开关
+  switch_label: function(e) {
+    this.setData({
+      isopen: !this.data.isopen
+    })
+  },
+  //标签box点击
+  labelboxChange: function(e) {
+    console.log('checkbox发生change事件，携带value值为：', e.detail.value)
+    this.setData({
+      Label: e.detail.value,
+    })
+  },
+  //用户输入位置
+  userInput_Position: function(e) {
+    console.log(e.detail.value)
+    this.setData({
+      Position: e.detail.value,
+    })
   },
 
 })
