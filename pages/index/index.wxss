@@ -1,12 +1,12 @@
 /**index.wxss**/
 @import "/wxSearch/wxSearch.wxss";
 
-.searchContainer{
+.searchContainer {
   height: 42px;
   /* margin-top: -42px; */
 }
 
-.mainListContainer{
+.mainListContainer {
   position: relative;
 }
 
@@ -138,9 +138,38 @@
   border: none;
   background-color: #fff;
   padding-left: 1px;
-
 }
 
 .btn-sharetofriend::after {
   border: none;
+}
+
+.positionRow {
+  margin-top: 10rpx;
+  margin-left: 10px;
+  padding-left: 1px;
+}
+
+.labelRow {
+  display: flex;
+  margin-top: 10rpx;
+  padding-left: 1px;
+  margin-left: 10px;
+  flex-direction: row;
+}
+
+.labelItem {
+  background-color: rgb(206, 196, 224);
+  margin-bottom: 5px;
+  padding: 3px;
+  margin-left: 5px;
+  width: auto;
+  height: 60rpx;
+  border-radius: 5px;
+  box-shadow: 0 0 10px 0 rgba(100, 100, 100, 0.2);
+}
+
+positionRow{
+  padding-left: 1px;
+  margin-left: 100rpx;
 }
