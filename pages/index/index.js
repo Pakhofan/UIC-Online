@@ -76,7 +76,7 @@ Page({
       wx.hideLoading({});
     }, 500)
   },
-  onShow: function (option) {
+  onShow: function(option) {
     this.pullLikedList();
     setTimeout(function() {
       wx.hideLoading({});
@@ -198,91 +198,78 @@ Page({
     this._updateSelectedPage(e.currentTarget.dataset.index);
     console.log('tab tap')
   },
-  onPullDownRefresh: function() {
-    if (!this.data.pullingCards) {
-      this.pullCards();
-    }
-  },
   toUpperLoadCards: function() {
-    console.log('!!!!!!!!!!!!!!!!!')
+    //console.log('!!!!!!!!!!!!!!!!!')
     if (!this.data.pullingCards) {
-      this.pullCards();
+      this.pullCards("up");
     }
   },
   toLowerLoadCards: function() {
-    console.log('################')
+    //console.log('################')
     if (!this.data.pullingCards) {
-      this.pullCards();
+      this.pullCards("down");
     }
     this.setData({
       toLower: true
     });
   },
-  onReachBottom: function() {
-    if (!this.data.pullingCards) {
-      this.pullCards();
-    }
-  },
-  viewImage: function(event) {
-    var currentSrc = event.currentTarget.dataset.src;
-    var srcList = event.currentTarget.dataset.list;
-    console.log("data is " + currentSrc);
-    wx.previewImage({
-      current: currentSrc, // 当前显示图片的http链接
-      urls: srcList // 需要预览的图片http链接列表
-    })
-  },
-  viewProfile: function(event) {
-    var userId = event.currentTarget.dataset.id;
-    wx.navigateTo({
-      url: "../profile/profile?id=" + userId
-    })
-
-  },
   viewDetail: function(event) {
-    if (event.target.dataset.tag != 'btn-sharetofriend') {
-      var cardId = event.currentTarget.dataset.id;
-      wx.navigateTo({
-        url: "../detail/detail?id=" + cardId + "&type=normal"
-      })
+    let x = event.detail.x;
+    let windowWidth = wx.getSystemInfoSync().windowWidth
+    let rightX = windowWidth * 14 / 15 / 3 - windowWidth / 18 + windowWidth / 26
+    let leftX = windowWidth / 15 + windowWidth / 50
+    // console.log(leftX, "-", rightX);
+    // console.log(x)
+    if (x > rightX || x < leftX) {
+      if (event.target.dataset.tag != 'btn-sharetofriend') {
+        var cardId = event.currentTarget.dataset.id;
+        wx.navigateTo({
+          url: "../detail/detail?id=" + cardId + "&type=normal"
+        })
+      }
     }
   },
-  tapComment: function(event) {
-    var cardId = event.currentTarget.dataset.id;
-    wx.navigateTo({
-      url: "../detail/detail?id=" + cardId + "&type=comment"
-    })
-  },
-  pullCards: function() {
+  pullCards: function(option) {
     this.setData({
       pullingCards: true
     });
     wx.showNavigationBarLoading({})
     var Card = new wx.BaaS.TableObject(52108)
-
     var query = new wx.BaaS.Query()
     query.compare('status', '<', 2)
-
     var cardLimit = this.data.cards.length + 10
-
-    Card.setQuery(query).limit(cardLimit).offset(0).orderBy('-created_at').find().then(res => {
+    var cardOffset = 0
+    if (option == "up") {
+      cardLimit = this.data.cards.length
+    }
+    if (option == "down") {
+      cardLimit = 10
+      cardOffset = this.data.cards.length
+    }
+    var cardList;
+    if (this.data.cards){
+      cardList = this.data.cards;
+    }
+    Card.setQuery(query).limit(cardLimit).offset(cardOffset).orderBy('-created_at').find().then(res => {
       console.log(res.data);
-      var cardList = res.data.objects;
+      if (option == "down") {
+        cardList = cardList.concat(res.data.objects);
+      }else{
+        cardList = res.data.objects
+      }
       //console.log(cardList[0].created_at);
       for (var i = 0; i < cardList.length; i++) {
         //console.log(i);
         cardList[i].created_at_format = util.calculatedFormatTime(cardList[i].created_at, 'Y-M-D h:m:s')
-        cardList[i].created_at = util.formatTime(cardList[i].created_at, 'Y-M-D h:m:s')
       }
       this.setData({
         cards: cardList
       });
       wx.stopPullDownRefresh({
         success: res => {
-          console.log(res)
+          //console.log(res)
         }
       })
-      this.updateLikedCards()
       setTimeout(function() {
         wx.hideNavigationBarLoading({})
       }, 500)
@@ -314,159 +301,19 @@ Page({
       this.setData({
         likedList: likedList
       });
-      this.updateLikedCards()
+      try {
+        wx.setStorage({
+          key: "likedList",
+          data: likedList
+        })
+      } catch (e) {
+        console.log(e);
+      }
       // success
     }, err => {
       // err
     })
 
-  },
-  tapLike: function(event) {
-    if(this.data.liking){
-      return
-    }
-    wx.vibrateShort({})
-    this.setData({
-      liking: true
-    });
-    console.log('tapLike')
-    var cardId = event.currentTarget.dataset.id;
-    var cards = this.data.cards
-    for (var j = 0; j < cards.length; j++) {
-      if (cards[j].id == cardId) {
-        cards[j].currUserLiked = true
-        cards[j].like_count++
-      }
-    }
-    this.setData({
-      cards: cards
-    });
-    this.pushLike(cardId)
-    var that = this
-    setTimeout(function () {
-      that.setData({
-        liking: false
-      });
-    }, 1000)
-  },
-  tapUnlike: function(event) {
-    if (this.data.liking) {
-      return
-    }
-    wx.vibrateShort({})
-    this.setData({
-      liking: true
-    });
-    console.log('tapUnlike')
-    var cardId = event.currentTarget.dataset.id;
-    var cards = this.data.cards
-    for (var j = 0; j < cards.length; j++) {
-      if (cards[j].id == cardId) {
-        cards[j].currUserLiked = false
-        cards[j].like_count--
-      }
-    }
-    this.setData({
-      cards: cards
-    });
-    this.deleteLike(cardId)
-    var that = this
-    setTimeout(function () {
-      that.setData({
-        liking: false
-      });
-    }, 1000)
-  },
-  pushLike: function(cardId) {
-    console.log('Like++')
-    var that = this
-    let tableID = 52143
-    let Like = new wx.BaaS.TableObject(tableID)
-    let like = Like.create()
-    let data = {
-      to_id: cardId,
-    }
-    like.set(data)
-    like.save().then(res => {
-      //console.log(res)
-      that.pushLikeCount(cardId, 1)
-    }, err => {})
-  },
-  deleteLike: function(cardId) {
-    console.log('Like--')
-    var that = this
-    let tableID = 52143
-    let currentId = wx.getStorageSync('userId')
-    let MyTableObject = new wx.BaaS.TableObject(tableID)
-    let query = new wx.BaaS.Query()
-    query.compare('created_by', '=', currentId)
-    query.compare('to_id', '=', cardId)
-
-
-    MyTableObject.limit(10).offset(0).delete(query).then(res => {
-      //console.log(res)
-      that.pushLikeCount(cardId, -1)
-    }, err => {
-
-    })
-  },
-  pushLikeCount: function(cardId, num) {
-    let tableID = 52108
-    let recordID = cardId
-
-    let Comment = new wx.BaaS.TableObject(tableID)
-    let comment = Comment.getWithoutData(recordID)
-
-    comment.incrementBy('like_count', num)
-    comment.update().then(res => {
-      //console.log(res)
-      // success
-    }, err => {
-      // err
-    })
-  },
-  // setLikeCache: function(cardId, option) {
-  //   //option 为1时设 likeCache[cardId] 为true
-  //   var likeCache = this.data.likeCache
-  //   if (option == 1) {
-  //     likeCache[cardId] = true
-  //   } else {
-  //     likeCache[cardId] = false
-  //   }
-  //   this.setData({
-  //     likeCache: likeCache
-  //   });
-  // },
-  // mergeLikeList: function() {
-  //   var that = this
-  //   var likeCache = this.data.likeCache
-  //   if (likeCache.length > 0) {
-  //     for (var i = 0; i < likeCache.length; i++) {
-  //       if (likeCache[i].value) {
-  //         that.setData({
-  //           likedList: that.data.likedList.concat(likeCache[i])
-  //         });
-  //       }
-  //     }
-  //   }
-  //   this.updateLikedCards()
-  // },
-  updateLikedCards: function() {
-    var cards = this.data.cards
-    var likedList = this.data.likedList
-    if (likedList) {
-      for (var i = 0; i < likedList.length; i++) {
-        var likedCardId = likedList[i].to_id
-        for (var j = 0; j < cards.length; j++) {
-          if (cards[j].id == likedCardId) {
-            cards[j].currUserLiked = true
-          }
-        }
-      }
-    }
-    this.setData({
-      cards: cards
-    });
   },
 
   // test share to friend
@@ -498,9 +345,9 @@ Page({
     var that = this
     WxSearch.wxSearchAddHisKey(that);
     console.log(that.data.keywords)
-      wx.navigateTo({
-        url: '../search/search?keywords=' + that.data.keywords,
-      })
+    wx.navigateTo({
+      url: '../search/search?keywords=' + that.data.keywords,
+    })
   },
   wxSearchInput: function(e) {
     var that = this

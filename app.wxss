@@ -370,3 +370,9 @@ button {
   font-size: 13px;
   line-height: 20px;
 }
+
+.loading{
+  width: 80px;
+  height: 80px;
+  margin-top: 12px;
+}
