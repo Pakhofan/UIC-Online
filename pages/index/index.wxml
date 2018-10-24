@@ -1,4 +1,5 @@
 <!--index.wxml-->
+<import src="/wxSearch/wxSearch.wxml"/>
 <view class='searchContainer'>
   <import src="/wxSearch/wxSearch.wxml" />
   <view class="wxSearch-section">
@@ -47,7 +48,7 @@
                     </view>
                     <view class="contentContainer">
                       <view class="text" wx:if="{{item.text!=null||item.label!=null}}">
-                        <block wx:for="{{item.label}}">
+                        <block wx:for="{{item.label}}" wx:key="{{item.label}}">
                           <text class='labelText' selectable="true">#{{item}}# </text>
                         </block>
                         <text selectable="true">{{item.text}}</text>
