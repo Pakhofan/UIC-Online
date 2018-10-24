@@ -1,12 +1,6 @@
 /**index.wxss**/
-@import "/wxSearch/wxSearch.wxss";
 
-.searchContainer {
-  height: 42px;
-  /* margin-top: -42px; */
-}
-
-.mainListContainer {
+.mainListContainer{
   position: relative;
 }
 
@@ -138,6 +132,7 @@
   border: none;
   background-color: #fff;
   padding-left: 1px;
+
 }
 
 .btn-sharetofriend::after {

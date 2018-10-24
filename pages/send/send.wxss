@@ -57,7 +57,7 @@
   padding: 10px;
 }
 
-.switch_Change {
+.switchChange {
   display: block;
   padding: 10px;
 }
@@ -205,7 +205,7 @@
   font-size: 14px;
 }
 
-.switch_label{
+.switchLabel{
   padding-left: 0rpx;
   margin-left: 25rpx;
 }

@@ -3,7 +3,6 @@
 const app = getApp();
 const util = require('../../utils/util.js')
 var sliderWidth = 96;
-var WxSearch = require('../../wxSearch/wxSearch.js');
 
 Page({
   data: {
@@ -24,7 +23,9 @@ Page({
     liking: false,
   },
   onLoad: function(options) {
-
+    this.setData({
+      datatype: options.datatype
+    })
     if (options.scene) {
 
       var scene = decodeURIComponent(options.scene)
@@ -57,33 +58,31 @@ Page({
       this.tabsCount = tabs.length;
     } catch (e) {}
     if (!this.data.pullingCards) {
-      this.pullCards();
+      this.userLiked();
     }
     if (app.globalData.platform == 'ios') {
       this.setData({
         webpCode: ''
       })
     }
-    var that = this;
-    //初始化的时候渲染wxSearchdata
-    WxSearch.init(that, 43, ['weappdev', '小程序', 'wxParse', 'wxSearch', 'wxNotification']);
-    WxSearch.initMindKeys(['weappdev.com', '微信小程序开发', '微信开发', '微信小程序']);
-
-    console.log(getCurrentPages());
   },
   onReady: function(option) {
     setTimeout(function() {
       wx.hideLoading({});
     }, 500)
   },
-  onShow: function (option) {
-    this.pullLikedList();
+  onShow: function(option) {
+    var datatype = this.data.datatype
     setTimeout(function() {
       wx.hideLoading({});
     }, 500)
-    if (!this.data.pullingCards) {
-      this.pullCards();
+    if (datatype =="commment"){
+      this.userComment();
     }
+    if (datatype == 'send'){
+      this.userSend();
+    }
+    this.userLiked();
   },
   handlerStart(e) {
     let {
@@ -200,19 +199,19 @@ Page({
   },
   onPullDownRefresh: function() {
     if (!this.data.pullingCards) {
-      this.pullCards();
+      this.userLiked();
     }
   },
   toUpperLoadCards: function() {
     console.log('!!!!!!!!!!!!!!!!!')
     if (!this.data.pullingCards) {
-      this.pullCards();
+      this.userLiked();
     }
   },
   toLowerLoadCards: function() {
     console.log('################')
     if (!this.data.pullingCards) {
-      this.pullCards();
+      this.userLiked();
     }
     this.setData({
       toLower: true
@@ -220,7 +219,7 @@ Page({
   },
   onReachBottom: function() {
     if (!this.data.pullingCards) {
-      this.pullCards();
+      this.userLiked();
     }
   },
   viewImage: function(event) {
@@ -253,16 +252,22 @@ Page({
       url: "../detail/detail?id=" + cardId + "&type=comment"
     })
   },
-  pullCards: function() {
+  pullCards: function(likelist) {
     this.setData({
       pullingCards: true
     });
     wx.showNavigationBarLoading({})
     var Card = new wx.BaaS.TableObject(52108)
-
+    var datatype = this.data.datatype
+    console.log(likelist)
     var query = new wx.BaaS.Query()
     query.compare('status', '<', 2)
-
+    if(datatype == 'send'){
+      query.in('created_by',likelist)
+    }
+    else{
+    query.in('_id', likelist)
+    }
     var cardLimit = this.data.cards.length + 10
 
     Card.setQuery(query).limit(cardLimit).offset(0).orderBy('-created_at').find().then(res => {
@@ -300,29 +305,8 @@ Page({
       // err
     })
   },
-  pullLikedList: function() {
-    var that = this
-    let currentId = wx.getStorageSync('userId')
-    var Like = new wx.BaaS.TableObject(52143)
-
-    let query = new wx.BaaS.Query()
-    query.compare('created_by', '=', currentId)
-
-    Like.setQuery(query).find().then(res => {
-      //console.log(res.data);
-      var likedList = res.data.objects;
-      this.setData({
-        likedList: likedList
-      });
-      this.updateLikedCards()
-      // success
-    }, err => {
-      // err
-    })
-
-  },
   tapLike: function(event) {
-    if(this.data.liking){
+    if (this.data.liking) {
       return
     }
     wx.vibrateShort({})
@@ -343,7 +327,7 @@ Page({
     });
     this.pushLike(cardId)
     var that = this
-    setTimeout(function () {
+    setTimeout(function() {
       that.setData({
         liking: false
       });
@@ -371,7 +355,7 @@ Page({
     });
     this.deleteLike(cardId)
     var that = this
-    setTimeout(function () {
+    setTimeout(function() {
       that.setData({
         liking: false
       });
@@ -453,7 +437,7 @@ Page({
   // },
   updateLikedCards: function() {
     var cards = this.data.cards
-    var likedList = this.data.likedList
+    var likedList = this.data.Likedlist
     if (likedList) {
       for (var i = 0; i < likedList.length; i++) {
         var likedCardId = likedList[i].to_id
@@ -493,63 +477,61 @@ Page({
 
   },
 
-
-  wxSearchFn: function(e) {
-    var that = this
-    WxSearch.wxSearchAddHisKey(that);
-    console.log(that.data.keywords)
-      wx.navigateTo({
-        url: '../search/search?keywords=' + that.data.keywords,
-      })
-  },
-  wxSearchInput: function(e) {
-    var that = this
-    WxSearch.wxSearchInput(e, that);
-    that.setData({
-      keywords: e.detail.value
-    })
-  },
-  wxSerchFocus: function(e) {
-    var that = this
-    WxSearch.wxSearchFocus(e, that);
-  },
-  wxSearchBlur: function(e) {
-    var that = this
-    WxSearch.wxSearchBlur(e, that);
-  },
-  wxSearchKeyTap: function(e) {
-    var that = this
-    WxSearch.wxSearchKeyTap(e, that);
-  },
-  wxSearchDeleteKey: function(e) {
-    var that = this
-    WxSearch.wxSearchDeleteKey(e, that);
-  },
-  wxSearchDeleteAll: function(e) {
-    var that = this;
-    WxSearch.wxSearchDeleteAll(that);
-  },
-  wxSearchTap: function(e) {
-    var that = this
-    WxSearch.wxSearchHiddenPancel(that);
-  },
-  //查询信息
-  queryInformation: function() {
-    var that = this
-    let tableID = 52108
-    let TableInfo = new wx.BaaS.TableObject(tableID)
-    let Query = new wx.BaaS.Query()
-    Query.contains('text', this.data.keywords)
-    TableInfo.setQuery(Query).find().then(res => {
+  userLiked: function() {
+    console.log(this.data.datatype)
+    let tableID = 52143
+    let query = new wx.BaaS.Query()
+    let currentId = wx.getStorageSync('userId')
+    let userLike = new wx.BaaS.TableObject(tableID)
+    let likeListId = []
+    let datatype = this.data.datatype
+    query.compare("created_by", "=", currentId)
+    userLike.setQuery(query).find().then(res => {
       // success
-      console.log(res.data.objects)
+      var Likedlist = res.data.objects;
       this.setData({
-        returnInfo: res.data.objects
+        Likedlist: Likedlist
       })
+      this.updateLikedCards()
+      if (datatype == 'like') {
+        for (var i = 0; i < Likedlist.length; i++) {
+          likeListId[i] = Likedlist[i].to_id
+        }
+        this.pullCards(likeListId)
+        console.log(likeListId)
+      }
     }, err => {
       // err
     })
-  }
+  },
 
+  userComment: function() {
+    console.log(this.data.datatype)
+    let tableID = 52142
+    let query = new wx.BaaS.Query()
+    let currentId = wx.getStorageSync('userId')
+    let userComment = new wx.BaaS.TableObject(tableID)
+    let CommentListId = []
+    let datatype = this.data.datatype
+    query.compare("created_by", "=", currentId)
+    userComment.setQuery(query).find().then(res => {
+      // success
+      var Commentlist = res.data.objects;
+      for (var i = 0; i < Commentlist.length; i++) {
+        CommentListId[i] = Commentlist[i].parent_id
+      }
+      this.pullCards(CommentListId)
+      console.log(CommentListId)
+    }, err => {
+      // err
+    })
+  },
+
+  userSend: function(){
+    var currentId = wx.getStorageSync('userId')
+    let Idlist = []
+    Idlist[0] = currentId
+    this.pullCards(Idlist)
+  }
 
 })
