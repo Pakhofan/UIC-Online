@@ -11,16 +11,24 @@ Page({
     ChangeWX: true,
   },
 
-  onShow: function () {
-   
+  onShow: function() {
+
   },
 
-  onChangeWX: function(){
-    this.showModal()
+  onChangeWX: function() {
+    var ChangeWX = this.data.ChangeWX
+    if (ChangeWX) {
+      this.showModal()
+    }
+    else{
+      this.setData({
+        ChangeWX: !this.data.ChangeWX
+      })
+    }
   },
 
   //信息更新确认弹出框
-  showModal: function () {
+  showModal: function() {
     var that = this;
     wx.showModal({
       title: "修改确认",
@@ -30,7 +38,7 @@ Page({
       cancelcolor: "#666",
       confirmText: "确认",
       confirmColor: "#333",
-      success: function (res) {
+      success: function(res) {
         if (res.confirm) {
           that.setData({
             ChangeWX: !that.data.ChangeWX,
@@ -42,7 +50,7 @@ Page({
     })
   },
   //信息更新
-  information_update: function () {
+  information_update: function() {
     let MyUser = new wx.BaaS.User()
     let currentUser = MyUser.getCurrentUserWithoutData()
     let userdata = {
@@ -58,13 +66,13 @@ Page({
   },
 
   //微信号输入
-  userInputWX: function (e) {
+  userInputWX: function(e) {
     this.setData({
       textWX: e.detail.value,
     })
   },
   //手机号输入
-  userInputPhone: function (e) {
+  userInputPhone: function(e) {
     this.setData({
       textPhone: e.detail.value.replace(/[^\d]/g, ''),
     })
