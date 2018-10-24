@@ -55,3 +55,24 @@
   line-height: 40px;
   font-size: 13px;
 }
+
+.btn-sharetofriend {
+  font-size: 8pt;
+  text-align: left;
+  width: 200rpx;
+  height: 20pt;
+  line-height: 20pt;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  border: none;
+  background-color: #fff;
+  padding-left: 1px;
+}
+
+.btn-sharetofriend::after {
+  border: none;
+}
+
+button::after{
+    border: none;
+}

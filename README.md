@@ -40,3 +40,5 @@
 * downloadFile合法域名  https://media.ifanrusercontent.com  https://cloud-minapp-20256.cloud.ifanrusercontent.com
 ### 知晓云
 请联系管理员
+## 工作周报
+* [2018年10月21日](https://shimo.im/docs/HlolQVM3ub4uaEsT/)
