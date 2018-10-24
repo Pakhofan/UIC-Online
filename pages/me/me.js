@@ -157,7 +157,7 @@ Page({
   OnhistoryTap: function(e) {
     var dataType = e.currentTarget.dataset.type
     wx.navigateTo({
-      url: '../history/history?datatype='+dataType,
+      url: '../me-history/me-history?datatype='+dataType,
     })
   }
 })

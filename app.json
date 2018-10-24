@@ -7,7 +7,7 @@
     "pages/send/send",
     "pages/me/me",
     "pages/search/search",
-    "pages/history/history"
+    "pages/me-history/me-history"
   ],
   "window": {
     "backgroundColor": "#eee",
