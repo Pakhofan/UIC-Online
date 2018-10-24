@@ -155,8 +155,9 @@ Page({
   },
   //历史信息按钮跳转
   OnhistoryTap: function(e) {
+    var dataType = e.currentTarget.dataset.type
     wx.navigateTo({
-      url: '../history/history',
+      url: '../history/history?datatype='+dataType,
     })
   }
 })

@@ -28,24 +28,6 @@
                     <view class='menuContainer'>
                       <i class="icon-menu"></i>
                     </view>
-<<<<<<< HEAD
-                    <view wx:else catchtap='viewProfile' data-id='{{item.created_by}}' class="firstRowItemA">
-                      <image class="headPic" mode='aspectFill' src="{{item.creator_avatar}}"></image>
-                    </view>
-                    <view class="firstRowItemB">
-                      <block wx:if="{{item.status == 1}}">
-                        <view class="name">匿名 </view>
-                      </block>
-                      <block wx:else>
-                        <view class="name" catchtap='viewProfile' data-id='{{item.created_by}}'>{{item.creator_name}}</view>
-                      </block>
-                      <view class="date">{{item.created_at_format}}</view>
-                    </view>
-                  </view>
-                  <view class="contentContainer">
-                    <view class="text" wx:if="{{item.text!=null}}">
-                      <text selectable="true">{{item.text}}</text>
-=======
                     <view class='firstRow'>
                       <view wx:if="{{item.status == 1}}" class="firstRowItemA">
                         <image class="headPic" mode='aspectFill' src="/imgs/anonymousAvatarA.png"></image>
@@ -62,7 +44,6 @@
                         </block>
                         <view class="date">{{item.created_at_format}}</view>
                       </view>
->>>>>>> upstream/master
                     </view>
                     <view class="contentContainer">
                       <view class="text" wx:if="{{item.text!=null||item.label!=null}}">
@@ -84,12 +65,6 @@
                         </view>
                       </view>
                     </view>
-<<<<<<< HEAD
-                  <view class='lastRow'>
-                    <view class='lastRowItem lastRowItemA'>
-                      <button open-type='share' data-tag='btn-sharetofriend' data-cardId='{{item.id}}' data-text='{{item.text}}' class='shareContainer'>
-                        <image class='iconButton' src='/imgs/share.png' style='opacity: 0.5;'></image>
-=======
                     <view class='listB' wx:if="{{item.position!=null}}">
                       <image class='iconButton' src='/imgs/position.png'></image>
                       <text class='positionText'>{{item.position}}</text>
@@ -98,7 +73,6 @@
                       <view class='lastRowItem lastRowItemA'>
                         <button open-type='share' data-tag='btn-sharetofriend' data-cardId='{{item.id}}' data-text='{{item.text}}' class='shareContainer'>
                           <image class='iconButton' src='/imgs/share.png' style='opacity: 0.5;'></image>
->>>>>>> upstream/master
 
                           <text class='iconText'>分享</text>
                         </button>
