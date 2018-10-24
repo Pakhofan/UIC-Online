@@ -72,3 +72,33 @@ button {
   font-size: 11pt;
   color: #929292;
 }
+
+.myRow_A{
+  border-bottom: 1px solid;
+  border-bottom-color:#aaa;
+  display: flex;
+  flex-direction: row;
+  margin-top: 20px;
+  width: 100%;
+  padding-bottom: 11px;
+}
+
+.myRow_item{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-left: 60px;
+  height: auto;
+  width: auto;
+}
+
+.mytext{
+  font-size: 12px;
+  color: #aaa;
+  margin-top: 3rpx;
+}
+
+.myImg{
+  width: 60rpx;
+  height: 60rpx;
+}
