@@ -6,18 +6,18 @@
     </view>
       <view class='list'>
         <view class='listItemA'>微信号</view>
-        <textarea class='listItemB' placeholder='请输入信息' value="{{text_WX}}" maxlength='150' auto-height='ture' cursor-spacing='100' bindinput='userInput_WX' disabled="{{disabled_WX}}"></textarea>
+        <textarea class='listItemB' placeholder='请输入信息' value="{{textWX}}" maxlength='150' auto-height='ture' cursor-spacing='100' bindinput='userInputWX' disabled="{{disabledWX}}"></textarea>
         <view class='listItemC'></view>
       </view>
       <view class='list'>
         <view class='listItemA'>手机号</view>
-        <textarea class='listItemB' placeholder='请输入信息' value="{{text_Phone}}" maxlength='11' auto-height='ture' cursor-spacing='100' bindinput='userInput_Phone' disabled="{{disabled_WX}}"></textarea>
+        <textarea class='listItemB' placeholder='请输入信息' value="{{textPhone}}" maxlength='11' auto-height='ture' cursor-spacing='100' bindinput='userInputPhone' disabled="{{disabledWX}}"></textarea>
         <view class='listItemC'>
         </view>
       </view>
       <view class='list' style='border-style:none;'>
-        <button class='buttonA' wx:if="{{Change_WX}}" catchtap='onChange_WX'>保存</button>
-        <button class='buttonA' wx:else catchtap='onChange_WX'>修改</button>
+        <button class='buttonA' wx:if="{{ChangeWX}}" catchtap='onChangeWX'>保存</button>
+        <button class='buttonA' wx:else catchtap='onChangeWX'>修改</button>
       </view>
     </view>
   </view>

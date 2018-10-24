@@ -7,84 +7,18 @@ Page({
    */
 
   data: {
-    motto: 'Hello UIC',
-    userInfo: {},
-    hasUserInfo: false,
-    canIUse: wx.canIUse('button.open-type.getUserInfo'),
-    disabled_WX: false,
-    Change_WX: true,
+    disabledWX: false,
+    ChangeWX: true,
   },
 
   onShow: function () {
-    if (app.globalData.userInfo) {
-      this.setData({
-        userInfo: app.globalData.userInfo,
-        hasUserInfo: true
-      })
-    } else if (this.data.canIUse) {
-      // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-      // 所以此处加入 callback 以防止这种情况
-      app.userInfoReadyCallback = res => {
-        this.setData({
-          userInfo: res.userInfo,
-          hasUserInfo: true
-        })
-      }
-    } else {
-      // 在没有 open-type=getUserInfo 版本的兼容处理
-      wx.getUserInfo({
-        success: res => {
-          app.globalData.userInfo = res.userInfo
-          this.setData({
-            userInfo: res.userInfo,
-            hasUserInfo: true
-          })
-        }
-      })
-    }
+   
   },
-  getUserInfo: function (e) {
-    var id = 0
-    wx.BaaS.handleUserInfo(e).then(res => {
-      console.log('！！！！')
-      console.log(res)
-      id = res.id
-      let MyUser = new wx.BaaS.User()
-      MyUser.get(id).then(res => {
-        console.log(res.data)
-        //这里获取到的是云端数据
-        app.globalData.BaaSAvatar = res.data.avatar
-        wx.setStorageSync('BaaSAvatar', res.data.avatar)
-        // success
-      }, err => {
-        // err
-      })
-      app.globalData.userId = id
-      wx.setStorageSync('userId', id)
-      // res 包含用户完整信息
-    }, res => {
-      // **res 有两种情况**：用户拒绝授权，res 包含基本用户信息：id、openid、unionid；其他类型的错误，如网络断开、请求超时等，将返回 Error 对象（详情见下方注解）
-    })
-    if (e.detail.userInfo) {
-      app.globalData.userInfo = e.detail.userInfo
-      this.setData({
-        userInfo: e.detail.userInfo,
-        hasUserInfo: true,
-      })
-    }
-    console.log(app.globalData.userInfo)
+
+  onChangeWX: function(){
+    this.showModal()
   },
-  //修改或保存按钮
-  onChange_WX: function (e) {
-    if (this.data.Change_WX) {
-      this.showModal();
-    } else {
-      this.setData({
-        Change_WX: !this.data.Change_WX,
-        disabled_WX: !this.data.disabled_WX,
-      })
-    }
-  },
+
   //信息更新确认弹出框
   showModal: function () {
     var that = this;
@@ -99,8 +33,8 @@ Page({
       success: function (res) {
         if (res.confirm) {
           that.setData({
-            Change_WX: !that.data.Change_WX,
-            disabled_WX: !that.data.disabled_WX,
+            ChangeWX: !that.data.ChangeWX,
+            disabledWX: !that.data.disabledWX,
           })
           that.information_update()
         }
@@ -112,8 +46,8 @@ Page({
     let MyUser = new wx.BaaS.User()
     let currentUser = MyUser.getCurrentUserWithoutData()
     let userdata = {
-      wechat_id: this.data.text_WX,
-      phone_number: this.data.text_Phone,
+      wechat_id: this.data.textWX,
+      phone_number: this.data.textPhone,
     }
     currentUser.set(userdata).update().then(res => {
       // success
@@ -124,15 +58,15 @@ Page({
   },
 
   //微信号输入
-  userInput_WX: function (e) {
+  userInputWX: function (e) {
     this.setData({
-      text_WX: e.detail.value,
+      textWX: e.detail.value,
     })
   },
   //手机号输入
-  userInput_Phone: function (e) {
+  userInputPhone: function (e) {
     this.setData({
-      text_Phone: e.detail.value.replace(/[^\d]/g, ''),
+      textPhone: e.detail.value.replace(/[^\d]/g, ''),
     })
   },
 })

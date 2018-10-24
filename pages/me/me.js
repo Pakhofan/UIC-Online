@@ -74,67 +74,7 @@ Page({
     }
     console.log(app.globalData.userInfo)
   },
-  //修改或保存按钮
-  onChange_WX: function(e) {
-    if (this.data.Change_WX) {
-      this.showModal();
-    } else {
-      this.setData({
-        Change_WX: !this.data.Change_WX,
-        disabled_WX: !this.data.disabled_WX,
-      })
-    }
-  },
-  //信息更新确认弹出框
-  showModal: function() {
-    var that = this;
-    wx.showModal({
-      title: "修改确认",
-      content: "确认此次修改",
-      showCancel: "True",
-      cancelText: "取消",
-      cancelcolor: "#666",
-      confirmText: "确认",
-      confirmColor: "#333",
-      success: function(res) {
-        if (res.confirm) {
-          that.setData({
-            Change_WX: !that.data.Change_WX,
-            disabled_WX: !that.data.disabled_WX,
-          })
-          that.information_update()
-        }
-      },
-    })
-  },
-  //信息更新
-  information_update: function() {
-    let MyUser = new wx.BaaS.User()
-    let currentUser = MyUser.getCurrentUserWithoutData()
-    let userdata = {
-      wechat_id: this.data.text_WX,
-      phone_number: this.data.text_Phone,
-    }
-    currentUser.set(userdata).update().then(res => {
-      // success
-    }, err => {
-      // err
-    })
 
-  },
-
-  //微信号输入
-  userInput_WX: function(e) {
-    this.setData({
-      text_WX: e.detail.value,
-    })
-  },
-  //手机号输入
-  userInput_Phone: function(e) {
-    this.setData({
-      text_Phone: e.detail.value.replace(/[^\d]/g, ''),
-    })
-  },
   //登出
   Logout: function() {
     wx.BaaS.logout().then(res => {
