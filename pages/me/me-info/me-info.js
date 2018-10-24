@@ -15,7 +15,7 @@ Page({
     Change_WX: true,
   },
 
-  onShow: function() {
+  onShow: function () {
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,
@@ -43,7 +43,7 @@ Page({
       })
     }
   },
-  getUserInfo: function(e) {
+  getUserInfo: function (e) {
     var id = 0
     wx.BaaS.handleUserInfo(e).then(res => {
       console.log('！！！！')
@@ -75,7 +75,7 @@ Page({
     console.log(app.globalData.userInfo)
   },
   //修改或保存按钮
-  onChange_WX: function(e) {
+  onChange_WX: function (e) {
     if (this.data.Change_WX) {
       this.showModal();
     } else {
@@ -86,7 +86,7 @@ Page({
     }
   },
   //信息更新确认弹出框
-  showModal: function() {
+  showModal: function () {
     var that = this;
     wx.showModal({
       title: "修改确认",
@@ -96,7 +96,7 @@ Page({
       cancelcolor: "#666",
       confirmText: "确认",
       confirmColor: "#333",
-      success: function(res) {
+      success: function (res) {
         if (res.confirm) {
           that.setData({
             Change_WX: !that.data.Change_WX,
@@ -108,7 +108,7 @@ Page({
     })
   },
   //信息更新
-  information_update: function() {
+  information_update: function () {
     let MyUser = new wx.BaaS.User()
     let currentUser = MyUser.getCurrentUserWithoutData()
     let userdata = {
@@ -124,46 +124,15 @@ Page({
   },
 
   //微信号输入
-  userInput_WX: function(e) {
+  userInput_WX: function (e) {
     this.setData({
       text_WX: e.detail.value,
     })
   },
   //手机号输入
-  userInput_Phone: function(e) {
+  userInput_Phone: function (e) {
     this.setData({
       text_Phone: e.detail.value.replace(/[^\d]/g, ''),
     })
   },
-  //登出
-  Logout: function() {
-    wx.BaaS.logout().then(res => {
-      // success
-    }, err => {
-      // err
-    })
-    this.setData({
-      hasUserInfo: false
-    })
-    app.globalData.userInfo = false
-  },
-  //搜索界面跳转按钮
-  OnSearchTap: function(e) {
-    wx.navigateTo({
-      url: '../search/search',
-    })
-  },
-  //历史信息跳转
-  OnHistoryTap: function(e) {
-    var dataType = e.currentTarget.dataset.type
-    wx.navigateTo({
-      url: '../me-history/me-history?datatype='+dataType,
-    })
-  },
-  //个人信息跳转
-  OnMeInfoyTap: function(e){
-    wx.navigateTo({
-      url: 'me-info/me-info',
-    })
-  }
 })
