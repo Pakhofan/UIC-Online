@@ -1,6 +1,7 @@
 {
   "backgroudColor": "#fff",
   "usingComponents": {
-    "card": "/component/card/card"
+    "card": "/component/card/card",
+    "cardTree": "/component/cardTree/cardTree"
   }
 }
