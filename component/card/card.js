@@ -30,7 +30,9 @@ Component({
 
   lifetimes: {
     // 生命周期函数，可以为函数，或一个在methods段中定义的方法名
-    created: function() {},
+    created: function() {
+      //此时不能调用 setData
+    },
     attached: function() {
       this.updateLikedCard()
       if (app.globalData.platform == 'ios') {
@@ -38,6 +40,8 @@ Component({
           webpCode: ''
         })
       }
+    },
+    ready: function() {
     },
   },
 

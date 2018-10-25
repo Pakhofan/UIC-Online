@@ -6,8 +6,7 @@ Component({
   /**
    * 组件的属性列表
    */
-  properties: {
-  },
+  properties: {},
 
   /**
    * 组件的初始数据
@@ -234,6 +233,10 @@ Component({
         for (var i = 0; i < cardList.length; i++) {
           //console.log(i);
           cardList[i].created_at_format = util.calculatedFormatTime(cardList[i].created_at, 'Y-M-D h:m:s')
+          if (cardList[i].text && cardList[i].text.length > 150) {
+            cardList[i].longText = true
+            cardList[i].formatText = cardList[i].text.substr(0, 120)
+          }
         }
         this.setData({
           cards: cardList

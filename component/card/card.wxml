@@ -25,19 +25,42 @@
       <block wx:for="{{card.label}}" wx:key="{{card.label}}">
         <text class='labelText' selectable="true">#{{item}}# </text>
       </block>
-      <text selectable="true">{{card.text}}</text>
+      <block wx:if='{{card.longText}}'>
+        <text selectable="true">{{card.formatText}}</text>
+        <text class='viewAllText'>查看全文 ></text>
+      </block>
+      <block wx:else>
+        <text selectable="true">{{card.text}}</text>
+      </block>
     </view>
-    <view class="pictureContainer">
-      <view class='pictureRow'>
-        <image class="picture" wx:if="{{card.imgs[0]}}" src="{{card.imgs[0] + webpCode}}" mode="aspectFill" catchtap='viewImage' data-src="{{card.imgs[0]}}" data-list="{{card.imgs}}"></image>
-        <image class="picture" wx:if="{{card.imgs[1]}}" src="{{card.imgs[1] + webpCode}}" mode="aspectFill" catchtap='viewImage' data-src="{{card.imgs[1]}}" data-list="{{card.imgs}}"></image>
-        <image class="picture" wx:if="{{card.imgs[2]}}" src="{{card.imgs[2] + webpCode}}" mode="aspectFill" catchtap='viewImage' data-src="{{card.imgs[2]}}" data-list="{{card.imgs}}"></image>
-      </view>
-      <view class='pictureRow'>
-        <image class="picture" wx:if="{{card.imgs[3]}}" src="{{card.imgs[3] + webpCode}}" mode="aspectFill" catchtap='viewImage' data-src="{{card.imgs[3]}}" data-list="{{card.imgs}}"></image>
-        <image class="picture" wx:if="{{card.imgs[4]}}" src="{{card.imgs[4] + webpCode}}" mode="aspectFill" catchtap='viewImage' data-src="{{card.imgs[4]}}" data-list="{{card.imgs}}"></image>
-        <image class="picture" wx:if="{{card.imgs[5]}}" src="{{card.imgs[5] + webpCode}}" mode="aspectFill" catchtap='viewImage' data-src="{{card.imgs[5]}}" data-list="{{card.imgs}}"></image>
-      </view>
+    <view class="pictureContainer" wx:if='{{card.imgs}}'>
+      <block wx:if='{{card.imgs.length==1}}'>
+        <image class="singlePic" wx:if="{{card.imgs[0]}}" src="{{card.imgs[0] + webpCode}}" mode="aspectFill" catchtap='viewImage' data-src="{{card.imgs[0]}}" data-list="{{card.imgs}}"></image>
+      </block>
+      <block wx:else>
+        <block wx:if='{{card.imgs.length==4}}'>
+          <view class='pictureRow'>
+            <image class="picture" wx:if="{{card.imgs[0]}}" src="{{card.imgs[0] + webpCode}}" mode="aspectFill" catchtap='viewImage' data-src="{{card.imgs[0]}}" data-list="{{card.imgs}}"></image>
+            <image class="picture" wx:if="{{card.imgs[1]}}" src="{{card.imgs[1] + webpCode}}" mode="aspectFill" catchtap='viewImage' data-src="{{card.imgs[1]}}" data-list="{{card.imgs}}"></image>
+          </view>
+          <view class='pictureRow'>
+            <image class="picture" wx:if="{{card.imgs[2]}}" src="{{card.imgs[2] + webpCode}}" mode="aspectFill" catchtap='viewImage' data-src="{{card.imgs[2]}}" data-list="{{card.imgs}}"></image>
+            <image class="picture" wx:if="{{card.imgs[3]}}" src="{{card.imgs[3] + webpCode}}" mode="aspectFill" catchtap='viewImage' data-src="{{card.imgs[3]}}" data-list="{{card.imgs}}"></image>
+          </view>
+        </block>
+        <block wx:else>
+          <view class='pictureRow'>
+            <image class="picture" wx:if="{{card.imgs[0]}}" src="{{card.imgs[0] + webpCode}}" mode="aspectFill" catchtap='viewImage' data-src="{{card.imgs[0]}}" data-list="{{card.imgs}}"></image>
+            <image class="picture" wx:if="{{card.imgs[1]}}" src="{{card.imgs[1] + webpCode}}" mode="aspectFill" catchtap='viewImage' data-src="{{card.imgs[1]}}" data-list="{{card.imgs}}"></image>
+            <image class="picture" wx:if="{{card.imgs[2]}}" src="{{card.imgs[2] + webpCode}}" mode="aspectFill" catchtap='viewImage' data-src="{{card.imgs[2]}}" data-list="{{card.imgs}}"></image>
+          </view>
+          <view class='pictureRow'>
+            <image class="picture" wx:if="{{card.imgs[3]}}" src="{{card.imgs[3] + webpCode}}" mode="aspectFill" catchtap='viewImage' data-src="{{card.imgs[3]}}" data-list="{{card.imgs}}"></image>
+            <image class="picture" wx:if="{{card.imgs[4]}}" src="{{card.imgs[4] + webpCode}}" mode="aspectFill" catchtap='viewImage' data-src="{{card.imgs[4]}}" data-list="{{card.imgs}}"></image>
+            <image class="picture" wx:if="{{card.imgs[5]}}" src="{{card.imgs[5] + webpCode}}" mode="aspectFill" catchtap='viewImage' data-src="{{card.imgs[5]}}" data-list="{{card.imgs}}"></image>
+          </view>
+        </block>
+      </block>
     </view>
   </view>
   <view class='listB' wx:if="{{card.position!=null}}">

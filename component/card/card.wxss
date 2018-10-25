@@ -414,3 +414,10 @@ button {
 .btn-sharetofriend::after {
   border: none;
 }
+
+.viewAllText{
+  margin-top: 5px;
+  text-align: left;
+  float: right;
+  color: #576b95;
+}
