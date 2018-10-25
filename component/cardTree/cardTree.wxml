@@ -13,7 +13,7 @@
           <view style="width: {{stv.windowWidth}}px;" wx:for="{{tabs}}" wx:key="unique" wx:for-index="tabsIdx" class="one-scene">
             <scroll-view style="height:100%" scroll-y bindscrolltoupper="toUpperLoadCards" bindscrolltolower="toLowerLoadCards" enable-back-to-top="true" class='mainScrollView'>
               <view class='pageColumn indexColumn'>
-                <block wx:for="{{cards}}" wx:key="_id">
+                <block wx:for="{{cardsData?cardsData:cards}}" wx:key="_id">
                   <block wx:if="{{item.status < 2}}">
                     <view class='cardContainer' bindtap='viewDetail' data-id='{{item.id}}' wx:if="{{tabsIdx==0?true:(item.category == tabsIdx - 1)}}">
                       <card card="{{item}}" size="small"></card>
