@@ -35,9 +35,6 @@ Page({
         url: url
       })
     }
-    wx.showLoading({
-      title: '加载中',
-    });
 
     var that = this;
     //初始化的时候渲染wxSearchdata
@@ -46,17 +43,9 @@ Page({
 
     console.log(getCurrentPages());
   },
-  onReady: function(option) {
-    setTimeout(function() {
-      wx.hideLoading({});
-    }, 500)
-  },
-  onShow: function(option) {
-    setTimeout(function() {
-      wx.hideLoading({});
-    }, 500)
-  },
-  
+  onReady: function(option) {},
+  onShow: function(option) {},
+
 
   // test share to friend
   onShareAppMessage: function(ops) {

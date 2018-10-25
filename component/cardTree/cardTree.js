@@ -43,6 +43,7 @@ Component({
     pullingCards: false,
     toLower: false,
     liking: false,
+    firstLoading: true,
   },
 
   lifetimes: {
@@ -72,6 +73,14 @@ Component({
         this.tabsCount = tabs.length;
       } catch (e) {}
     },
+    ready: function() {
+      var that = this
+      setTimeout(function() {
+        that.setData({
+          firstLoading: false
+        })
+      }, 3000)
+    }
   },
 
   pageLifetimes: {

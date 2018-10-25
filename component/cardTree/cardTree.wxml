@@ -20,7 +20,7 @@
                     </view>
                   </block>
                 </block>
-                <view class='textBetweenLine' wx:if='{{pullingCards}}'>
+                <view class='textBetweenLine' wx:if='{{pullingCards || firstLoading}}'>
                   <image class='loading' src='/imgs/loading.gif'></image>
                 </view>
                 <view class='textBetweenLine' wx:if='{{toLower&&!pullingCards}}'>我是有底线的</view>
