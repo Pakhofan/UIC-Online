@@ -39,6 +39,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onShow: function(options) {
+    console.log(app.globalData.userInfo.avatarUrl, wx.getStorageSync('BaaSAvatar'))
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,
@@ -203,7 +204,7 @@ Page({
       text: this.data.text,
       imgs: this.data.paths,
       creator_name: this.data.userInfo.nickName,
-      creator_avatar: wx.getStorageSync('BaaSAvatar'),
+      creator_avatar: (wx.getStorageSync('BaaSAvatar')!="") ? wx.getStorageSync('BaaSAvatar'):app.globalData.userInfo,
       category: this.data.istreehole ? 0 : 1,
       status: this.data.istreehole ? (this.data.ishidename ? 1 : 0) : 0,
       label: this.data.label,
