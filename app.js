@@ -1,4 +1,5 @@
 //app.js
+const util = require('utils/util.js')
 App({
   onLaunch: function() {
     wx.BaaS = requirePlugin('sdkPlugin')
@@ -59,6 +60,7 @@ App({
     })
   },
   onShow: function(res) {
+    util.pullLikedList()
     switch (res.scene) {
       case 1007:
         this.globalData.scene = 1007

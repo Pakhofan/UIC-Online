@@ -367,13 +367,26 @@ button {
   font-size: 16px;
 }
 
-.picture {
+.pictureSmall {
   height: 190rpx;
   width: 190rpx;
   margin: 5rpx;
 }
 
-.singlePic {
+.picture {
+  height: 290rpx;
+  width: 290rpx;
+  margin: 5rpx;
+}
+
+.singlePictureSmall {
+  height: 400rpx;
+  width: 400rpx;
+  margin: 5rpx;
+  border-radius: 3px;
+}
+
+.singlePicture {
   height: 400rpx;
   width: 400rpx;
   margin: 5rpx;

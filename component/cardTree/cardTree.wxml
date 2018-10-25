@@ -16,7 +16,7 @@
                 <block wx:for="{{cards}}" wx:key="_id">
                   <block wx:if="{{item.status < 2}}">
                     <view class='cardContainer' bindtap='viewDetail' data-id='{{item.id}}' wx:if="{{tabsIdx==0?true:(item.category == tabsIdx - 1)}}">
-                      <card card="{{item}}"></card>
+                      <card card="{{item}}" size="small"></card>
                     </view>
                   </block>
                 </block>

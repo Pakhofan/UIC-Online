@@ -70,6 +70,13 @@ Component({
     },
   },
 
+  pageLifetimes: {
+    // 组件所在页面的生命周期函数
+    show: function () {
+      console.log("cardTreeShow")
+    },
+  },
+
   /**
    * 组件的方法列表
    */
@@ -279,34 +286,6 @@ Component({
         });
         // err
       })
-    },
-    pullLikedList: function() {
-      var that = this
-      let currentId = wx.getStorageSync('userId')
-      var Like = new wx.BaaS.TableObject(52143)
-
-      let query = new wx.BaaS.Query()
-      query.compare('created_by', '=', currentId)
-
-      Like.setQuery(query).find().then(res => {
-        //console.log(res.data);
-        var likedList = res.data.objects;
-        this.setData({
-          likedList: likedList
-        });
-        try {
-          wx.setStorage({
-            key: "likedList",
-            data: likedList
-          })
-        } catch (e) {
-          console.log(e);
-        }
-        // success
-      }, err => {
-        // err
-      })
-
     },
   }
 })

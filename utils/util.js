@@ -104,7 +104,36 @@ const formatNumber = n => {
   return n[1] ? n : '0' + n
 }
 
+
+function pullLikedList() {
+  //更新点赞缓存
+  var that = this
+  let currentId = wx.getStorageSync('userId')
+  var Like = new wx.BaaS.TableObject(52143)
+
+  let query = new wx.BaaS.Query()
+  query.compare('created_by', '=', currentId)
+
+  Like.setQuery(query).find().then(res => {
+    //console.log(res.data);
+    var likedList = res.data.objects;
+    try {
+      wx.setStorage({
+        key: "likedList",
+        data: likedList
+      })
+    } catch (e) {
+      console.log(e);
+    }
+    // success
+  }, err => {
+    // err
+  })
+
+}
+
 module.exports = {
   formatTime: formatTime,
-  calculatedFormatTime: calculatedFormatTime
+  calculatedFormatTime: calculatedFormatTime,
+  pullLikedList: pullLikedList,
 }
