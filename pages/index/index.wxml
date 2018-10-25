@@ -10,4 +10,4 @@
   </view>
 </view>
 <template is="wxSearch" data="{{wxSearchData}}" />
-<cardTree></cardTree>
+<cardTree display-tabs="true" minus-height='40'></cardTree>
