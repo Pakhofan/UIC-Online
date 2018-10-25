@@ -76,3 +76,6 @@
 button::after{
     border: none;
 }
+i-action-sheet button{
+  width: 100%;
+}

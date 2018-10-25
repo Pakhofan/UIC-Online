@@ -6,7 +6,9 @@
 <view class='pageColumn' style='padding-bottom: 20px;'>
   <view class='card'>
     <view class='menuContainer'>
-      <i catchtap="createqrcode" data-id='{{card.id}}' class="icon-menu"></i>
+      <i catchtap="openActionSheet" data-id='{{card.id}}' class="icon-menu"></i>
+      <i-action-sheet visible="{{ visible }}" actions="{{ actions }}" show-cancel bind:cancel="closeActionSheet" bind:click="handleClickItem" />
+
     </view>
     <view class='firstRow'>
       <view wx:if="{{card.status == 1}}" class="firstRowItemA">

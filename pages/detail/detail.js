@@ -21,6 +21,39 @@ Page({
     showHomeButton: false,
     autoFocus: false,
     liking: false,
+    /* action-sheet */
+    visible: false,
+    actions: [
+      {
+        name: '生成海报',
+      },
+      {
+        name: '我要举报'
+      },
+      // {
+      //   name: '去分享',
+      //   icon: 'share',
+      //   openType: 'share'
+      // }
+    ],
+  },
+  openActionSheet() {
+    this.setData({
+      visible: true
+    });
+  },
+
+  closeActionSheet() {
+    this.setData({
+      visible: false
+    });
+  },
+  handleClickItem({ detail }) {
+    const index = detail.index + 1;
+    console.log("click item ：" + index)
+    // $Message({
+    //   content: '点击了选项' + index
+    // });
   },
 
   /**
