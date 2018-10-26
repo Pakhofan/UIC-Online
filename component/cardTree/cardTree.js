@@ -20,11 +20,21 @@ Component({
       value: 0,
       observer: function(newVal, oldVal, changedPath) {}
     },
+    cardTreeType: { // 父页面类型，通常和cardsData一起提供
+      type: String,
+      value: "all", // search, like, comment
+      observer: function(newVal, oldVal, changedPath) {}
+    },
     cardsData: { // 外部是否提供cards数据
       type: Object,
       value: null,
       observer: function(newVal, oldVal, changedPath) {}
     },
+    searchKeywords: {
+      type: String,
+      value: "", // search, like, comment
+      observer: function(newVal, oldVal, changedPath) {}
+    }
   },
 
   /**
@@ -49,7 +59,7 @@ Component({
   lifetimes: {
     // 生命周期函数，可以为函数，或一个在methods段中定义的方法名
     created: function() {
-      if (this.properties.cardsData == null) {
+      if (this.properties.cardTreeType == "all") {
         if (!this.data.pullingCards) {
           this.pullCards();
         }
@@ -209,13 +219,13 @@ Component({
     },
     toUpperLoadCards: function() {
       //console.log('!!!!!!!!!!!!!!!!!')
-      if (!this.data.pullingCards) {
+      if (!this.data.pullingCards && this.properties.cardTreeType == "all") {
         this.pullCards("up");
       }
     },
     toLowerLoadCards: function() {
       //console.log('################')
-      if (!this.data.pullingCards) {
+      if (!this.data.pullingCards && this.properties.cardTreeType == "all") {
         this.pullCards("down");
       }
       this.setData({
@@ -300,5 +310,20 @@ Component({
         // err
       })
     },
+    displayKeywords: function(){
+      // not work
+      var cards = this.properties.cardsData
+      console.log(cards)
+      let keywords = this.properties.searchKeywords
+      let replaceString = '<span style="color: rgb(247, 150, 70);"><strong>' + keywords + '</strong></span>'
+      for (var i = 0; i < cards.length; i++) {
+        while (cards[i].text.indexOf(keywords) != -1) {
+          cards[i].text = cards[i].text.replace(keywords, replaceString)
+        }
+      }
+      this.setData({
+        cardsData: []
+      })
+    }
   }
 })

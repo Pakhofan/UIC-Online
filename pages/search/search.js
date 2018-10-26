@@ -3,7 +3,7 @@ var app = getApp();
 Page({
   data: {
     //keywords: "",
-    //returnInfo: "",
+    //returnCards: "",
     // wxSearchData:{
     //   view:{
     //     isShow: true
@@ -18,7 +18,7 @@ Page({
     WxSearch.initMindKeys(['weappdev.com', '微信小程序开发', '微信开发', '微信小程序']);
     if (option.keywords != null) {
       let wxSearchData = this.data.wxSearchData
-      wxSearchData['value'] = option.keywords
+      wxSearchData['value'] = option.keywords == "undefined" ? "" : option.keywords
       this.setData({
         keywords: option.keywords,
         wxSearchData: wxSearchData
@@ -74,7 +74,7 @@ Page({
       // success
       console.log(res.data.objects)
       this.setData({
-        returnInfo: res.data.objects
+        returnCards: res.data.objects
       })
     }, err => {
       // err
