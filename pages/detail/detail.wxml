@@ -6,7 +6,7 @@
 <view class='pageColumn' style='padding-bottom: 20px;'>
   <view class='card'>
     <view class='menuContainer'>
-      <i catchtap="openActionSheet" data-id='{{card.id}}' class="icon-menu"></i>
+      <i catchtap="openActionSheet" data-id='{{card.id}}' data-img='{{card.imgs[0]}}' class="icon-menu"></i>
       <i-action-sheet visible="{{ visible }}" actions="{{ actions }}" show-cancel bind:cancel="closeActionSheet" bind:click="handleClickItem" />
 
     </view>

@@ -1,0 +1,5 @@
+{
+    "usingComponents": {
+        "i-card": "/pages/iview-weapp/dist/card/index"
+    }
+}

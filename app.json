@@ -1,7 +1,9 @@
 {
   "pages": [
+    
     "pages/index/index",
     "pages/test/test",
+    "pages/report/report",
     
     "pages/logs/logs",
     "pages/profile/profile",

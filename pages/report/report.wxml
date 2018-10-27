@@ -1,0 +1,48 @@
+<!--pages/report/report.wxml-->
+<!--pages/send/send.wxml-->
+<view class='pageColumn'>
+    <view class='card'>
+
+        <view class="contentContainer">
+            <view class="weui-uploader__info mylabel">投诉内容</view>
+
+            <i-card title="" extra="" thumb="{{cardImg}}">
+                <view slot="content">{{cardText}}</view>
+                <!-- <view slot="footer">尾部内容</view> -->
+            </i-card>
+
+            <view class="weui-uploader__info mylabel">投诉描述</view>
+
+            <view class="text">
+                <textarea selectable="true" placeholder='' value='{{text}}' maxlength='500' auto-height='ture' cursor-spacing='100' bindinput='userInput'></textarea>
+
+                <view class="weui-uploader__info" style='margin-top:5px;width:100%;text-align:end;'>{{text.length}}/500</view>
+            </view>
+            <view class="pictureContainer">
+                <view class="weui-uploader">
+                    <view class="weui-uploader__hd">
+                        <view class="weui-uploader__info mylabel">证据截图{{files.length}}/6</view>
+                    </view>
+                    <view class="weui-uploader__bd">
+                        <view class="weui-uploader__files" id="uploaderFiles">
+                            <block wx:for="{{files}}" wx:key="*this">
+                                <view class="weui-uploader__file" bindtap="previewImage" id="{{item}}">
+                                    <image class="weui-uploader__img" src="{{item}}" mode="aspectFill" />
+                                </view>
+                            </block>
+                        </view>
+                        <view class="weui-uploader__input-box" style='display:{{uploaderDisplay}}'>
+                            <view class="weui-uploader__input" bindtap="chooseImage"></view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+
+
+    <view class='sendContainer'>
+        <button class='buttonA sendButton' wx:if="{{hasUserInfo && ((text.length > 0)|| files.length > 0)}}" catchtap="onSendTap">提交</button>
+        <button class='buttonADisable sendButton' wx:else>提交</button>
+    </view>
+</view>
