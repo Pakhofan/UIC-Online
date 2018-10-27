@@ -79,3 +79,7 @@ button::after{
 i-action-sheet button{
   width: 100%;
 }
+
+.i-as-show{
+    z-index: 999;
+}
