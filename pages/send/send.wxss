@@ -210,7 +210,7 @@
   margin-left: 25rpx;
 }
 
-.checkbox{
+.checkBox{
   flex-direction: column;
   font-size: 14px;
   padding: 11rpx;

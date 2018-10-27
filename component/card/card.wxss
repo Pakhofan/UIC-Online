@@ -1,4 +1,4 @@
-/**app.wxss**/
+/* component/card/card.wxss */
 .container {
   height: 100%;
   display: flex;
@@ -7,15 +7,6 @@
   justify-content: space-between;
   box-sizing: border-box;
 } 
-
-view, text, button{
-  font-family: MicroSoft Yahei,Helvetica Neue, Helvetica, Arial, sans-serif;
-}
-
-page{
-  width: 750rpx;
-  height: auto;
-}
 
 .pageColumn {
   margin: 0 auto;
@@ -26,6 +17,7 @@ page{
   background-color: #fff;
   margin-top: 15px;
   margin-bottom: 15px;
+  margin-left: 25rpx;
   padding-top: 20px;
   padding-bottom: 10px;
   width: 700rpx;
@@ -371,8 +363,74 @@ button {
   line-height: 20px;
 }
 
-.loading{
-  width: 80px;
-  height: 80px;
-  margin-top: 12px;
+.text {
+  font-size: 16px;
+}
+
+.pictureSmall {
+  height: 190rpx;
+  width: 190rpx;
+  margin: 5rpx;
+}
+
+.picture {
+  height: 290rpx;
+  width: 290rpx;
+  margin: 5rpx;
+}
+
+.singlePictureSmall {
+  height: 400rpx;
+  width: 400rpx;
+  margin: 5rpx;
+  border-radius: 3px;
+}
+
+.singlePicture {
+  height: 400rpx;
+  width: 400rpx;
+  margin: 5rpx;
+  border-radius: 3px;
+}
+
+.bottomContainer {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  width: 600rpx;
+  margin: 0 auto;
+}
+
+.bottomRow {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+}
+
+.icon {
+  width: 20px;
+  height: 20px;
+}
+
+.btn-sharetofriend {
+  font-size: 8pt;
+  text-align: left;
+  width: 200rpx;
+  height: 20pt;
+  line-height: 20pt;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  border: none;
+  background-color: #fff;
+  padding-left: 1px;
+}
+
+.btn-sharetofriend::after {
+  border: none;
+}
+
+.viewAllText{
+  margin-top: 5px;
+  text-align: left;
+  float: right;
+  color: #576b95;
 }

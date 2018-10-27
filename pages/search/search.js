@@ -3,7 +3,7 @@ var app = getApp();
 Page({
   data: {
     //keywords: "",
-    //returnInfo: "",
+    //returnCards: "",
     // wxSearchData:{
     //   view:{
     //     isShow: true
@@ -14,16 +14,16 @@ Page({
     console.log('onLoad');
     var that = this;
     //初始化的时候渲染wxSearchdata
-    // WxSearch.init(that, 43, ['weappdev', '小程序', 'wxParse', 'wxSearch', 'wxNotification']);
+    WxSearch.init(that, 43, ['weappdev', '小程序', 'wxParse', 'wxSearch', 'wxNotification']);
     WxSearch.initMindKeys(['weappdev.com', '微信小程序开发', '微信开发', '微信小程序']);
     if (option.keywords != null) {
       let wxSearchData = this.data.wxSearchData
-      wxSearchData['value'] = option.keywords
-      console.log("QWER")
+      wxSearchData['value'] = option.keywords == "undefined" ? "" : option.keywords
       this.setData({
         keywords: option.keywords,
         wxSearchData: wxSearchData
       })
+      that.queryInformation()
     }
   },
   wxSearchFn: function(e) {
@@ -74,7 +74,7 @@ Page({
       // success
       console.log(res.data.objects)
       this.setData({
-        returnInfo: res.data.objects
+        returnCards: res.data.objects
       })
     }, err => {
       // err
