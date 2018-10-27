@@ -9,38 +9,33 @@
         <button class='logout' catchtap='Logout'>登出</button>
       </block>
     </view>
-    <view class='listContainer'>
-      <view class='list'>
-        <view class='listItemA'>微信号</view>
-        <textarea class='listItemB' placeholder='请输入信息' value="{{text_WX}}" maxlength='150' auto-height='ture' cursor-spacing='100' bindinput='userInput_WX' disabled="{{disabled_WX}}"></textarea>
-        <view class='listItemC'></view>
-      </view>
-      <view class='list'>
-        <view class='listItemA'>手机号</view>
-        <textarea class='listItemB' placeholder='请输入信息' value="{{text_Phone}}" maxlength='11' auto-height='ture' cursor-spacing='100' bindinput='userInput_Phone' disabled="{{disabled_WX}}"></textarea>
-        <view class='listItemC'>
-        </view>
-      </view>
-      <view class='list' style='border-style:none;'>
-        <button class='buttonA' wx:if="{{Change_WX}}" catchtap='onChange_WX'>保存</button>
-        <button class='buttonA' wx:else catchtap='onChange_WX'>修改</button>
+
+    <view class='myRowA'>
+      <view catchtap='OnMeInfoyTap' class='myRowItem' data-type='like'>
+        <image class='myImg' src='/imgs/me_black_tiny.png' />
+        <text class='myText'>个人信息</text>
       </view>
     </view>
-    <view class='myRow_A'>
-      <view catchtap='OnhistoryTap' class='myRow_item' data-type='like'>
-        <image class='myImg' src='/imgs/liked.png'/>
-        <text class='mytext'>点赞过</text>
+    <view class='myRowA'>
+      <view catchtap='OnHistoryTap' class='myRowItem' data-type='like'>
+        <image class='myImg' src='/imgs/liked.png' />
+        <text class='myText'>点赞过</text>
       </view>
-      <view catchtap='OnhistoryTap' class='myRow_item' data-type='commment'>
-        <image class='myImg' src='/imgs/comment.png'/>
-        <text class='mytext'>评论过</text>
+      <view catchtap='OnHistoryTap' class='myRowItem' data-type='commment'>
+        <image class='myImg' src='/imgs/comment.png' />
+        <text class='myText'>评论过</text>
       </view>
-      <view catchtap='OnhistoryTap' class='myRow_item' data-type='send'>
-        <image class='myImg' src='/imgs/plus_black_tiny.png'/>
-        <text class='mytext'>发布过</text>
+      <view catchtap='OnHistoryTap' class='myRowItem' data-type='send'>
+        <image class='myImg' src='/imgs/plus_black_tiny.png' />
+        <text class='myText'>发布过</text>
+      </view>
+    </view>
+    <view class='myRowA'>
+      <view catchtap='OnSearchTap' class='myRowItem' data-type='send'>
+        <image class='myImg' src='/imgs/index_black_tiny.png' />
+        <text class='myText'>搜索</text>
       </view>
     </view>
   </view>
-  <button class='history-info' catchtap='OnsearchTap'>搜索</button>
   <view class="bottomText">Copyright ©300E 2018</view>
 </view>

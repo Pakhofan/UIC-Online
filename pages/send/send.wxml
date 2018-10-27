@@ -65,8 +65,8 @@
     </view>
     <block wx:if="{{isopen}}">
       <checkbox-group bindchange="labelBoxChange">
-        <label class="checkbox" wx:for="{{labelDefault}}">
-          <checkbox class="checkbox" value="{{item.value}}" checked="{{item.checked}}" />{{item.value}}
+        <label class="checkBox" wx:for="{{labelDefault}}">
+          <checkbox class="checkBox" value="{{item.value}}" checked="{{item.checked}}" />{{item.value}}
         </label>
       </checkbox-group>
     </block>

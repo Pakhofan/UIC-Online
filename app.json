@@ -11,7 +11,8 @@
     "pages/send/send",
     "pages/me/me",
     "pages/search/search",
-    "pages/me-history/me-history"
+    "pages/me-history/me-history",
+    "pages/me/me-info/me-info"
   ],
   "window": {
     "backgroundColor": "#eee",
@@ -50,6 +51,10 @@
     "sdkPlugin": {
       "version": "1.9.0",
       "provider": "wxc6b86e382a1e3294"
+    },
+    "wxparserPlugin": {
+      "version": "0.2.1",
+      "provider": "wx9d4d4ffa781ff3ac"
     }
   }
 }

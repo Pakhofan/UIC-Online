@@ -1,4 +1,5 @@
 //app.js
+const util = require('utils/util.js')
 App({
   onLaunch: function() {
     wx.BaaS = requirePlugin('sdkPlugin')
@@ -16,6 +17,7 @@ App({
     // 登录
     wx.login({
       success: res => {
+        console.log("wx.login success")
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
 
       }
@@ -23,6 +25,7 @@ App({
 
     // 微信用户登录小程序
     wx.BaaS.login(false).then(res => {
+      console.log("wx.BaaS.login success")
       // 登录成功
     }, res => {
       // 登录失败
@@ -57,6 +60,7 @@ App({
     })
   },
   onShow: function(res) {
+    util.pullLikedList()
     switch (res.scene) {
       case 1007:
         this.globalData.scene = 1007

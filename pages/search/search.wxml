@@ -6,3 +6,4 @@
       </view>
 </view>
 <template is="wxSearch" data="{{wxSearchData}}"/>
+<cardTree minus-height='40' cards-data='{{returnCards}}' card-tree-type='search' search-keywords="{{keywords}}"></cardTree>
