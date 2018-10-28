@@ -42,4 +42,4 @@
 请联系管理员
 ## 工作周报
 * [2018年10月21日](https://shimo.im/docs/HlolQVM3ub4uaEsT/)
-* [2018年10月28日](https://shimo.im/docs/erO6tXq5p1IWYPJG)
+* [2018年10月28日](https://shimo.im/docs/erO6tXq5p1IWYPJG/)
