@@ -425,7 +425,7 @@ button {
 }
 
 .btn-sharetofriend::after {
-  border: none;
+  border: solid;
 }
 
 .viewAllText{
