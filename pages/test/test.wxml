@@ -1,0 +1,8 @@
+<!--pages/test/test.wxml-->
+      <i catchtap="openActionSheet" class="icon-menu">aaa</i>
+
+      <i-action-sheet visible="{{ visible }}" actions="{{ actions }}" show-cancel bind:cancel="closeActionSheet" bind:click="handleClickItem" />
+<view style="margin-top: 100px">
+    <i-button type="ghost" bind:click="handleOpen1">一般用法</i-button>
+    <i-button type="ghost" bind:click="handleOpen2">带有提示、异步</i-button>
+</view>
