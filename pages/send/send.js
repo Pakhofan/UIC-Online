@@ -33,6 +33,8 @@ Page({
         value: '二手交易'
       },
     ],
+    label:[],
+    labelString: "",
   },
 
   /**
@@ -207,6 +209,7 @@ Page({
       category: this.data.istreehole ? 0 : 1,
       status: this.data.istreehole ? (this.data.ishidename ? 1 : 0) : 0,
       label: this.data.label,
+      label_string: this.data.labelString,
       position: this.data.position,
     }
     console.log(data.imgs)
@@ -289,6 +292,13 @@ Page({
     console.log('checkbox发生change事件，携带value值为：', e.detail.value)
     this.setData({
       label: e.detail.value,
+    })
+    let labelString = ""
+    for (var i = 0; i < e.detail.value.length; i++) {
+      labelString += e.detail.value[i]
+    }
+    this.setData({
+      labelString: labelString,
     })
   },
   //用户输入位置

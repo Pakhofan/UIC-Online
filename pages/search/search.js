@@ -68,9 +68,12 @@ Page({
     var that = this
     let tableID = 52108
     let TableInfo = new wx.BaaS.TableObject(tableID)
-    let Query = new wx.BaaS.Query()
-    Query.contains('text', this.data.keywords)
-    TableInfo.setQuery(Query).find().then(res => {
+    let queryA = new wx.BaaS.Query()
+    queryA.contains('text', this.data.keywords)
+    let queryB = new wx.BaaS.Query()
+    queryB.contains('label_string', this.data.keywords)
+    let orQuery = wx.BaaS.Query.or(queryA, queryB)
+    TableInfo.setQuery(orQuery).find().then(res => {
       // success
       console.log(res.data.objects)
       this.setData({
