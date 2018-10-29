@@ -179,7 +179,7 @@ Component({
       })
     },
     updateLikedCard: function() {
-      console.log("updateLikedCard")
+      //console.log("updateLikedCard")
       var card = this.data.card
       var likedList = wx.getStorageSync('likedList')
       if (likedList) {

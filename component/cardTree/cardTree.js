@@ -54,6 +54,9 @@ Component({
     toLower: false,
     liking: false,
     firstLoading: true,
+    scroll: true,
+    scrollTop: 0,
+    moving: false
   },
 
   lifetimes: {
@@ -110,6 +113,7 @@ Component({
         clientY
       } = e.touches[0];
       this.startX = clientX;
+      this.startY = clientY;
       this.tapStartX = clientX;
       this.tapStartY = clientY;
       this.data.stv.tStart = true;
@@ -127,6 +131,8 @@ Component({
         stv
       } = this.data;
       let offsetX = this.startX - clientX;
+      let offsetY = this.startY - clientY;
+      console.log(offsetY)
       this.startX = clientX;
       stv.offset += offsetX;
       if (stv.offset <= 0) {
@@ -157,6 +163,7 @@ Component({
         windowWidth
       } = stv;
       //快速滑动
+      //console.log(this.tapStartY - clientY)
       if (endTime - this.tapStartTime <= 500) {
         //向左
         if (Math.abs(this.tapStartY - clientY) < 75) {
@@ -216,6 +223,38 @@ Component({
     handlerTabTap(e) {
       this._updateSelectedPage(e.currentTarget.dataset.index);
       console.log('tab tap')
+      wx.pageScrollTo({
+        scrollTop: 0,
+        duration: 300
+      })
+    },
+    scrollViewY: function (e) {
+      var that = this
+      //console.log(e.detail.deltaY)
+      let offectY = -e.detail.deltaY
+      let minusHeight = this.properties.minusHeight
+      let scrollTop = this.data.scrollTop
+      var movingY = scrollTop;
+      if (offectY > minusHeight - scrollTop) {
+        movingY = minusHeight
+      } else if (offectY < -scrollTop) {
+        movingY = 0
+      }
+      if (movingY != scrollTop && !this.data.moving) {
+        wx.pageScrollTo({
+          scrollTop: movingY,
+          duration: 300
+        })
+        this.setData({
+          scrollTop: movingY,
+          moving: true
+        })
+        setTimeout(function () {
+          that.setData({
+            moving: false
+          })
+        }, 300)
+      }
     },
     toUpperLoadCards: function() {
       //console.log('!!!!!!!!!!!!!!!!!')
@@ -310,7 +349,7 @@ Component({
         // err
       })
     },
-    displayKeywords: function(){
+    displayKeywords: function() {
       // not work
       var cards = this.properties.cardsData
       console.log(cards)
@@ -324,6 +363,6 @@ Component({
       this.setData({
         cardsData: []
       })
-    }
+    },
   }
 })
