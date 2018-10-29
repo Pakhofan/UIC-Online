@@ -85,6 +85,11 @@ Component({
         })
         this.tabsCount = tabs.length;
       } catch (e) {}
+      if (!this.properties.displayTabs) {
+        this.setData({
+          tabs: ["全部"]
+        })
+      }
     },
     ready: function() {
       var that = this
@@ -108,81 +113,95 @@ Component({
    */
   methods: {
     handlerStart(e) {
-      let {
-        clientX,
-        clientY
-      } = e.touches[0];
-      this.startX = clientX;
-      this.startY = clientY;
-      this.tapStartX = clientX;
-      this.tapStartY = clientY;
-      this.data.stv.tStart = true;
-      this.tapStartTime = e.timeStamp;
-      this.setData({
-        stv: this.data.stv
-      })
+      if (this.properties.displayTabs) {
+        let {
+          clientX,
+          clientY
+        } = e.touches[0];
+        this.startX = clientX;
+        this.startY = clientY;
+        this.tapStartX = clientX;
+        this.tapStartY = clientY;
+        this.data.stv.tStart = true;
+        this.tapStartTime = e.timeStamp;
+        this.setData({
+          stv: this.data.stv
+        })
+      }
     },
     handlerMove(e) {
-      let {
-        clientX,
-        clientY
-      } = e.touches[0];
-      let {
-        stv
-      } = this.data;
-      let offsetX = this.startX - clientX;
-      let offsetY = this.startY - clientY;
-      console.log(offsetY)
-      this.startX = clientX;
-      stv.offset += offsetX;
-      if (stv.offset <= 0) {
-        stv.offset = 0;
-      } else if (stv.offset >= stv.windowWidth * (this.tabsCount - 1)) {
-        stv.offset = stv.windowWidth * (this.tabsCount - 1);
+      if (this.properties.displayTabs) {
+        let {
+          clientX,
+          clientY
+        } = e.touches[0];
+        let {
+          stv
+        } = this.data;
+        let offsetX = this.startX - clientX;
+        let offsetY = this.startY - clientY;
+        console.log(offsetY)
+        this.startX = clientX;
+        stv.offset += offsetX;
+        if (stv.offset <= 0) {
+          stv.offset = 0;
+        } else if (stv.offset >= stv.windowWidth * (this.tabsCount - 1)) {
+          stv.offset = stv.windowWidth * (this.tabsCount - 1);
+        }
+        this.setData({
+          stv: stv
+        });
       }
-      this.setData({
-        stv: stv
-      });
     },
     handlerCancel(e) {
 
     },
     handlerEnd(e) {
-      let {
-        clientX,
-        clientY
-      } = e.changedTouches[0];
-      let endTime = e.timeStamp;
-      let {
-        tabs,
-        stv,
-        activeTab
-      } = this.data;
-      let {
-        offset,
-        windowWidth
-      } = stv;
-      //快速滑动
-      //console.log(this.tapStartY - clientY)
-      if (endTime - this.tapStartTime <= 500) {
-        //向左
-        if (Math.abs(this.tapStartY - clientY) < 75) {
-          if (this.tapStartX - clientX > 15) {
-            if (activeTab < this.tabsCount - 1) {
+      if (this.properties.displayTabs) {
+        let {
+          clientX,
+          clientY
+        } = e.changedTouches[0];
+        let endTime = e.timeStamp;
+        let {
+          tabs,
+          stv,
+          activeTab
+        } = this.data;
+        let {
+          offset,
+          windowWidth
+        } = stv;
+        //快速滑动
+        //console.log(this.tapStartY - clientY)
+        if (endTime - this.tapStartTime <= 500) {
+          //向左
+          if (Math.abs(this.tapStartY - clientY) < 75) {
+            if (this.tapStartX - clientX > 15) {
+              if (activeTab < this.tabsCount - 1) {
+                this.setData({
+                  activeTab: ++activeTab
+                })
+              }
+            } else if (this.tapStartX - clientX < -15) {
+              if (activeTab > 0) {
+                this.setData({
+                  activeTab: --activeTab
+                })
+              }
+            }
+            stv.offset = stv.windowWidth * activeTab;
+          } else {
+            //快速滑动 但是Y距离大于75 所以用户是左右滚动
+            let page = Math.round(offset / windowWidth);
+            if (activeTab != page) {
               this.setData({
-                activeTab: ++activeTab
+                activeTab: page
               })
             }
-          } else if (this.tapStartX - clientX < -15) {
-            if (activeTab > 0) {
-              this.setData({
-                activeTab: --activeTab
-              })
-            }
+            stv.offset = stv.windowWidth * page;
           }
-          stv.offset = stv.windowWidth * activeTab;
         } else {
-          //快速滑动 但是Y距离大于75 所以用户是左右滚动
           let page = Math.round(offset / windowWidth);
           if (activeTab != page) {
             this.setData({
@@ -191,19 +210,11 @@ Component({
           }
           stv.offset = stv.windowWidth * page;
         }
-      } else {
-        let page = Math.round(offset / windowWidth);
-        if (activeTab != page) {
-          this.setData({
-            activeTab: page
-          })
-        }
-        stv.offset = stv.windowWidth * page;
+        stv.tStart = false; //加这个会导致ios滑动僵硬
+        this.setData({
+          stv: this.data.stv
+        })
       }
-      stv.tStart = false; //加这个会导致ios滑动僵硬
-      this.setData({
-        stv: this.data.stv
-      })
     },
     _updateSelectedPage(page) {
       let {
@@ -228,7 +239,8 @@ Component({
         duration: 300
       })
     },
-    scrollViewY: function (e) {
+    scrollViewY: function(e) {
+      // not work yet
       var that = this
       //console.log(e.detail.deltaY)
       let offectY = -e.detail.deltaY
@@ -249,7 +261,7 @@ Component({
           scrollTop: movingY,
           moving: true
         })
-        setTimeout(function () {
+        setTimeout(function() {
           that.setData({
             moving: false
           })

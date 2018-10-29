@@ -46,6 +46,10 @@ Component({
           webpCode: ''
         })
       }
+      console.log(this.properties.size)
+      this.setData({
+        size: this.properties.size
+      })
     },
     ready: function() {
       this.updateLikedCard()
@@ -194,5 +198,11 @@ Component({
         card: card
       });
     },
+    tapLabel: function(e) {
+      console.log(e)
+      wx.navigateTo({
+        url: '../search/search?keywords=' + e.currentTarget.dataset.label,
+      })
+    }
   },
 })

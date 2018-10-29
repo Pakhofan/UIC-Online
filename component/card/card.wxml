@@ -23,7 +23,7 @@
   <view class="contentContainer">
     <view class="text" wx:if="{{card.text!=null||card.label!=null}}">
       <block wx:for="{{card.label}}" wx:key="{{card.label}}">
-        <text class='labelText' selectable="true">#{{item}}# </text>
+        <text class='labelText' selectable="true" catchtap='tapLabel' data-label="{{item}}">#{{item}}# </text>
       </block>
       <block wx:if='{{card.longText}}'>
         <text selectable="true">{{card.formatText}}</text>
@@ -34,7 +34,7 @@
       </block>
     </view>
     <view class="pictureContainer" wx:if='{{card.imgs}}'>
-      <block wx:if="{{size=='small'}}">
+      <block wx:if="{{size}}=='small'">
         <block wx:if='{{card.imgs.length==1}}'>
           <image class="singlePictureSmall" wx:if="{{card.imgs[0]}}" src="{{card.imgs[0] + webpCode}}" mode="aspectFill" catchtap='viewImage' data-src="{{card.imgs[0]}}" data-list="{{card.imgs}}"></image>
         </block>

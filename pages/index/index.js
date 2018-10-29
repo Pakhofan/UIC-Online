@@ -111,23 +111,4 @@ Page({
     var that = this
     WxSearch.wxSearchHiddenPancel(that);
   },
-  //查询信息
-  queryInformation: function() {
-    var that = this
-    let tableID = 52108
-    let TableInfo = new wx.BaaS.TableObject(tableID)
-    let Query = new wx.BaaS.Query()
-    Query.contains('text', this.data.keywords)
-    TableInfo.setQuery(Query).find().then(res => {
-      // success
-      console.log(res.data.objects)
-      this.setData({
-        returnInfo: res.data.objects
-      })
-    }, err => {
-      // err
-    })
-  }
-
-
 })
