@@ -18,11 +18,10 @@ Component({
         // 通常 newVal 就是新设置的数据， oldVal 是旧数据
       }
     },
-    size: { 
+    size: {
       type: String, // "small" 或者 "normal"
       value: 'normal', // 属性初始值
-      observer: function (newVal, oldVal, changedPath) {
-      }
+      observer: function(newVal, oldVal, changedPath) {}
     },
 
 
@@ -33,6 +32,8 @@ Component({
    */
   data: {
     webpCode: '!/format/webp',
+    actionSheetVisible: false,
+    actions: ['生成海报','我要投诉'],
   },
 
   lifetimes: {
@@ -82,6 +83,14 @@ Component({
       wx.navigateTo({
         url: "../profile/profile?id=" + userId
       })
+    },
+    viewDetail: function(event) {
+      if (event.target.dataset.tag != 'btn-sharetofriend' && this.properties.size == 'small') {
+        var cardId = event.currentTarget.dataset.id;
+        wx.navigateTo({
+          url: "../detail/detail?id=" + cardId + "&type=normal"
+        })
+      }
     },
     tapComment: function(event) {
       var cardId = event.currentTarget.dataset.id;
@@ -203,6 +212,38 @@ Component({
       wx.navigateTo({
         url: '../search/search?keywords=' + e.currentTarget.dataset.label,
       })
-    }
+    },
+    openActionSheet() {
+      var that = this
+      wx.showActionSheet({
+        itemList: this.data.actions,
+        success(res) {
+          console.log(res.tapIndex)
+          that.handleClickItem(res.tapIndex)
+        },
+        fail(res) {
+          console.log(res.errMsg)
+        }
+      })
+    },
+    handleClickItem: function (index){
+      index = index + 1;
+      console.log("click item ：" + index)
+
+      if (index === 2) {
+        let cardId = this.data.card.id
+        let cardImg = this.data.card.imgs[0]
+        let cardText = this.data.card.text
+        let url = url = "/pages/report/report?cardId=" + cardId + "&cardImg=" + cardImg + "&cardText=" + cardText
+
+        wx.navigateTo({
+          url: url,
+        })
+      }
+
+      // $Message({
+      //   content: '点击了选项' + index
+      // });
+    },
   },
 })

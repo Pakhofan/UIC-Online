@@ -1,7 +1,11 @@
 <!--component/card/card.wxml-->
-<view class='card'>
-  <view class='menuContainer'>
-    <i class="icon-menu"></i>
+<view class='card' bindtap='viewDetail' data-id='{{card.id}}'>
+  <view style='height:0px;'>
+    <view class='menuContainer' data-id='{{card.id}}' catchtap="openActionSheet">
+      <view class='innerMenuContainer'>
+        <i data-img='{{card.imgs[0]}}' class="icon-menu"></i>
+      </view>
+    </view>
   </view>
   <view class='firstRow'>
     <view wx:if="{{card.status == 1}}" class="firstRowItemA">
@@ -125,4 +129,7 @@
       </block>
     </view>
   </view>
+</view>
+<view style='z-index:999;'>
+  <i-action-sheet visible="{{actionSheetVisible}}" actions="{{actions}}" show-cancel bind:cancel="closeActionSheet" bind:click="handleClickItem" />
 </view>

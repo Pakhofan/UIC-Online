@@ -1,4 +1,5 @@
 /* component/card/card.wxss */
+
 .container {
   height: 100%;
   display: flex;
@@ -6,14 +7,14 @@
   align-items: center;
   justify-content: space-between;
   box-sizing: border-box;
-} 
+}
 
 .pageColumn {
   margin: 0 auto;
   width: 700rpx;
 }
 
-.card,.shortCard{
+.card, .shortCard {
   background-color: #fff;
   margin-top: 15px;
   margin-bottom: 15px;
@@ -26,7 +27,7 @@
   box-shadow: 0 0 10px 0 rgba(100, 100, 100, 0.2);
 }
 
-.shortCard{
+.shortCard {
   padding-top: 10px;
 }
 
@@ -59,7 +60,7 @@
 .name {
   font-size: 16px;
   line-height: 20px;
-  color: #4f94cd;
+  color: #576b95;
 }
 
 .date {
@@ -75,15 +76,24 @@
   text-align: right;
 }
 
-.menuContainer{
+.menuContainer {
   position: relative;
+  height: 30px;
+  width: 30px;
   top: 0px;
-  left: 700rpx;
+  left: 600rpx;
+  padding-left: 30rpx;
+}
+
+.innerMenuContainer{
+  position: relative;
+  width: 15px;
+  height: 30px;
 }
 
 .icon-menu {
   position: absolute;
-  left: -22.5px;
+  left: calc(30rpx-22.5px);
   display: inline-block;
   width: 3px;
   height: 3px;
@@ -134,15 +144,6 @@
   border-color: rgba(0, 0, 0, 0.2);
 }
 
-button {
-  font-size: 13px;
-  text-align: center;
-  width: 120rpx;
-  height: 30px;
-  line-height: 30px;
-  border-radius: 4px;
-}
-
 .buttonA {
   color: #fff;
   background-color: rgb(9, 187, 7);
@@ -180,20 +181,20 @@ button {
   background-color: rgba(200, 200, 200, 0.6);
 }
 
-.getUserInfoButton{
+.getUserInfoButton {
   width: auto;
   margin-left: 20px;
   font-size: 12px;
 }
 
-.selectionRow{
+.selectionRow {
   height: 30px;
   align-items: flex-start;
   display: flex;
   flex-direction: row;
 }
 
-.selectionRowItemA{
+.selectionRowItemA {
   height: 30px;
   margin-left: 20px;
 }
@@ -213,7 +214,7 @@ button {
   height: 20px !important;
 }
 
-.lastRow{
+.lastRow {
   height: 30px;
   margin: 0 20rpx;
   align-items: center;
@@ -221,21 +222,21 @@ button {
   flex-direction: row;
 }
 
-.lastRowItem,.likeContainer,.commentContainer,.shareContainer{
+.lastRowItem, .likeContainer, .commentContainer, .shareContainer {
   display: flex;
   align-items: center;
-  justify-content:center;
+  justify-content: center;
   flex-direction: row;
   width: 100%;
   height: 30px;
   text-align: start;
 }
 
-.likeContainer,.commentContainer{
+.likeContainer, .commentContainer {
   width: auto;
 }
 
-.shareContainer,.shareContainer:hover,.shareContainer:active{
+.shareContainer, .shareContainer:hover, .shareContainer:active {
   width: auto;
   line-height: 30px;
   margin-top: 0;
@@ -244,32 +245,18 @@ button {
   border-style: none;
 }
 
-.iconButton{
+.iconButton {
   width: 20px;
   height: 20px;
   margin-right: 5px;
 }
 
-.iconText{
+.iconText {
   display: inline-block;
   line-height: 20px;
   color: #ccc;
   font-size: 12px;
 }
-
-.lastRowItemA{
-  margin-left: 10rpx;
-  margin-right: 50rpx;
-}
-
-.lastRowItemB{
-  margin-left: 50rpx;
-}
-
-.lastRowItemC{
-  margin-right: 10rpx;
-}
-
 
 .listContainer {
   font-size: 14px;
@@ -293,7 +280,7 @@ button {
   flex-direction: row;
 }
 
-.underLine{
+.underLine {
   border-bottom-style: solid;
   border-color: rgba(200, 200, 200, 0.2);
   border-width: 1px;
@@ -329,42 +316,43 @@ button {
   text-align: center;
 }
 
-.textBetweenLine{
+.textBetweenLine {
   display: table;
-	width: 600rpx;
+  width: 600rpx;
   height: 32px;
   margin-bottom: 15px;
   padding-bottom: 15px;
-	line-height: 32px;
+  line-height: 32px;
   margin: 0 auto;
   font-size: 12pt;
   color: #ccc;
-	background-color: #fff;
-	white-space: nowrap;
-	border-spacing: 10px 0;
+  background-color: #fff;
+  white-space: nowrap;
+  border-spacing: 10px 0;
 }
 
-.textBetweenLine:before,.textBetweenLine:after{
-	display: table-cell;
-	content: '';
-	width: 50%;
-	background: -webkit-linear-gradient(#eee,#eee) repeat-x left center;
-	background: linear-gradient(#eee,#eee) repeat-x left center;
-	background-size: 1px 1px;
+.textBetweenLine:before, .textBetweenLine:after {
+  display: table-cell;
+  content: '';
+  width: 50%;
+  background: -webkit-linear-gradient(#eee, #eee) repeat-x left center;
+  background: linear-gradient(#eee, #eee) repeat-x left center;
+  background-size: 1px 1px;
 }
 
-.labelText{
-  color: rgb(226, 114, 30)
+.labelText {
+  color: rgb(226, 114, 30);
 }
 
-.positionText{
-  color: #4f94cd;
-  font-size: 13px;
+.positionText {
+  color: #576b95;
+  font-size: 12px;
   line-height: 20px;
 }
 
 .text {
   font-size: 16px;
+  color: #353535;
 }
 
 .pictureSmall {
@@ -425,10 +413,14 @@ button {
 }
 
 .btn-sharetofriend::after {
-  border: solid;
+  border: none;
 }
 
-.viewAllText{
+button::after {
+  border: none;
+}
+
+.viewAllText {
   margin-top: 5px;
   text-align: left;
   float: right;

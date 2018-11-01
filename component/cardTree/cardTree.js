@@ -283,22 +283,6 @@ Component({
         toLower: true
       });
     },
-    viewDetail: function(event) {
-      let x = event.detail.x;
-      let windowWidth = wx.getSystemInfoSync().windowWidth
-      let rightX = windowWidth * 14 / 15 / 3 - windowWidth / 18 + windowWidth / 26
-      let leftX = windowWidth / 15 + windowWidth / 50
-      // console.log(leftX, "-", rightX);
-      // console.log(x)
-      if (x > rightX || x < leftX) {
-        if (event.target.dataset.tag != 'btn-sharetofriend') {
-          var cardId = event.currentTarget.dataset.id;
-          wx.navigateTo({
-            url: "../detail/detail?id=" + cardId + "&type=normal"
-          })
-        }
-      }
-    },
     pullCards: function(option) {
       this.setData({
         pullingCards: true
