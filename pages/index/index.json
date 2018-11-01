@@ -1,6 +1,10 @@
 {
   "backgroudColor": "#fff",
   "usingComponents": {
-    "cardTree": "/component/cardTree/cardTree"
+    "cardTree": "/component/cardTree/cardTree",
+    "i-grid": "/component/iview-weapp/dist/grid/index",
+    "i-grid-item": "/component/iview-weapp/dist/grid-item/index",
+    "i-grid-icon": "/component/iview-weapp/dist/grid-icon/index",
+    "i-grid-label": "/component/iview-weapp/dist/grid-label/index"
   }
 }

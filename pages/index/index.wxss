@@ -10,3 +10,8 @@
   width: 20px;
   height: 20px;
 }
+
+.gridContainer{
+  width: 700rpx;
+  margin: 0 auto;
+}

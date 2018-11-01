@@ -10,4 +10,32 @@
   </view>
 </view>
 <template is="wxSearch" data="{{wxSearchData}}" />
+<view class='gridContainer'>
+  <i-grid>
+    <i-grid-item>
+      <i-grid-icon>
+        <image src="/imgs/call.png" />
+      </i-grid-icon>
+      <i-grid-label>Grid</i-grid-label>
+    </i-grid-item>
+    <i-grid-item>
+      <i-grid-icon>
+        <image src="/imgs/call.png" />
+      </i-grid-icon>
+      <i-grid-label>Grid</i-grid-label>
+    </i-grid-item>
+    <i-grid-item>
+      <i-grid-icon>
+        <image src="/imgs/call.png" />
+      </i-grid-icon>
+      <i-grid-label>Grid</i-grid-label>
+    </i-grid-item>
+    <i-grid-item>
+      <i-grid-icon>
+        <image src="/imgs/call.png" />
+      </i-grid-icon>
+      <i-grid-label>Grid</i-grid-label>
+    </i-grid-item>
+  </i-grid>
+</view>
 <cardTree display-tabs="true" minus-height='40'></cardTree>

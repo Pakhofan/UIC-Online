@@ -272,6 +272,10 @@ Component({
       //console.log('!!!!!!!!!!!!!!!!!')
       if (!this.data.pullingCards && this.properties.cardTreeType == "all") {
         this.pullCards("up");
+        wx.pageScrollTo({
+          scrollTop: 0,
+          duration: 300
+        })
       }
     },
     toLowerLoadCards: function() {
