@@ -1,7 +1,5 @@
 {
   "component": true,
   "usingComponents": {
-    "i-action-sheet": "/pages/iview-weapp/dist/action-sheet/index",
-    "i-button": "/pages/iview-weapp/dist/button/index"
   }
 }
