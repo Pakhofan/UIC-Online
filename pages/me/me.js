@@ -105,5 +105,11 @@ Page({
     wx.navigateTo({
       url: 'me-info/me-info',
     })
+  },
+
+  OnMeInteractTap: function(e){
+    wx.navigateTo({
+      url: 'me-interact/me-interact',
+    })
   }
 })

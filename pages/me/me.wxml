@@ -13,7 +13,11 @@
     <view class='myRowA'>
       <view catchtap='OnMeInfoyTap' class='myRowItem' data-type='like'>
         <image class='myImg' src='/imgs/me_black_tiny.png' />
-        <text class='myText'>个人信息</text>
+        <text class='myText'>我的信息</text>
+      </view>
+      <view catchtap='OnMeInteractTap' class='myRowItem' data-type='like'>
+        <image class='myImg' src='/imgs/me_black_tiny.png' />
+        <text class='myText'>信息交互</text>
       </view>
     </view>
     <view class='myRowA'>

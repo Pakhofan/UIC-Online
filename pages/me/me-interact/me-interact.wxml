@@ -1,0 +1,25 @@
+<!--pages/me/me-interact/me-interact.wxml-->
+<view class='container'>
+
+  <view wx:if="{{!confirmInfo}}">
+    <text>暂无验证消息</text>
+  </view>
+  <view wx:else>
+    <view class='title'>用户信息验证确认</view>
+    <view wx:for="{{confirmInfo}}" wx:for-item="item">
+      <view class='card'>
+        <image class='headPic' src="{{item.to_avatar}}"></image>
+        <view class='confirmText'>
+        <text class='name'>{{item.to_nickname}}</text>
+        <text class='date'>验证信息：{{item.confirmText}}</text>
+        </view>
+        <button class='buttonA pass' catchtap='confirmPass' wx:if="{{item.status <= 0}}" data-passid='{{item.id}}'>通过</button>
+        <text wx:else class='passText'>已通过</text>
+        <button class='buttonA delete' catchtap='confirmdelete' wx:if="{{item.status <= 0}}" data-passid='{{item.id}}'>丑拒</button>
+      </view>
+    
+    </view>
+
+  </view>
+  
+</view>

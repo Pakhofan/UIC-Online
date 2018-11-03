@@ -80,3 +80,32 @@ button {
 .buttonA:active {
   background-color: rgba(9, 187, 7, 0.6);
 }
+
+.confirmButton {
+  height: 40px;
+  width: 600rpx;
+  font-size: 18px;
+  line-height: 40px;
+}
+
+.confirmTitle {
+  text-align: center;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.waitText {
+  font-size: 13px;
+  margin-left: 10rpx;
+  margin-right: 10rpx;
+  margin-top: 100rpx;
+  margin-bottom: 100rpx;
+  font-weight: bold;
+}
+
+.wait {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
