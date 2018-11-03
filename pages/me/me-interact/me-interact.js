@@ -23,6 +23,7 @@ Page({
   },
 
   pullConfirm: function() {
+    let userId = wx.getStorageSync('userId')
     let tableID = 56190
     let confirmPro = new wx.BaaS.TableObject(tableID)
     let query = new wx.BaaS.Query()
