@@ -1,0 +1,39 @@
+/* pages/me/me-interact/me-interact.wxss */
+
+
+.title{
+  font-size: 15px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.card{
+  display: flex;
+  flex-direction: row;
+}
+
+.confirmText{
+  display: flex;
+  flex-direction: column;
+}
+
+.headPic{
+  margin-left: 10rpx;
+  margin-right: 10rpx;
+}
+
+.pass{
+  margin-left: 125rpx;
+}
+
+.passText{
+  font-size: 14px;
+  color: #666;
+  margin-left: 325rpx;
+}
+
+.delete{
+  margin-right: 30rpx;
+  background-color: rgb(187, 7, 31);
+  border-color: #09bb07; 
+}

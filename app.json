@@ -12,7 +12,8 @@
     "pages/me/me",
     "pages/search/search",
     "pages/me-history/me-history",
-    "pages/me/me-info/me-info"
+    "pages/me/me-info/me-info",
+    "pages/me/me-interact/me-interact"
   ],
   "window": {
     "backgroundColor": "#eee",

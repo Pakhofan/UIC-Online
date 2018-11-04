@@ -1,1 +1,2 @@
-@import "../index/index.wxss"
+@import "../../component/card/card.wxss";
+@import "../../component/cardTree/cardTree.wxss";

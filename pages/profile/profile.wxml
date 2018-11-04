@@ -1,19 +1,51 @@
 <!--pages/profile/profile.wxml-->
 <view class="container">
-  <view class="userinfo">
-    <image bindtap="bindViewTap" mode='aspectFill' class="userinfo-avatar" src="{{profile.avatar}}"></image>
-    <text class="userinfo-nickname">{{profile.nickname}}</text>
-  </view>
-  <view class='listContainer'>
-    <view class='list'>
-      <view class='listItemA'>微信号</view>
-      <view class='listItemB'>{{profile.wechat_id}}</view>
-      <view class='listItemC'><button class='buttonA'>复制</button></view>
+  <view wx:if="{{confirmInfo}}" wx:for="{{confirmInfo}}" wx:for-item='item'>
+    <view wx:if="{{item.status == 1}}">
+      <view class="userinfo">
+        <image bindtap="bindViewTap" mode='aspectFill' class="userinfo-avatar" src="{{profile.avatar}}"></image>
+        <text class="userinfo-nickname">{{profile.nickname}}</text>
+      </view>
+      <view class='listContainer'>
+        <view class='list'>
+          <view class='listItemA'>微信号</view>
+          <view class='listItemB'>{{profile.wechat_id}}</view>
+          <view class='listItemC'>
+            <button class='buttonA'>复制</button>
+          </view>
+        </view>
+        <view class='list'>
+          <view class='listItemA'>手机号</view>
+          <view class='listItemB'>{{profile.phone_number}}</view>
+          <view class='listItemC'>
+            <button class='buttonA'>复制</button>
+          </view>
+        </view>
+      </view>
     </view>
-    <view class='list'>
-      <view class='listItemA'>手机号</view>
-      <view class='listItemB'>{{profile.phone_number}}</view>
-      <view class='listItemC'><button class='buttonA'>复制</button></view>
+    <view wx:if="{{item.status == 0}}" class='card wait'>
+      <text class="waitText">验证已发送，请耐心等待</text>
+      <text class="waitText">（如需再次验证说明你被拒绝了（笑））</text>
     </view>
   </view>
+  <view wx:if="{{!confirmInfo}}">
+    <view class="userinfo">
+      <image bindtap="bindViewTap" mode='aspectFill' class="userinfo-avatar" src="{{profile.avatar}}"></image>
+      <text class="userinfo-nickname">{{profile.nickname}}</text>
+    </view>
+    <view class='card'>
+      <view class='confirmTitle'>
+        <text id="confirmTitle">验证信息</text>
+      </view>
+      <view class='getConfirm'>
+        <view class='list'>
+          <view class='listItemB'>
+            <input placeholder="输入信息" bindinput="inputConfirmText"></input>
+          </view>
+        </view>
+      </view>
+    </view>
+    <button class='buttonA confirmButton' catchtap="confirmSend">发送验证请求</button>
+  </view>
+
 </view>
