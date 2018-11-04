@@ -1,4 +1,4 @@
-// component/cardTree/cardTree.js
+
 const app = getApp();
 const util = require('../../utils/util.js')
 var sliderWidth = 96;

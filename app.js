@@ -77,6 +77,5 @@ App({
     userId: null,
     BaaSAvatar: null,
     platform: null,
-    infoConfirm: false,
   }
 })
