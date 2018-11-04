@@ -13,7 +13,8 @@
     "pages/search/search",
     "pages/me-history/me-history",
     "pages/me/me-info/me-info",
-    "pages/me/me-interact/me-interact"
+    "pages/me/me-interact/me-interact",
+    "pages/me/copyright/copyright"
   ],
   "window": {
     "backgroundColor": "#eee",

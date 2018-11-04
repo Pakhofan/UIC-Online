@@ -41,5 +41,5 @@
       </view>
     </view>
   </view>
-  <view class="bottomText">Copyright ©300E 2018</view>
+  <view class="bottomText" bindtap='jumpCopyright'>Copyright ©300E 2018</view>
 </view>

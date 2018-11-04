@@ -111,5 +111,11 @@ Page({
     wx.navigateTo({
       url: 'me-interact/me-interact',
     })
+  },
+  //copyright页面的跳转
+  jumpCopyright: function(option){
+    wx.navigateTo({
+      url: '../me/copyright/copyright',
+    })
   }
 })
